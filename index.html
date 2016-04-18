@@ -2,13 +2,48 @@
 <html lang="de">
     <head>
         <meta charset="UTF-8">
-         <!-- Bootstrap -->
-      <title> Songquiz</title>
-     <link href="css/bootstrap.min.css" rel="stylesheet">
-     <link href="css/style.css" rel="stylesheet">
-      <script src="lib/jquery-2.1.4.min.js"></script>
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+        <!--fullscreen-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <!--app title-->
+        <meta name="apple-mobile-web-app-title" content="Song Quiz">
+        <!--app icon-->
+        <link rel="apple-touch-icon" href="img/songquiz.png" >
+        <!--favicon-->
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+        <title>Song Quiz</title>
+        <!-- CSS Bootstrap, FA -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="lib/jquery-2.1.4.min.js"></script>
+        <script src="js/nav.js"></script>
+        <script src="js/app.js"></script>
     </head>
-<body>
-<h1>Song Quiz</h1>	
-</body>
+    <body>
+        <header>
+            <h3>Song Quiz</h3>
+               <nav id="nav">
+          
+        </nav>   
+        </header>
+       <main>
+            <section id="start">
+                <form method="post">
+                    <legend>What do you want to eat?</legend>
+                            <input type="checkbox"  value="pizza" />Pizza<br />
+                            <input id="go" type="submit" value="Go"/>
+                </form>
+            </section>
+            <section id="game">
+            </section>
+            <section id="score">
+            </section>
+        </main>  
+    </body>
 </html>

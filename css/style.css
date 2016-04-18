@@ -1,0 +1,45 @@
+/****** SongQuiz - CSS Bootstrap Customization ******/
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+}
+header{
+    position: absolute;
+    top:0px;
+    right:0px;
+    left:0px;
+    height: 40px;
+    width: 100%;
+    background-color: #1E1120;
+}
+header h3{
+    font-size: 1em;
+    color: white;
+    margin: 10px 20%;
+    text-align: center;
+}
+main{
+    position: absolute;
+    top:40px;
+    right:0;
+    left:0;
+}
+section {
+    height: 100%;
+    padding: 10px;
+    background-color: #E9E5DC;
+    height: 97%; 
+    width: 99%; 
+}
+#start{
+    display: block;
+}
+#game{
+    display: none;
+}
+#score{
+    display: none;
+}

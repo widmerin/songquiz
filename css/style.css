@@ -5,6 +5,8 @@ html, body{
     height: 100%;
     width: 100%;
     font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+    background-image:url('/img/startbg-hell.jpg');
+    background-size: cover;
 }
 header{
     position: absolute;
@@ -22,6 +24,7 @@ header h3{
     text-align: center;
 }
 main{
+
     position: absolute;
     top:40px;
     right:0;
@@ -30,9 +33,9 @@ main{
 section {
     height: 100%;
     padding: 10px;
-    background-color: #E9E5DC;
     height: 97%; 
-    width: 99%; 
+    width: 99%;
+    background-color: transparent;
 }
 #start{
     display: block;

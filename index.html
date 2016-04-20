@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-        <!--fullscreen-->
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <!--app title-->
-        <meta name="apple-mobile-web-app-title" content="Song Quiz">
-        <!--app icon-->
-        <link rel="apple-touch-icon" href="img/songquiz.png" >
-        <!--favicon-->
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <!--fullscreen-->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!--app title-->
+    <meta name="apple-mobile-web-app-title" content="Song Quiz">
+    <!--app icon-->
+    <link rel="apple-touch-icon" href="img/songquiz.png">
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
-        <title>Song Quiz</title>
-        <!-- CSS Bootstrap, FA -->
-    	<link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="lib/jquery-2.1.4.min.js"></script>
-        <script src="js/nav.js"></script>
-        <script src="js/app.js"></script>
-    </head>
-    <body>
-        <header>
-            <h3>Song Quiz</h3>
-               <nav id="nav">
-          
-        </nav>   
-        </header>
-       <main>
-            <section id="start">
-                <form method="post">
-                    <legend>Game settings</legend>
-                    How many songs do you want to guess?
-                            <input type="input"  value="count" /><br />
-                            <input id="play" type="submit" value="Play now"/>
-                </form>
-            </section>
-            <section id="game">
-            </section>
-            <section id="score">
-            </section>
-        </main>  
-    </body>
+    <title>Song Quiz</title>
+    <!-- CSS Bootstrap, FA -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<header>
+    <h3>Song Quiz</h3>
+    <nav id="nav">
+
+    </nav>
+</header>
+<main>
+    <section id="start">
+        <form method="post">
+            <h1>Game settings</h1>
+            <p>How many songs do you want to guess?
+                <select name="count">
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select></p>
+            <input id="play" type="submit" value="Play now"/>
+        </form>
+    </section>
+    <section id="game">
+    </section>
+    <section id="score">
+    </section>
+</main>
+</body>
 </html>

@@ -30,10 +30,18 @@ main{
     left:0;
 }
 section {
-    height: 100%;
     padding: 10px;
     height: 97%; 
     width: 99%;
+}
+#game button {
+    height: 3em;
+    margin: 1em;
+    width: 15em;
+    display: block;
+}
+#game div {
+    float: left;
 }
 #start{
     display: block;

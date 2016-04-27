@@ -52,11 +52,17 @@ section {
     height: 10em;
 }
 #start{
-    display: block;
+    display: none;
 }
 #game{
     display: none;
 }
 #score{
+    display: none;
+}
+#login{
+    display: block;
+}
+#reg{
     display: none;
 }

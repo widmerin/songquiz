@@ -18,7 +18,7 @@ header{
     background-color: rgba(255,255,255,0.5);
 }
 header h3{
-    font-size: 1em;
+    font-size: 1.5em;
     color: black;
     margin: 10px 20%;
     text-align: center;
@@ -30,6 +30,7 @@ main{
     left:0;
 }
 section {
+    text-align: center;
     padding: 10px;
     height: 97%; 
     width: 99%;
@@ -40,8 +41,15 @@ section {
     width: 15em;
     display: block;
 }
+#game span {
+    text-align: center;
+}
 #game div {
     float: left;
+}
+#cover{
+    width: 10em;
+    height: 10em;
 }
 #start{
     display: block;

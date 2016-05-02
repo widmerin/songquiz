@@ -22,6 +22,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile_style.css">
     <script src="lib/jquery-2.1.4.min.js"></script>
     <script src="js/nav.js"></script>
     <!-- <script src="js/app.js"></script> -->
@@ -35,69 +36,81 @@
 </header>
 <main>
 
-    <section id="login">
-        <form method="post">
-            <h1>Login</h1>
-                <input name="email">
-                </input>
-            <input name="pw">
-            </input>
-            <input id="btLogin" type="submit" value="Login"/>
-        </form>
-        <button id="btNew">Register a new account</button>
+    <!-- Content Left Column-->
+    <section class="content">
+       <section id="intro">
+            <h1>Song Quiz</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+       </section>
+        <section id="start">
+            <form method="post">
+                <h1>Game settings</h1>
+                <p>How many songs do you want to guess?
+                    <select name="count">
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select></p>
+                <input id="btPlay" type="submit" value="Play now"/>
+            </form>
+        </section>
     </section>
 
-    <section id="reg">
-        <form method="post">
-            <h1>Get a free account</h1>
-            <p>Just tell us your email and choose a password:</p>
-               <p>Email: <input name="email">
-                </input></p>
-               <p>Password: <input name="pw">
-                </input></p>
-            <input id="btReg" type="submit" value="Register now"/>
-        </form>
-    </section>
+    <!-- Content Right Column-->
+    <section class="content">
+       <section id="login">
+            <form method="post">
+                <h1>Login</h1>
+                    <input name="email" placeholder="Email"></input>
+                <input name="pw" placeholder="Password"></input>
+                <input id="btLogin" type="submit" value="Login"/>
+            </form>
+            <button id="btNew">Register a new account</button>
+        </section>
 
-    <section id="start">
-        <form method="post">
-            <h1>Game settings</h1>
-            <p>How many songs do you want to guess?
-                <select name="count">
-                    <option value="1">1</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                </select></p>
-            <input id="btPlay" type="submit" value="Play now"/>
-        </form>
-    </section>
+        <section id="reg">
+            <form method="post">
+                <h1>Get a free account</h1>
+                <p>Just tell us your email and choose a password:</p>
+                   <p>Email: <input name="email">
+                    </input></p>
+                   <p>Password: <input name="pw">
+                    </input></p>
+                <input id="btReg" type="submit" value="Register now"/>
+            </form>
+        </section>
+        <section id="game">
+            <span>
+            <div>
+                <img id="cover" src="img/speaker.png">
+            </div>
+            <div>
+                <button id="guess1">
+                    <h4>Michael Jackson</h4>
+                </button>
+                <button id="guess2">
+                    <h4>Moby</h4>
+                </button>
+                <button id="guess3">
+                    <h4>Radiohead</h4>
+                </button>
+                <button id="guess4">
+                    <h4>Prince</h4>
+                </button>
+            </div>
+                </span>
+        </section>
 
-    <section id="game">
-        <span>
-        <div>
-            <img id="cover" src="img/speaker.png">
-        </div>
-        <div>
-            <button id="guess1">
-                <h4>Michael Jackson</h4>
-            </button>
-            <button id="guess2">
-                <h4>Moby</h4>
-            </button>
-            <button id="guess3">
-                <h4>Radiohead</h4>
-            </button>
-            <button id="guess4">
-                <h4>Prince</h4>
-            </button>
-        </div>
-            </span>
-    </section>
+        <section id="score">
 
-    <section id="score">
-
+        </section>
     </section>
+ 
+</main>
+
+
+
 </main>
 </body>
 </html>

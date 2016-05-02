@@ -1,0 +1,9 @@
+@media screen and (max-width: 480px) {
+	main .content {
+		width: 100%;
+	}
+
+	main .content section {
+		min-height: auto;
+	}
+}

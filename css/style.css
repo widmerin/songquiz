@@ -8,6 +8,7 @@ html, body{
     background-image: url("../img/startbg-hell.jpg");
     background-size: cover;
 }
+
 header{
     position: absolute;
     top:0px;
@@ -17,24 +18,34 @@ header{
     width: 100%;
     background-color: rgba(255,255,255,0.5);
 }
+
 header h3{
     font-size: 1.5em;
     color: black;
     margin: 10px 20%;
     text-align: center;
 }
+
 main{
-    position: absolute;
-    top:40px;
-    right:0;
-    left:0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 80px;
+    min-height: 300px;
 }
-section {
+
+main .content {
+    width: 50%;
+    float: left;
+}
+
+main .content section {
+    min-height: 300px;
     text-align: center;
+    margin:10px;    
+    background: rgba(200, 200, 200, 0.6);
     padding: 10px;
-    height: 97%; 
-    width: 99%;
 }
+
 #game button {
     height: 3em;
     margin: 1em;
@@ -65,4 +76,8 @@ section {
 }
 #reg{
     display: none;
+}
+
+button, input, select, textarea {
+    margin-bottom: 10px;
 }

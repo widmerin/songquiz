@@ -93,6 +93,7 @@ main .content section {
 #score table tr:first-child {
     font-weight: bold;
 }
+
 /*-------------- Buttons & Textelements --------------*/
 
 h1 {
@@ -109,4 +110,47 @@ button, input {
 button, input, select, textarea {
     margin-bottom: 10px;
 }
+button {
+        font-weight:    bold;
+}
+
+.btn-violet {
+    background-color: #7C4C98;
+    border-color: #562f6d;
+    color: #FFF;
+    opacity: 0.9;
+
+}
+.btn-violet:hover {
+    opacity: 1.0;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7C4C98), color-stop(1, #562f6d));
+    background:-moz-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
+    background:-webkit-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
+    background:-o-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
+    background:-ms-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
+    background:linear-gradient(to bottom, #7C4C98 5%, #562f6d 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7C4C98', endColorstr='#562f6d',GradientType=0);
+    background-color:#7C4C98;
+}
+
+.btn-white {
+    border-color: #7C4C98;
+    background-color: #FFF;
+    color: #562f6d;
+    opacity: 0.9;
+
+}
+.btn-white:hover {
+    opacity: 1.0;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FFF), color-stop(1, #cccccc));
+    background:-moz-linear-gradient(top, #FFF 5%, #cccccc 100%);
+    background:-webkit-linear-gradient(top, #FFF 5%, #cccccc 100%);
+    background:-o-linear-gradient(top, #FFF 5%, #cccccc 100%);
+    background:-ms-linear-gradient(top, #FFF 5%, #cccccc 100%);
+    background:linear-gradient(to bottom, #FFF 5%, #cccccc 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#cccccc',GradientType=0);
+    background-color:#FFF;
+}
+
+
 

@@ -14,29 +14,39 @@ $(document).ready(function() {
     var btPlay = $("#btPlay");
     var btNew = $("#btNew");
 
+    //************View Handler**********************
+    var setView = function(view){
+        //hide all
+        LOGIN.hide();
+        REG.hide();
+        START.hide();
+        GAME.hide();
+        SCORE.hide();
+        //show the one given
+        view.show();
+    }
+
+
+
+
   	//**************Button Handler****************
 
     //Play Button
     btPlay.click(function(e){
         e.preventDefault();
-        GAME.show();
-        START.hide();
-
+        setView(GAME);
     });
 
     //Play Button
     btNew.click(function(e){
         e.preventDefault();
-        REG.show();
-        LOGIN.hide();
-
+        setView(REG);
     });
 
     //Play Button
     btLogin.click(function(e){
         e.preventDefault();
-        START.show();
-        LOGIN.hide();
+        setView(START);
     });
 
 });

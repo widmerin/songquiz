@@ -4,34 +4,59 @@
  * based on Snippet by http://jsfiddle.net/JMPerez/0u0v7e1b/
  */
 
-// find template and compile it
-var templateSource = document.getElementById('game').innerHTML,
-    template = Handlebars.compile(templateSource),
-    resultsPlaceholder = document.getElementById('results'),
-    playingCssClass = 'playing',
-    audioObject = null;
+// Variables
+var audioObject = null;
+var GUESS0 = $("#guess0");
+var GUESS1 = $("#guess1");
+var GUESS2 = $("#guess2");
+var GUESS3 = $("#guess3");
+var ARTIST0;
+var ARTIST1;
+var ARTIST2;
+var ARTIST3;
+var correct;    //random number from 1-4
+var audio4; //array with 4 audioObjects from spotify
+
 
 var fetchTracks = function (albumId, callback) {
     $.ajax({
         url: 'https://api.spotify.com/v1/albums/' + albumId,
-        success: function (response) {
-            callback(response);
+        success: function (data) {
+            getAudio(data);
         }
     });
 };
 
-var searchAlbums = function (query) {
-    $.ajax({
-        url: 'https://api.spotify.com/v1/search',
-        data: {
-            q: query,
-            type: 'album'
-        },
-        success: function (response) {
-            resultsPlaceholder.innerHTML = template(response);
-        }
-    });
-};
+//create Audio Array
+var getAudio = function(data){
+    for (var i=0; i<4; i++){
+        audio4[i] = new Audio(data.tracks.items[i].preview_url);
+    }
+
+
+}
+
+//save artists names
+var setArtist = function(){
+    ARTIST0 = response[0].artist;
+    ARTIST1 = response[1].artist;
+    ARTIST2 = response[2].artist;
+    ARTIST3 = response[3].artist;
+}
+
+//fill GUI with artists
+var fillArtist = function(){
+    GUESS0.text(ARTIST0);
+    GUESS1.text(ARTIST1);
+    GUESS2.text(ARTIST2);
+    GUESS3.text(ARTIST3);
+}
+
+//choose a random song to play (0,1,2,3) (which will be the one correct answer)
+correct =  Math.floor((Math.random() * 3) + 1);
+//play correct song
+
+
 
 results.addEventListener('click', function (e) {
     var target = e.target;
@@ -56,8 +81,3 @@ results.addEventListener('click', function (e) {
         }
     }
 });
-
-document.getElementById('search-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    searchAlbums(document.getElementById('query').value);
-}, false);

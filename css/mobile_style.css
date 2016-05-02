@@ -6,4 +6,10 @@
 	main .content section {
 		min-height: auto;
 	}
+
+	#cover img {
+	    width: 5em;
+	    height: 5em;
+	}
+
 }

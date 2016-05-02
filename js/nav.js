@@ -8,6 +8,10 @@ $(document).ready(function() {
     var START = $("#start");
     var GAME = $("#game");
     var SCORE = $("#score");
+    var COVER = $("#cover");
+    var INTRO = $("#intro");
+
+
 
     //Buttons
     var btLogin = $("#btLogin");
@@ -15,15 +19,18 @@ $(document).ready(function() {
     var btNew = $("#btNew");
 
     //************View Handler**********************
-    var setView = function(view){
+    var setView = function(left, right){
         //hide all
         LOGIN.hide();
         REG.hide();
         START.hide();
         GAME.hide();
         SCORE.hide();
+        INTRO.hide();
+        COVER.hide();
         //show the one given
-        view.show();
+        left.show();
+        right.show();
     }
 
 
@@ -34,19 +41,19 @@ $(document).ready(function() {
     //Play Button
     btPlay.click(function(e){
         e.preventDefault();
-        setView(GAME);
+        setView(COVER,GAME);
     });
 
-    //Play Button
+    //Register new account Button
     btNew.click(function(e){
         e.preventDefault();
-        setView(REG);
+        setView(INTRO,REG);
     });
 
-    //Play Button
+    //Login Button
     btLogin.click(function(e){
         e.preventDefault();
-        setView(START);
+        setView(START,SCORE);
     });
 
 });

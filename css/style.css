@@ -54,6 +54,9 @@ main .content section {
 #game{
     display: none;
 }
+#cover{
+    display: none;
+}
 #score{
     display: none;
 }
@@ -77,9 +80,9 @@ main .content section {
 #game div {
     float: left;
 }
-#game #cover{
-    width: 10em;
-    height: 10em;
+#cover img{
+    width: 16em;
+    height: 14em;
 }
 
 

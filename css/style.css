@@ -26,6 +26,7 @@ header h3{
     text-align: center;
 }
 
+/*-------------- Main Container --------------*/
 main{
     max-width: 1200px;
     margin: 0 auto;
@@ -46,22 +47,7 @@ main .content section {
     padding: 10px;
 }
 
-#game button {
-    height: 3em;
-    margin: 1em;
-    width: 15em;
-    display: block;
-}
-#game span {
-    text-align: center;
-}
-#game div {
-    float: left;
-}
-#cover{
-    width: 10em;
-    height: 10em;
-}
+/*-------------- Hide Sections --------------*/
 #start{
     display: none;
 }
@@ -77,6 +63,25 @@ main .content section {
 #reg{
     display: none;
 }
+
+/*-------------- Game Section --------------*/
+#game button {
+    height: 3em;
+    margin: 1em;
+    width: 15em;
+    display: block;
+}
+#game span {
+    text-align: center;
+}
+#game div {
+    float: left;
+}
+#game #cover{
+    width: 10em;
+    height: 10em;
+}
+
 
 button, input, select, textarea {
     margin-bottom: 10px;

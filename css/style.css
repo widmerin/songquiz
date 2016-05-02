@@ -5,6 +5,7 @@ html, body{
     height: 100%;
     width: 100%;
     font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+    font-size: 16px;
     background-image: url("../img/startbg-hell.jpg");
     background-size: cover;
 }
@@ -40,10 +41,10 @@ main .content {
 
 main .content section {
     min-height: 560px;
-    text-align: center;
-    margin:10px;    
+    text-align: center;    
     background: rgba(200, 200, 200, 0.6);
-    padding: 10px;
+    margin:10px;
+    padding: 20px 10px;
 }
 
 /*-------------- Hide Sections --------------*/
@@ -71,27 +72,41 @@ main .content section {
 #game span {
     text-align: center;
 }
-#game div {
-    float: left;
-}
+
 #game button {
     display: block;
 }
 
 /*-------------- Cover Section --------------*/
 #cover img{
-    width: 16em;
-    height: 14em;
+    margin: 40px 20px;
 }
 
+/*-------------- Table Section --------------*/
+#score table {
+    min-width: 200px;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 20px;
+}
 
-/*-------------- Buttons --------------*/
+#score table tr:first-child {
+    font-weight: bold;
+}
+/*-------------- Buttons & Textelements --------------*/
+
+h1 {
+    margin-bottom: 20px;
+}
+
 button, input {
     height: 3em;
-    margin: 1em;
-    width: 15em;
+    margin: 1em auto;
+    max-width: 15em;
+    width: 100%;
 }
 
 button, input, select, textarea {
     margin-bottom: 10px;
 }
+

@@ -40,7 +40,7 @@ main .content {
 }
 
 main .content section {
-    min-height: 300px;
+    min-height: 560px;
     text-align: center;
     margin:10px;    
     background: rgba(200, 200, 200, 0.6);
@@ -68,23 +68,30 @@ main .content section {
 }
 
 /*-------------- Game Section --------------*/
-#game button {
-    height: 3em;
-    margin: 1em;
-    width: 15em;
-    display: block;
-}
+
 #game span {
     text-align: center;
 }
 #game div {
     float: left;
 }
+#game button {
+    display: block;
+}
+
+/*-------------- Cover Section --------------*/
 #cover img{
     width: 16em;
     height: 14em;
 }
 
+
+/*-------------- Buttons --------------*/
+button, input {
+    height: 3em;
+    margin: 1em;
+    width: 15em;
+}
 
 button, input, select, textarea {
     margin-bottom: 10px;

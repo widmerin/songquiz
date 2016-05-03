@@ -20,8 +20,6 @@ header{
     background-color: rgba(255,255,255,0.5);
 }
 header .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
     position: relative;
 }
 
@@ -40,11 +38,12 @@ header #btLogout {
     height: 2em;
     max-width: 9em;
 }
-
-/*-------------- Main Container --------------*/
-main{
+.wrapper {
     max-width: 1200px;
     margin: 0 auto;
+}
+/*-------------- Main Container --------------*/
+main{
     padding-top: 80px;
 }
 

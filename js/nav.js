@@ -1,6 +1,5 @@
 //nav.js for navigation in gui
 $(document).ready(function() {
-    
 
     //Pages (section)
     var LOGIN = $("#login");
@@ -10,8 +9,6 @@ $(document).ready(function() {
     var SCORE = $("#score");
     var COVER = $("#cover");
     var INTRO = $("#intro");
-
-
 
     //Buttons
     var btLogin = $("#btLogin");
@@ -32,9 +29,6 @@ $(document).ready(function() {
         left.show();
         right.show();
     }
-
-
-
 
   	//**************Button Handler****************
 

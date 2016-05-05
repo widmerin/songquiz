@@ -28,6 +28,7 @@ header h3{
     color: black;
     margin: 10px 0;
     text-align: center;
+
 }
 
 header #btLogout {
@@ -125,6 +126,16 @@ button, input, select, textarea {
 }
 button {
         font-weight:    bold;
+}
+
+#btLogout {
+    visibility: visible;
+}
+
+#btLogoutSmall {
+    visibility: hidden;
+    color: #7C4C98;
+    display: block;
 }
 
 .btn-violet {

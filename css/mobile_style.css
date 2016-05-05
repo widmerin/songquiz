@@ -11,4 +11,18 @@
 	    max-width: 5em;
 	}
 
+
+	header #btLogout {
+		visibility: hidden;
+	}
+
+	header #btLogoutSmall {
+		visibility: visible;
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 0.1em 1em;
+		font-size: 2em;
+	}
+
 }

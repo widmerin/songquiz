@@ -20,8 +20,11 @@ $(document).ready(function() {
     var audioObject;    //preview_url audioObject from spotify
     var data;           //fetched spotify data
 
+
+    searchTracks();
+
 //Search spotify music
-    var searchAlbums = function () {
+    var searchTracks = function () {
         $.ajax({
             url: 'https://api.spotify.com/v1/search',
             data: {

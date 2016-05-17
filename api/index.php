@@ -14,23 +14,46 @@ require 'dbConnect.php';
 
 
 $app = new \Slim\Slim();
+$app->get('/user', 'getLogin');
+$app->get('/score/highscore/', 'getHighscore');
+$app->post('/user', 'addUser');
+$app->post('/score', 'addScore');
+
+//Get LoginData from DB
+function getLogin() {
+    echo "Validate User data";
+    $app = \Slim\Slim::getInstance();
+
+    $conn = getDB();
+    // SELECT ...
+}
+
+//Create new User in DB
+function addUser() {
+    echo "Create new User";
+    $app = \Slim\Slim::getInstance();
+
+    $conn = getDB();
+    // SELECT ...
+}
 
 
-$app->get('/quote/random', function (){
-	echo "Get Random Quotes";
-});
-
-//GET highscore
-$app->get('/highscore/', function (){
+//Get highscore from DB
+function getHighscore() {
     echo "Show Highscore";
     $app = \Slim\Slim::getInstance();
 
     $conn = getDB();
     // SELECT ...
-    $conn->close();
-});
+}
 
+//Save Score in DB
+function addScore() {
+    echo "Add new Score";
+    $app = \Slim\Slim::getInstance();
 
-
+    $conn = getDB();
+    // SELECT ...
+}
 
 $app->run();

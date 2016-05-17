@@ -28,7 +28,7 @@ $(document).ready(function() {
         $.ajax({
             url: 'https://api.spotify.com/v1/search',
             data: {
-                q: 'moby',
+                q: '',
                 type: 'track'
             },
             success: function (response) {
@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
         });
     };
-    
+
     searchTracks();
 
 //get 4 tracks from spotify

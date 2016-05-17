@@ -21,7 +21,7 @@ $(document).ready(function() {
     var data;           //fetched spotify data
 
 
-    searchTracks();
+
 
 //Search spotify music
     var searchTracks = function () {
@@ -36,7 +36,8 @@ $(document).ready(function() {
             }
         });
     };
-
+    
+    searchTracks();
 
 //get 4 tracks from spotify
 //TODO: correct api call for 4 songs out of pop, rock or billboard playlist ?

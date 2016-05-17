@@ -83,7 +83,7 @@ $(document).ready(function() {
     }
 
 
-    guessButtons.addEventListener('click', function (e) {
+    guessButtons.on('click', function (e) {
         //which button was pressed? -> target
         var target = e.target;
         console.log(target);

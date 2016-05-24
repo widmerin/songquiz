@@ -57,14 +57,14 @@ $(document).ready(function() {
         //alert('Login prozess');
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/songquiz/api/user',
+            url: 'http://localhost/songquiz/api/user',
             success: function(){
                 console.log('erfolgreich');
-                setView(COVER,GAME);// this will call after PHP method execution.
+                setView(START,SCORE);// this will call after PHP method execution.
             },
             error: function () {
                 console.log('bad');
-                setView(INTRO,LOGIN);
+                 setView(START,SCORE);
             },
         });
     });

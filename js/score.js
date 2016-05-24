@@ -3,20 +3,18 @@
 // The root URL for the RESTful services
 var apiURL = "http://"+document.domain+"/songquiz/api/";
 
-function addScore() {
-	console.log("domain"+document.domain);
-	console.log('addScore'+scoreToJSON()+' url'+rootURL);
+function addScore(playedQuestions, correctAnswers)  {
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
-		url: rootURL,
+		url: apiURL+'score',
 		dataType: "json",
-		data: scoreToJSON(),
-		success: function(data, textStatus, jqXHR){
+		data: scoreToJSON(playedQuestions, correctAnswers),
+		success: function(){
 			console.log('Saved Score')
 		},
-		error: function(jqXHR, textStatus, errorThrown){
-			console.log('addscore error: ' + textStatus);
+		error: function(){
+			console.log('addscore error:');
 		}
 	});
 }
@@ -29,41 +27,32 @@ function getHighscore() {
 		dataType: "json", 
 		success: renderHighscoreList
 	});
-	console.log("test");
 }
 
 
-function scoreToJSON() {
+function scoreToJSON(playedQuestions, correctAnswers) {
 	return JSON.stringify({
-		"userid": "1", 
-		"playedQuestions": "10", 
-		"correctAnswers": "20"
+		"userid": getUserID(), 
+		"playedQuestions": playedQuestions, 
+		"correctAnswers": correctAnswers
 		});
 }
 
+//ToDo: UserId auslesen
 function getUserID(){
 	return 1;
-}
-
-function getPlayedQuestions(){
-	return 10;
-}
-
-function getCorrectAnswers(){
-	return 5;
 }
 
 
 
 function renderHighscoreList(data) {
-	console.log("render");
-	
+	//Save highscore data in list	
 	var list = data == null ? [] : (data.highscore instanceof Array ? data.highscore : [data.highscore]);
 
 	//Empty Score Table
 	$('#score').find('tbody').children('tr').remove();
 
-	//Add Highscore to Score Table
+	//Show Highscore in Score Table
 	$.each(list, function(index, highscore) {
 		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(2) +' %</td></tr>');
 	});

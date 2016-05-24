@@ -1,12 +1,9 @@
 <?php
 /**
- * Step 1: Require the Slim Framework
+ * REST API - Songquiz
  *
- * If you are not using Composer, you need to require the
- * Slim Framework and register its PSR-0 autoloader.
- *
- * If you are using Composer, you can skip this step.
  */
+
 require 'Slim/Slim.php';
 require 'dbConnect.php';
 
@@ -18,6 +15,7 @@ $app->get('/user', 'getLogin');
 $app->get('/score/highscore', 'getHighscore');
 $app->post('/user', 'addUser');
 $app->post('/score', 'addScore');
+$app->get('/score', 'getScore');
 
 //Get LoginData from DB
 function getLogin() {
@@ -109,8 +107,9 @@ function getHighscore() {
     $app = \Slim\Slim::getInstance();
 
     $conn = getDB();
-    $sql = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
 
+    //Gets correct Answers per User in %
+    $sql = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
 
     $result = mysqli_query ($conn,$sql);
     $rows = array();
@@ -119,17 +118,38 @@ function getHighscore() {
     }
     echo '{"highscore": ' . json_encode($rows) . '}';
     $conn->close();
-
-    // SELECT ...
 }
 
 //Save Score in DB
 function addScore() {
-    echo "Add new Score";
-    $app = \Slim\Slim::getInstance();
-
+    
+    $app = \Slim\Slim::getInstance()->request();
     $conn = getDB();
-    // SELECT ...
+
+    try {
+        $score = json_decode($app->getBody());
+
+        // prepare and bind
+        $stmt = $conn->prepare("INSERT INTO score (userid, playedQuestions, correctAnswers) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $userid, $playedQuestions, $correctAnswer);
+
+        // set parameters and execute
+        $userid = $score->userid;
+        $playedQuestions = $score->playedQuestions;
+        $correctAnswer = $score->correctAnswers;
+        $stmt->execute();
+
+    }
+    catch(PDOException $e)
+    {
+        echo "Error: " . $e->getMessage();
+    }
+
+    $conn->close();
+}
+
+function getScore() {
+    echo("GET SCORE");
 }
 
 $app->run();

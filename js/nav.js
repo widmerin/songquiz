@@ -20,6 +20,8 @@ $(document).ready(function() {
     btLogout.hide();
     btLogoutSmall.hide();
 
+    addScore(333,33);
+    
     //************View Handler**********************
     var setView = function(left, right){
         //hide all

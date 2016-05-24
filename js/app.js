@@ -22,15 +22,15 @@ $(document).ready(function() {
 
 
 
+    //curl -X GET "https://api.spotify.com/v1/browse/categories/dinner/playlists?limit=4&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBtqvNSZg982mUXplwhdDhZu-gxDBx7LVBBhrKNSF-U0XhQmIGfdOaN7ZADCfoH51fagBjXDP7Zg8cLwOpRwwooNyLE95tqEc9gHecv3IMmMJN7ncpmVoT50epb2TfYRg_JKaujeMKkcP_mxr6RqSyqeoY"
+
+//    curl -X GET "https://api.spotify.com/v1/browse/categories/dinner/playlists?country=SE&limit=10&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBrJZhXOAe3BDhrO_F2PfShncrgbrW7wILWRY5jyzabyZ6_o0CAexfHThoieZ0zjZoSRVn11jRku1554enJLaZc1Nj1_CXwPV9voa_f_ULZOWGIoxBlBaLYxSA98p-BFrVhuJOZGOX-aVA01_DggrU6G1M"
+
 
 //Search spotify music
     var searchTracks = function () {
         $.ajax({
-            url: 'https://api.spotify.com/v1/search',
-            data: {
-                q: '',
-                type: 'track'
-            },
+            url: 'https://api.spotify.com/v1/browse/categories/dinner/playlists?limit=4&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBtqvNSZg982mUXplwhdDhZu-gxDBx7LVBBhrKNSF-U0XhQmIGfdOaN7ZADCfoH51fagBjXDP7Zg8cLwOpRwwooNyLE95tqEc9gHecv3IMmMJN7ncpmVoT50epb2TfYRg_JKaujeMKkcP_mxr6RqSyqeoY',
             success: function (response) {
                 data = response;
             }

@@ -50,4 +50,21 @@ $(document).ready(function() {
         setView(START,SCORE);
     });
 
+    //Login Button
+    btLogin.click(function(e) {
+        e.preventDefault();
+        //alert('Login prozess');
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/songquiz/api/user',
+            success: function(){
+                console.log('erfolgreich');
+                setView(COVER,GAME);// this will call after PHP method execution.
+            },
+            error: function () {
+                console.log('bad');
+                setView(INTRO,LOGIN);
+            },
+        });
+    });
 });

@@ -16,119 +16,96 @@ $(document).ready(function() {
     var ARTIST1;
     var ARTIST2;
     var ARTIST3;
+    var track0;     //tracks
+    var track1;
+    var track2;
+    var track3;
     var correct;         //random number from 0-3
-    var audioObject;    //preview_url audioObject from spotify
-    var data;           //fetched spotify data
+    var audio = new Audio();    //audio that gets played
 
+    function randomString(length, chars) {
+        var result = '';
+        for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+        return result;
+    }
 
-
-        var audio = new Audio();
-
-        function searchTracks(query) {
-            $.ajax({
-                url: 'https://api.spotify.com/v1/search',
-                data: {
-                    q: query,
-                    type: 'track'
-                },
-                success: function (response) {
-                    if (response.tracks.items.length) {
-                        var track = response.tracks.items[0];
-                        audio.src = track.preview_url;
-                        audio.play();
-                      //  communicateAction('<div>Playing ' + track.name + ' by ' + track.artists[0].name + '</div><img width="150" src="' + track.album.images[1].url + '">');
-                    }
-                }
-            });
-        }
-
-        function playSong(songName,artistName) {
-            var query = songName;
-            if (artistName) {
-                query += ' artist:' + artistName;
-            }
-
-            searchTracks(query);
-        };
-
-    playSong("Poison", "Alice Cooper");
-/*
-        function communicateAction(text) {
-            var rec = document.getElementById('conversation');
-            rec.innerHTML += '<div class="action">' + text + '</div>';
-        }
-
-
- */
-
-
-
-
-
-
-
-
-
-
-/*
-//Search spotify music
-    var searchTracks = function () {
+    //get track from spotify
+    var getTrack = function searchTracks(query) {
         $.ajax({
-            url: 'https://api.spotify.com/v1/browse/categories/dinner/playlists?limit=4&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBtqvNSZg982mUXplwhdDhZu-gxDBx7LVBBhrKNSF-U0XhQmIGfdOaN7ZADCfoH51fagBjXDP7Zg8cLwOpRwwooNyLE95tqEc9gHecv3IMmMJN7ncpmVoT50epb2TfYRg_JKaujeMKkcP_mxr6RqSyqeoY',
+            url: 'https://api.spotify.com/v1/search?limit=1',
+            data: {
+                q: query,
+                type: 'track'
+            },
             success: function (response) {
-                data = response;
+               // console.log(response);
+                track0 = response;
+                return response;
             }
         });
-    };
+    }
 
-    searchTracks();
+    //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
+    var randomLetterQuery = function(){
+        return randomString(1, 'abcdefghijklmnopqrstuvwxyz')+' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+    }
+    track0 = getTrack(randomLetterQuery());
+    track1 = getTrack(randomLetterQuery());
+    track2 = getTrack(randomLetterQuery());
+    track3 = getTrack(randomLetterQuery());
 
 
-//get 4 tracks from spotify
-//TODO: correct api call for 4 songs out of pop, rock or billboard playlist ?
-    var albumId = '2rlYmTiGNtMRju9TKvf8i5';
-    var fetchTracks = function (albumId) {
-        $.ajax({
-            url: 'https://api.spotify.com/v1/albums/' + albumId,
-            success: function (data) {
-                getSongData(data);
-            }
-        });
-    };
 
-    */
-
-//get artist names and previewUrl to correct song for playing
-    var getSongData = function (data) {
+    //get artist names and previewUrl to correct song for playing
+    var getSongData = function () {
         //choose a random song to play (0,1,2,3) (which will be the one correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-        console.log(correct);
+        console.log('correct song shall be '+correct);
         //get correct previewUrl
-        audioObject = new Audio(data.tracks.items[correct].preview_url);
+        var correcttrack = 'track'+correct;
+        audio.src = correcttrack.preview_url;
         //getArtistNames and update GUI
         setArtist();
         //play correct song
-        audioObject.play();
+        audio.play();
         //TODO: if no guess was made until song played - count as fail?
-        audioObject.addEventListener('ended', function () {
+        audio.addEventListener('ended', function () {
             //evaluate failed and play next song?
         });
-
     }
 
 //save artists names in var and set to GUI
     var setArtist = function () {
-        ARTIST0 = data.tracks.items[0].artist;
-        ARTIST1 = data.tracks.items[1].artist;
-        ARTIST2 = data.tracks.items[2].artist;
-        ARTIST3 = data.tracks.items[3].artist;
+        //ARTIST0 = track0.tracks.items[0].artists[0].name;
+        console.log(track0.toString());
+       // console.log(track1);
+       // console.log(track2);
+       // console.log(track3);
 
-        GUESS0.text(ARTIST0);
-        GUESS1.text(ARTIST1);
-        GUESS2.text(ARTIST2);
-        GUESS3.text(ARTIST3);
+        //    ARTIST1 = data.tracks.items[1].artists[0].name;
+        //      ARTIST2 = data.tracks.items[2].artists[0].name;
+//        ARTIST3 = data.tracks.items[3].artists[0].name;
+
+       // GUESS0.text(ARTIST0);
+       // GUESS1.text(ARTIST1);
+       // GUESS2.text(ARTIST2);
+       // GUESS3.text(ARTIST3);
 
     }
+
+setArtist();
+
+    //set gui with meta info
+    //getSongData();
+
+    //play one of the songs at random
+
+
+
+
+
+
+
 
 
     guessButtons.on('click', function (e) {
@@ -160,66 +137,3 @@ $(document).ready(function() {
 
 //end of document
 });
-
-
-/*
- Snippet by http://jsfiddle.net/JMPerez/0u0v7e1b/
-
- // find template and compile it
- var templateSource = document.getElementById('results-template').innerHTML,
- template = Handlebars.compile(templateSource),
- resultsPlaceholder = document.getElementById('results'),
- playingCssClass = 'playing',
- audioObject = null;
-
- var fetchTracks = function (albumId, callback) {
- $.ajax({
- url: 'https://api.spotify.com/v1/albums/' + albumId,
- success: function (response) {
- callback(response);
- }
- });
- };
-
- var searchAlbums = function (query) {
- $.ajax({
- url: 'https://api.spotify.com/v1/search',
- data: {
- q: query,
- type: 'album'
- },
- success: function (response) {
- resultsPlaceholder.innerHTML = template(response);
- }
- });
- };
-
- results.addEventListener('click', function (e) {
- var target = e.target;
- if (target !== null && target.classList.contains('cover')) {
- if (target.classList.contains(playingCssClass)) {
- audioObject.pause();
- } else {
- if (audioObject) {
- audioObject.pause();
- }
- fetchTracks(target.getAttribute('data-album-id'), function (data) {
- audioObject = new Audio(data.tracks.items[0].preview_url);
- audioObject.play();
- target.classList.add(playingCssClass);
- audioObject.addEventListener('ended', function () {
- target.classList.remove(playingCssClass);
- });
- audioObject.addEventListener('pause', function () {
- target.classList.remove(playingCssClass);
- });
- });
- }
- }
- });
-
- document.getElementById('search-form').addEventListener('submit', function (e) {
- e.preventDefault();
- searchAlbums(document.getElementById('query').value);
- }, false);
- */

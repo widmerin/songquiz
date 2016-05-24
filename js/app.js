@@ -22,11 +22,55 @@ $(document).ready(function() {
 
 
 
-    //curl -X GET "https://api.spotify.com/v1/browse/categories/dinner/playlists?limit=4&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBtqvNSZg982mUXplwhdDhZu-gxDBx7LVBBhrKNSF-U0XhQmIGfdOaN7ZADCfoH51fagBjXDP7Zg8cLwOpRwwooNyLE95tqEc9gHecv3IMmMJN7ncpmVoT50epb2TfYRg_JKaujeMKkcP_mxr6RqSyqeoY"
+        var audio = new Audio();
 
-//    curl -X GET "https://api.spotify.com/v1/browse/categories/dinner/playlists?country=SE&limit=10&offset=5" -H "Accept: application/json" -H "Authorization: Bearer BQBrJZhXOAe3BDhrO_F2PfShncrgbrW7wILWRY5jyzabyZ6_o0CAexfHThoieZ0zjZoSRVn11jRku1554enJLaZc1Nj1_CXwPV9voa_f_ULZOWGIoxBlBaLYxSA98p-BFrVhuJOZGOX-aVA01_DggrU6G1M"
+        function searchTracks(query) {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/search',
+                data: {
+                    q: query,
+                    type: 'track'
+                },
+                success: function (response) {
+                    if (response.tracks.items.length) {
+                        var track = response.tracks.items[0];
+                        audio.src = track.preview_url;
+                        audio.play();
+                      //  communicateAction('<div>Playing ' + track.name + ' by ' + track.artists[0].name + '</div><img width="150" src="' + track.album.images[1].url + '">');
+                    }
+                }
+            });
+        }
+
+        function playSong(songName,artistName) {
+            var query = songName;
+            if (artistName) {
+                query += ' artist:' + artistName;
+            }
+
+            searchTracks(query);
+        };
+
+    playSong("Poison", "Alice Cooper");
+/*
+        function communicateAction(text) {
+            var rec = document.getElementById('conversation');
+            rec.innerHTML += '<div class="action">' + text + '</div>';
+        }
 
 
+ */
+
+
+
+
+
+
+
+
+
+
+/*
 //Search spotify music
     var searchTracks = function () {
         $.ajax({
@@ -39,6 +83,7 @@ $(document).ready(function() {
 
     searchTracks();
 
+
 //get 4 tracks from spotify
 //TODO: correct api call for 4 songs out of pop, rock or billboard playlist ?
     var albumId = '2rlYmTiGNtMRju9TKvf8i5';
@@ -50,6 +95,8 @@ $(document).ready(function() {
             }
         });
     };
+
+    */
 
 //get artist names and previewUrl to correct song for playing
     var getSongData = function (data) {

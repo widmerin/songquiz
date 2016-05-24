@@ -15,8 +15,10 @@ $(document).ready(function() {
     var btLogin = $("#btLogin");
     var btPlay = $("#btPlay");
     var btNew = $("#btNew");
-
-
+    var btLogout = $("#btLogout");
+    var btLogoutSmall = $("#btLogoutSmall");
+    btLogout.hide();
+    btLogoutSmall.hide();
 
     //************View Handler**********************
     var setView = function(left, right){
@@ -49,12 +51,6 @@ $(document).ready(function() {
     });
 
     //Login Button
-    btLogin.click(function(e){
-        e.preventDefault();
-        setView(START,SCORE);
-    });
-
-    //Login Button
     btLogin.click(function(e) {
         e.preventDefault();
         //alert('Login prozess');
@@ -63,14 +59,34 @@ $(document).ready(function() {
             url: "http://"+document.domain+"/songquiz/api/user",
             success: function(){
                 console.log('erfolgreich');
+                btLogout.show();
+                btLogoutSmall.show();
                 getHighscore();
                 setView(START,SCORE);// this will call after PHP method execution.
             },
             error: function () {
                 console.log('bad');
-                getHighscore();
-                 setView(START,SCORE);
+                        //only if passed, not here - delete after login works!
+                        btLogout.show();
+                        btLogoutSmall.show();
+                        getHighscore();
+                        //_______until here_______
+                setView(START,SCORE);
             },
         });
     });
+
+    //call Logout
+    btLogoutSmall.click(function(){
+        btLogout.click();
+    });
+
+    //Logout Button TODO: actual logout
+    btLogout.click(function(e) {
+        e.preventDefault();
+        btLogout.hide();
+        btLogoutSmall.hide();
+        setView(INTRO,LOGIN);
+    });
+
 });

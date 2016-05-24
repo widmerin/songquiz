@@ -12,25 +12,30 @@ $(document).ready(function() {
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
+    var btNext = $("#next");
     var ARTIST0;     //Artist names (String)
     var ARTIST1;
     var ARTIST2;
     var ARTIST3;
-    var track0;     //tracks
-    var track1;
-    var track2;
-    var track3;
+    var tracks = null;     //tracks
     var correct;         //random number from 0-3
     var audio = new Audio();    //audio that gets played
+    var timeoutID;
 
+    //get random single letter
     function randomString(length, chars) {
         var result = '';
         for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
         return result;
     }
 
-    //get track from spotify
-    var getTrack = function searchTracks(query) {
+    //get randomized query string
+    function randomLetterQuery(){
+        return randomString(1, 'abcdefghijklmnopqrstuvwxyz')+' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+    }
+
+    //get 1 track from spotify
+    function getTrack(query) {
         $.ajax({
             url: 'https://api.spotify.com/v1/search?limit=1',
             data: {
@@ -38,24 +43,35 @@ $(document).ready(function() {
                 type: 'track'
             },
             success: function (response) {
-               // console.log(response);
-                track0 = response;
-                return response;
+                saveData(response);
             }
         });
     }
 
-    //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
-    var randomLetterQuery = function(){
-        return randomString(1, 'abcdefghijklmnopqrstuvwxyz')+' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+    function logTracks(){
+        console.log('track0 = '+tracks[0]);
+        console.log('track1 = '+tracks[1]);
+        console.log('track2 = '+tracks[2]);
+        console.log('track3 = '+tracks[3]);
+
     }
-    track0 = getTrack(randomLetterQuery());
-    track1 = getTrack(randomLetterQuery());
-    track2 = getTrack(randomLetterQuery());
-    track3 = getTrack(randomLetterQuery());
+
+    function saveData(data){
+        tracks[tracks.length]=data;
+    }
+
+    //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
+    function get4Tracks(){
+        for (var i=0;i<4;i++){
+            getTrack(randomLetterQuery());
+        }
+    }
+
+    get4Tracks();
+    timeoutID = window.setTimeout(logTracks, 2000);
 
 
-
+/*
     //get artist names and previewUrl to correct song for playing
     var getSongData = function () {
         //choose a random song to play (0,1,2,3) (which will be the one correct answer)
@@ -92,8 +108,8 @@ $(document).ready(function() {
        // GUESS3.text(ARTIST3);
 
     }
-
-setArtist();
+*/
+    //setArtist();
 
     //set gui with meta info
     //getSongData();
@@ -129,7 +145,7 @@ setArtist();
     });
 
     //next Button
-    $("#next").on("click", function (event) {
+    btNext.on("click", function (event) {
         event.preventDefault();
         //TODO: play next song
     });

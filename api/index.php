@@ -15,7 +15,7 @@ require 'dbConnect.php';
 
 $app = new \Slim\Slim();
 $app->get('/user', 'getLogin');
-$app->get('/score/highscore/', 'getHighscore');
+$app->get('/score/highscore', 'getHighscore');
 $app->post('/user', 'addUser');
 $app->post('/score', 'addScore');
 
@@ -106,10 +106,20 @@ function addUser() {
 
 //Get highscore from DB
 function getHighscore() {
-    echo "Show Highscore";
     $app = \Slim\Slim::getInstance();
 
     $conn = getDB();
+    $sql = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
+
+
+    $result = mysqli_query ($conn,$sql);
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    echo '{"highscore": ' . json_encode($rows) . '}';
+    $conn->close();
+
     // SELECT ...
 }
 

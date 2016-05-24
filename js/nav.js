@@ -16,7 +16,7 @@ $(document).ready(function() {
     var btPlay = $("#btPlay");
     var btNew = $("#btNew");
 
-
+    addScore(333,33);
 
     //************View Handler**********************
     var setView = function(left, right){
@@ -63,13 +63,13 @@ $(document).ready(function() {
             url: "http://"+document.domain+"/songquiz/api/user",
             success: function(){
                 console.log('erfolgreich');
-                getHighscore();
                 setView(START,SCORE);// this will call after PHP method execution.
+                getHighscore();
             },
             error: function () {
                 console.log('bad');
+                setView(START,SCORE);
                 getHighscore();
-                 setView(START,SCORE);
             },
         });
     });

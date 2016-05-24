@@ -1,7 +1,7 @@
 //Score JS
 
 // The root URL for the RESTful services
-var rootURL = "http://localhost/songquiz/api/score";
+var apiURL = "http://"+document.domain+"/songquiz/api/";
 
 function addScore() {
 	console.log("domain"+document.domain);
@@ -22,10 +22,10 @@ function addScore() {
 }
 
 function getHighscore() {
-	console.log('getHighscore');
+	console.log('getHighscore http://'+document.domain+'/score/highscore');
 	$.ajax({
 		type: 'GET',
-		url: 'http://localhost/songquiz/api/score/highscore',
+		url: apiURL+'/score/highscore',
 		dataType: "json", 
 		success: renderHighscoreList
 	});
@@ -53,7 +53,6 @@ function getCorrectAnswers(){
 	return 5;
 }
 
-//addScore();
 
 
 function renderHighscoreList(data) {

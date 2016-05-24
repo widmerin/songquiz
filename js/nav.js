@@ -1,4 +1,5 @@
 //nav.js for navigation in gui
+
 $(document).ready(function() {
 
     //Pages (section)
@@ -14,6 +15,8 @@ $(document).ready(function() {
     var btLogin = $("#btLogin");
     var btPlay = $("#btPlay");
     var btNew = $("#btNew");
+
+
 
     //************View Handler**********************
     var setView = function(left, right){
@@ -57,13 +60,15 @@ $(document).ready(function() {
         //alert('Login prozess');
         $.ajax({
             type: 'GET',
-            url: 'http://localhost/songquiz/api/user',
+            url: "http://"+document.domain+"/songquiz/api/user",
             success: function(){
                 console.log('erfolgreich');
+                getHighscore();
                 setView(START,SCORE);// this will call after PHP method execution.
             },
             error: function () {
                 console.log('bad');
+                getHighscore();
                  setView(START,SCORE);
             },
         });

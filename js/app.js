@@ -1,13 +1,11 @@
 /**
- * Created by mjair on 02.05.16.
- *
- * based on Snippet by http://jsfiddle.net/JMPerez/0u0v7e1b/
+ * Created by mj on 25.05.16.
  */
 
 $(document).ready(function() {
 
 // Variables
-    var guessButtons = $("#btGuess");   //all 4 Guess Buttons
+    var guessButtons = $(".btGuess");   //all 4 Guess Buttons
     var GUESS0 = $("#guess0");  //GUI Buttons Guesses
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");
@@ -17,10 +15,10 @@ $(document).ready(function() {
     var ARTIST1;
     var ARTIST2;
     var ARTIST3;
-    var tracks = null;     //tracks
+    var data = [];     //data array with 4 tracks
     var correct;         //random number from 0-3
     var audio = new Audio();    //audio that gets played
-    var timeoutID;
+    var coverImg = $("#cover").find("img");
 
     //get random single letter
     function randomString(length, chars) {
@@ -43,22 +41,15 @@ $(document).ready(function() {
                 type: 'track'
             },
             success: function (response) {
-                saveData(response);
+                data[data.length]=response;
             }
         });
     }
-
+    //debug log
     function logTracks(){
-        console.log('track0 = '+tracks[0]);
-        console.log('track1 = '+tracks[1]);
-        console.log('track2 = '+tracks[2]);
-        console.log('track3 = '+tracks[3]);
-
+        console.log('track0 = '+data[0].tracks.items[0].preview_url);
     }
 
-    function saveData(data){
-        tracks[tracks.length]=data;
-    }
 
     //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
     function get4Tracks(){
@@ -67,21 +58,25 @@ $(document).ready(function() {
         }
     }
 
-    get4Tracks();
-    timeoutID = window.setTimeout(logTracks, 2000);
+    //save artists names in var and set to GUI
+    function setMetaData() {
+        ARTIST0 = data[0].tracks.items[0].artists[0].name;
+        ARTIST1 = data[1].tracks.items[0].artists[0].name;
+        ARTIST2 = data[2].tracks.items[0].artists[0].name;
+        ARTIST3 = data[3].tracks.items[0].artists[0].name;
 
+        GUESS0.text(ARTIST0);
+        GUESS1.text(ARTIST1);
+        GUESS2.text(ARTIST2);
+        GUESS3.text(ARTIST3);
+    }
 
-/*
-    //get artist names and previewUrl to correct song for playing
-    var getSongData = function () {
+    function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the one correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
         console.log('correct song shall be '+correct);
         //get correct previewUrl
-        var correcttrack = 'track'+correct;
-        audio.src = correcttrack.preview_url;
-        //getArtistNames and update GUI
-        setArtist();
+        audio.src = data[correct].tracks.items[0].preview_url;
         //play correct song
         audio.play();
         //TODO: if no guess was made until song played - count as fail?
@@ -90,65 +85,51 @@ $(document).ready(function() {
         });
     }
 
-//save artists names in var and set to GUI
-    var setArtist = function () {
-        //ARTIST0 = track0.tracks.items[0].artists[0].name;
-        console.log(track0.toString());
-       // console.log(track1);
-       // console.log(track2);
-       // console.log(track3);
-
-        //    ARTIST1 = data.tracks.items[1].artists[0].name;
-        //      ARTIST2 = data.tracks.items[2].artists[0].name;
-//        ARTIST3 = data.tracks.items[3].artists[0].name;
-
-       // GUESS0.text(ARTIST0);
-       // GUESS1.text(ARTIST1);
-       // GUESS2.text(ARTIST2);
-       // GUESS3.text(ARTIST3);
-
-    }
-*/
-    //setArtist();
-
-    //set gui with meta info
-    //getSongData();
-
+    //do game logic
+    get4Tracks();
+    //debug log
+    window.setTimeout(logTracks, 2000);
+    //getArtistNames and update GUI
+    window.setTimeout(setMetaData, 2000);
     //play one of the songs at random
+    window.setTimeout(playRandomSong, 2000);
 
 
+    //BUTTON HANDLERS
 
+    guessButtons.click(function (event) {
+        //which button was pressed? -> this.id
+        event.preventDefault();
+        //disable guess buttons
+        guessButtons.prop('disabled', true);
+        //show album cover
+        coverImg.attr("src",data[correct].tracks.items[0].album.images[1].url);
 
-
-
-
-
-
-    guessButtons.on('click', function (e) {
-        //which button was pressed? -> target
-        var target = e.target;
-        console.log(target);
-        //correct button contains class guess"i" if correct=="i"
-        if (target !== null && target.classList.contains(correct)) {
-            //correct answer
-            //TODO: target.highlight
-            //TODO: show album cover
-            //TODO: count point
-            //TODO: play next song after clicking next button?
+        //correct button is "guess"+correct
+        if (this.id.contains(correct)) {
+            //correct was clicked: highlight
+            this.setAttribute("class", "btn-correct");
+            console.log('correct is '+this.id);
+            //TODO: count up correct guesses
         } else {
             //wrong answer
-            //TODO: target.highlight failed
-            //TODO: correct.highlight
-            //TODO: show album cover
-            //TODO: play next song after clicking next button?
+            console.log('false is '+this.id);
+            //highlight failed
+            this.setAttribute("class", "btn-wrong");
+            //highlight correct
+            $("[id*="+correct+"]").addClass("btn-correctWouldHaveBeen");
         }
+
     });
 
     //next Button
-    btNext.on("click", function (event) {
+    btNext.click(function (event) {
         event.preventDefault();
+        console.log("next clicked");
+        guessButtons.prop('disabled', false);
         //TODO: play next song
     });
+
 
 
 //end of document

@@ -175,6 +175,23 @@ button {
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#cccccc',GradientType=0);
     background-color:#FFF;
 }
-
+.btn-correct {
+    background-color: darkgreen;
+    border-color: darkolivegreen;
+    color: lawngreen;
+    opacity: 0.9;
+}
+.btn-correctWouldHaveBeen {
+    background-color: #7C4C98;
+    border-color: #562f6d;
+    color: lawngreen;
+    opacity: 0.9;
+}
+.btn-wrong {
+    background-color: darkred;
+    border-color: indianred;
+    color: ghostwhite;
+    opacity: 0.9;
+}
 
 

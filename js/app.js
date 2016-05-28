@@ -84,7 +84,7 @@ $(document).ready(function() {
     //do game logic
     function oneGameSet(){
         gameOfNr = $('#count :selected').val();
-        alert('Hallo '+gameOfNr);
+        alert('gameOfNr is '+gameOfNr);
         get4Tracks();
         //debug log
         window.setTimeout(logTracks, 2000);
@@ -129,7 +129,7 @@ $(document).ready(function() {
         counter++;
         guessButtons.prop('disabled', false);
         //play next song until counter reaches gameOfNr
-        if (counter<gameOfNr){
+        if (true){ //counter<gameOfNr){
             oneGameSet();
         }else{
             getHighscore();

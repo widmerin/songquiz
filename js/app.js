@@ -98,9 +98,10 @@ function resetButtons(){
     //clear button text
     guessButtons.text("");
     //clear special css classes
-    guessButtons.removeAttribute("btn-correct");
-    guessButtons.removeAttribute("btn-correctWouldHaveBeen");
-    guessButtons.removeAttribute("btn-wrong");
+    //guessButtons.removeAttribute("btn-correct");
+    //guessButtons.removeAttribute("btn-correctWouldHaveBeen");
+    guessButtons.removeAttribute("class");
+
     guessButtons.addClass("btn-violet");
 
 }

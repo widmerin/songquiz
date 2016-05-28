@@ -94,6 +94,17 @@ $(document).ready(function() {
         window.setTimeout(playRandomSong, 2000);
     }
 
+function resetButtons(){
+    //clear button text
+    guessButtons.text("");
+    //clear special css classes
+    guessButtons.removeAttribute("btn-correct");
+    guessButtons.removeAttribute("btn-correctWouldHaveBeen");
+    guessButtons.removeAttribute("btn-wrong");
+    
+}
+
+
 
     //BUTTON HANDLERS
 
@@ -136,11 +147,8 @@ $(document).ready(function() {
             guessButtons.prop('disabled', false);
             //hide cover, show speaker again
             coverImg.attr("src","img/speaker.png");
-            //clear buttons
-            GUESS0.text("");
-            GUESS1.text("");
-            GUESS2.text("");
-            GUESS3.text("");
+            //reset Buttons
+            resetButtons();
             //load next play
             oneGameSet();
         }else{

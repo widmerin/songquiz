@@ -11,7 +11,7 @@ $(document).ready(function() {
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");
-    var gameOfNr = $('#count').val();   //number of songs in gameset to play
+    var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
     var counter = 1;    //counter of played songs
     var rightAnswers = 0;   //counter of correct guessed songs
     var data = [];     //data array with 4 tracks
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
     //do game logic
     function oneGameSet(){
-        gameOfNr = $('#count').val();
+        gameOfNr = $('#count :selected').val();
         alert('Hallo '+gameOfNr);
         get4Tracks();
         //debug log

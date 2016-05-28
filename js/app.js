@@ -129,7 +129,7 @@ $(document).ready(function() {
         //add up counter of played songs
         counter++;
         //stop audio playing (if still...)
-        audio.stop();
+        audio.pause();
         //play next song until counter reaches gameOfNr
         if (counter<gameOfNr){
             //enable buttons again

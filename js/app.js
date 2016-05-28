@@ -87,8 +87,7 @@ $(document).ready(function() {
         gameOfNr = $('#count :selected').val();
         get4Tracks();
         //debug log
-            //window.setTimeout(logTracks, 2000);
-
+        window.setTimeout(logTracks, 2000);
         //getArtistNames and update GUI
         window.setTimeout(setMetaData, 2000);
         //play one of the songs at random
@@ -137,6 +136,11 @@ $(document).ready(function() {
             guessButtons.prop('disabled', false);
             //hide cover, show speaker again
             coverImg.attr("src","img/speaker.png");
+            //clear buttons
+            GUESS0.text("");
+            GUESS1.text("");
+            GUESS2.text("");
+            GUESS3.text("");
             //load next play
             oneGameSet();
         }else{

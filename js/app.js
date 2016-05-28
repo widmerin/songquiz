@@ -2,7 +2,7 @@
  * Created by mj on 25.05.2016
  */
 
-$(document).ready(function() {
+
 
 // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
@@ -98,11 +98,8 @@ function resetButtons(){
     //clear button text
     guessButtons.text("");
     //clear special css classes
-    //guessButtons.removeAttribute("btn-correct");
-    //guessButtons.removeAttribute("btn-correctWouldHaveBeen");
-    guessButtons.removeAttribute("class");
-
-    guessButtons.addClass("btn-violet");
+    $(".btGuess").removeAttr("class");
+    guessButtons.addClass("btn-violet btGuess");
 
 }
 
@@ -121,7 +118,7 @@ function resetButtons(){
         //correct button is "guess"+correct
         if (this.id.contains(correct)) {
             //correct was clicked: highlight
-            this.setAttribute("class", "btn-correct");
+            this.setAttribute("class", "btn-violet btGuess btn-correct");
             console.log('correct is '+this.id);
             //count up correct guesses
             rightAnswers++;
@@ -129,7 +126,7 @@ function resetButtons(){
             //wrong answer
             console.log('false is '+this.id);
             //highlight failed
-            this.setAttribute("class", "btn-wrong");
+            this.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
             $("[id*="+correct+"]").addClass("btn-correctWouldHaveBeen");
         }
@@ -143,25 +140,22 @@ function resetButtons(){
         counter++;
         //stop audio playing (if still...)
         audio.pause();
+        //reset Buttons
+        resetButtons();
         //play next song until counter reaches gameOfNr
         if (counter<gameOfNr){
             //enable buttons again
             guessButtons.prop('disabled', false);
             //hide cover, show speaker again
             coverImg.attr("src","img/speaker.png");
-            //reset Buttons
-            resetButtons();
             //load next play
             oneGameSet();
         }else{
-            getHighscore();
-            // setView(START,SCORE);   //TODO: setView() not working from here ???
+            //TODO: save score and reload Highscore section: getHighscore();
+            setView(START,SCORE);   //TODO: setView() not working from here ???
         }
     });
 
-    //play first song (after this play further songs by clicking next button)
-    oneGameSet();
 
 
 //end of document
-});

@@ -54,7 +54,7 @@ $(document).ready(function() {
 
     //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
     function get4Tracks(){
-        data.clear();
+        data.length=0;  //clear the array
         for (var i=0;i<4;i++){
             getTrack(randomLetterQuery());
         }

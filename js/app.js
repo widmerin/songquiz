@@ -84,7 +84,7 @@ $(document).ready(function() {
     //do game logic
     function oneGameSet(){
         gameOfNr = $('#count :selected').val();
-        alert('gameOfNr is '+gameOfNr);
+        alert('Number of songs to play in this set: gameOfNr is '+gameOfNr);
         get4Tracks();
         //debug log
         window.setTimeout(logTracks, 2000);

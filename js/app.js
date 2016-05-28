@@ -101,7 +101,8 @@ function resetButtons(){
     guessButtons.removeAttribute("btn-correct");
     guessButtons.removeAttribute("btn-correctWouldHaveBeen");
     guessButtons.removeAttribute("btn-wrong");
-    
+    guessButtons.addClass("btn-violet");
+
 }
 
 

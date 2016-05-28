@@ -11,14 +11,15 @@ $(document).ready(function() {
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");
-    var ARTIST0;     //Artist names (String)
-    var ARTIST1;
-    var ARTIST2;
-    var ARTIST3;
+    var gameOfNr = $('#count').val();   //number of songs in gameset to play
+    var counter = 1;    //counter of played songs
+    var rightAnswers = 0;   //counter of correct guessed songs
     var data = [];     //data array with 4 tracks
     var correct;         //random number from 0-3
     var audio = new Audio();    //audio that gets played
     var coverImg = $("#cover").find("img");
+
+    console.log(gameOfNr);
 
     //get random single letter
     function randomString(length, chars) {
@@ -81,13 +82,15 @@ $(document).ready(function() {
     }
 
     //do game logic
-    get4Tracks();
-    //debug log
-    window.setTimeout(logTracks, 2000);
-    //getArtistNames and update GUI
-    window.setTimeout(setMetaData, 2000);
-    //play one of the songs at random
-    window.setTimeout(playRandomSong, 2000);
+    function oneGameSet(){
+        get4Tracks();
+        //debug log
+        window.setTimeout(logTracks, 2000);
+        //getArtistNames and update GUI
+        window.setTimeout(setMetaData, 2000);
+        //play one of the songs at random
+        window.setTimeout(playRandomSong, 2000);
+    }
 
 
     //BUTTON HANDLERS
@@ -120,11 +123,20 @@ $(document).ready(function() {
     //next Button
     btNext.click(function (event) {
         event.preventDefault();
-        console.log("next clicked");
+        console.log("next bt clicked");
+        counter++;
         guessButtons.prop('disabled', false);
-        //TODO: play next song
+        //play next song until counter reaches gameOfNr
+        if (counter<gameOfNr){
+            oneGameSet();
+        }else{
+            getHighscore();
+            setView(START,SCORE);// this will call after PHP method execution.
+        }
     });
 
+    //play first song (after this play further songs by clicking next button)
+    oneGameSet();
 
 
 //end of document

@@ -84,10 +84,10 @@ $(document).ready(function() {
     //do game logic
     function oneGameSet(){
         gameOfNr = $('#count :selected').val();
-        alert('Number of songs to play in this set: gameOfNr is '+gameOfNr);
         get4Tracks();
         //debug log
-        window.setTimeout(logTracks, 2000);
+            //window.setTimeout(logTracks, 2000);
+
         //getArtistNames and update GUI
         window.setTimeout(setMetaData, 2000);
         //play one of the songs at random
@@ -110,7 +110,8 @@ $(document).ready(function() {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-correct");
             console.log('correct is '+this.id);
-            //TODO: count up correct guesses
+            //count up correct guesses
+            rightAnswers++;
         } else {
             //wrong answer
             console.log('false is '+this.id);
@@ -125,15 +126,21 @@ $(document).ready(function() {
     //next Button
     btNext.click(function (event) {
         event.preventDefault();
-        console.log("next bt clicked");
+        //add up counter of played songs
         counter++;
-        guessButtons.prop('disabled', false);
+        //stop audio playing (if still...)
+        audio.stop();
         //play next song until counter reaches gameOfNr
-        if (true){ //counter<gameOfNr){
+        if (counter<gameOfNr){
+            //enable buttons again
+            guessButtons.prop('disabled', false);
+            //hide cover, show speaker again
+            coverImg.attr("src","img/speaker.png");
+            //load next play
             oneGameSet();
         }else{
             getHighscore();
-            setView(START,SCORE);// this will call after PHP method execution.
+            // setView(START,SCORE);   //TODO: setView() not working from here ???
         }
     });
 

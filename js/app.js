@@ -19,7 +19,7 @@ $(document).ready(function() {
     var audio = new Audio();    //audio that gets played
     var coverImg = $("#cover").find("img");
 
-    console.log(gameOfNr);
+
 
     //get random single letter
     function randomString(length, chars) {
@@ -83,6 +83,8 @@ $(document).ready(function() {
 
     //do game logic
     function oneGameSet(){
+        gameOfNr = $('#count').val();
+        alert('Hallo '+gameOfNr);
         get4Tracks();
         //debug log
         window.setTimeout(logTracks, 2000);

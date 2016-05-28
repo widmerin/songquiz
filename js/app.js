@@ -58,17 +58,12 @@ $(document).ready(function() {
         }
     }
 
-    //save artists names in var and set to GUI
+    //get artists names into GUI
     function setMetaData() {
-        ARTIST0 = data[0].tracks.items[0].artists[0].name;
-        ARTIST1 = data[1].tracks.items[0].artists[0].name;
-        ARTIST2 = data[2].tracks.items[0].artists[0].name;
-        ARTIST3 = data[3].tracks.items[0].artists[0].name;
-
-        GUESS0.text(ARTIST0);
-        GUESS1.text(ARTIST1);
-        GUESS2.text(ARTIST2);
-        GUESS3.text(ARTIST3);
+        GUESS0.text(data[0].tracks.items[0].artists[0].name);
+        GUESS1.text(data[1].tracks.items[0].artists[0].name);
+        GUESS2.text(data[2].tracks.items[0].artists[0].name);
+        GUESS3.text(data[3].tracks.items[0].artists[0].name);
     }
 
     function playRandomSong() {

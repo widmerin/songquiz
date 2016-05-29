@@ -41,7 +41,6 @@ $(document).ready(function() {
 
     //Play Button
     btPlay.click(function(e){
-        //TODO: load app.js here instead onload index.html ???
         e.preventDefault();
         setView(COVER,GAME);
         //play first song (after this play further songs by clicking next button)

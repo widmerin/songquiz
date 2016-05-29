@@ -5,19 +5,21 @@
 
 
 // Variables
-    var guessButtons = $(".btGuess");   //all 4 Guess Buttons
-    var GUESS0 = $("#guess0");  //GUI Buttons Guesses
-    var GUESS1 = $("#guess1");
-    var GUESS2 = $("#guess2");
-    var GUESS3 = $("#guess3");
-    var btNext = $("#next");
-    var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
-    var counter = 1;    //counter of played songs
-    var rightAnswers = 0;   //counter of correct guessed songs
-    var data = [];     //data array with 4 tracks
-    var correct;         //random number from 0-3
-    var audio = new Audio();    //audio that gets played
-    var coverImg = $("#cover").find("img");
+    function setVariables(){
+        var guessButtons = $(".btGuess");   //all 4 Guess Buttons
+        var GUESS0 = $("#guess0");  //GUI Buttons Guesses
+        var GUESS1 = $("#guess1");
+        var GUESS2 = $("#guess2");
+        var GUESS3 = $("#guess3");
+        var btNext = $("#next");
+        var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
+        var counter = 1;    //counter of played songs
+        var rightAnswers = 0;   //counter of correct guessed songs
+        var data = [];     //data array with 4 tracks
+        var correct;         //random number from 0-3
+        var audio = new Audio();    //audio that gets played
+        var coverImg = $("#cover").find("img");
+    }
 
 
 
@@ -84,7 +86,11 @@
 
     //do game logic
     function oneGameSet(){
+        //set Varibales
+        setVariables();
+        //get count of songs to play in this set
         gameOfNr = $('#count :selected').val();
+        //get music
         get4Tracks();
         //debug log
         window.setTimeout(logTracks, 2000);
@@ -94,14 +100,14 @@
         window.setTimeout(playRandomSong, 2000);
     }
 
-function resetButtons(){
-    //clear button text
-    guessButtons.text("");
-    //clear special css classes
-    $(".btGuess").removeAttr("class");
-    guessButtons.addClass("btn-violet btGuess");
+    function resetButtons(){
+        //clear button text
+        guessButtons.text("");
+        //clear special css classes
+        $(".btGuess").removeAttr("class");
+        guessButtons.addClass("btn-violet btGuess");
 
-}
+    }
 
 
 

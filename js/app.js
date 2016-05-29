@@ -1,27 +1,21 @@
 /**
- * Created by mj on 25.05.2016
+ * Created by mj on 29.05.2016
  */
-
-
-
-// Variables
-    function setVariables(){
-        var guessButtons = $(".btGuess");   //all 4 Guess Buttons
-        var GUESS0 = $("#guess0");  //GUI Buttons Guesses
-        var GUESS1 = $("#guess1");
-        var GUESS2 = $("#guess2");
-        var GUESS3 = $("#guess3");
-        var btNext = $("#next");
-        var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
-        var counter = 1;    //counter of played songs
-        var rightAnswers = 0;   //counter of correct guessed songs
-        var data = [];     //data array with 4 tracks
-        var correct;         //random number from 0-3
-        var audio = new Audio();    //audio that gets played
-        var coverImg = $("#cover").find("img");
-    }
-
-
+$(document).ready(function() {
+    // Variables
+    var guessButtons = $(".btGuess");   //all 4 Guess Buttons
+    var GUESS0 = $("#guess0");  //GUI Buttons Guesses
+    var GUESS1 = $("#guess1");
+    var GUESS2 = $("#guess2");
+    var GUESS3 = $("#guess3");
+    var btNext = $("#next");
+    var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
+    var counter = 1;    //counter of played songs
+    var rightAnswers = 0;   //counter of correct guessed songs
+    var data = [];     //data array with 4 tracks
+    var correct;         //random number from 0-3
+    var audio = new Audio();    //audio that gets played
+    var coverImg = $("#cover").find("img");
 
     //get random single letter
     function randomString(length, chars) {
@@ -31,8 +25,8 @@
     }
 
     //get randomized query string
-    function randomLetterQuery(){
-        return randomString(1, 'abcdefghijklmnopqrstuvwxyz')+' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+    function randomLetterQuery() {
+        return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
     }
 
     //get 1 track from spotify
@@ -44,20 +38,20 @@
                 type: 'track'
             },
             success: function (response) {
-                data[data.length]=response;
+                data[data.length] = response;
             }
         });
     }
+
     //debug log
-    function logTracks(){
-        console.log('track0 = '+data[0].tracks.items[0].preview_url);
+    function logTracks() {
+        console.log('track0 = ' + data[0].tracks.items[0].preview_url);
     }
 
-
     //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
-    function get4Tracks(){
-        data.length=0;  //clear the array
-        for (var i=0;i<4;i++){
+    function get4Tracks() {
+        data.length = 0;  //clear the array
+        for (var i = 0; i < 4; i++) {
             getTrack(randomLetterQuery());
         }
     }
@@ -73,7 +67,7 @@
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the one correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-        console.log('correct song shall be '+correct);
+        console.log('correct song shall be ' + correct);
         //get correct previewUrl
         audio.src = data[correct].tracks.items[0].preview_url;
         //play correct song
@@ -85,9 +79,7 @@
     }
 
     //do game logic
-    function oneGameSet(){
-        //set Varibales
-        setVariables();
+    function oneGameSet() {
         //get count of songs to play in this set
         gameOfNr = $('#count :selected').val();
         //get music
@@ -100,16 +92,13 @@
         window.setTimeout(playRandomSong, 2000);
     }
 
-    function resetButtons(){
+    function resetButtons() {
         //clear button text
         guessButtons.text("");
         //clear special css classes
         $(".btGuess").removeAttr("class");
         guessButtons.addClass("btn-violet btGuess");
-
     }
-
-
 
     //BUTTON HANDLERS
 
@@ -119,22 +108,22 @@
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
-        coverImg.attr("src",data[correct].tracks.items[0].album.images[1].url);
+        coverImg.attr("src", data[correct].tracks.items[0].album.images[1].url);
 
         //correct button is "guess"+correct
         if (this.id.contains(correct)) {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
-            console.log('correct is '+this.id);
+            console.log('correct is ' + this.id);
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
-            console.log('false is '+this.id);
+            console.log('false is ' + this.id);
             //highlight failed
             this.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
-            $("[id*="+correct+"]").addClass("btn-correctWouldHaveBeen");
+            $("[id*=" + correct + "]").addClass("btn-correctWouldHaveBeen");
         }
 
     });
@@ -149,19 +138,19 @@
         //reset Buttons
         resetButtons();
         //play next song until counter reaches gameOfNr
-        if (counter<gameOfNr){
+        if (counter < gameOfNr) {
             //enable buttons again
             guessButtons.prop('disabled', false);
             //hide cover, show speaker again
-            coverImg.attr("src","img/speaker.png");
+            coverImg.attr("src", "img/speaker.png");
             //load next play
             oneGameSet();
-        }else{
+        } else {
             //TODO: save score and reload Highscore section: getHighscore();
-            setView(START,SCORE);   //TODO: setView() not working from here ???
+            setView(START, SCORE);   //TODO: setView() not working from here ???
         }
     });
 
 
-
 //end of document
+});

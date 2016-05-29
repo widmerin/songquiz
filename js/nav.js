@@ -20,6 +20,8 @@ $(document).ready(function() {
     btLogout.hide();
     btLogoutSmall.hide();
 
+    //GUI elements for game logic handled in app.js
+
     addScore(333,33);
     
     //************View Handler**********************
@@ -44,7 +46,9 @@ $(document).ready(function() {
         e.preventDefault();
         setView(COVER,GAME);
         //play first song (after this play further songs by clicking next button)
-        oneGameSet();
+        $.getScript('js/app.js', function () {
+            oneGameSet();
+        });
     });
 
     //Register new account Button
@@ -92,4 +96,5 @@ $(document).ready(function() {
         setView(INTRO,LOGIN);
     });
 
+//end of document
 });

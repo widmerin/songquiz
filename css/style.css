@@ -31,14 +31,6 @@ header h3{
 
 }
 
-header #btLogout {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 0 10px;
-    height: 2em;
-    max-width: 9em;
-}
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -116,32 +108,33 @@ main .content section {
 h1 {
     margin-bottom: 20px;
 }
-
 button, input {
-    min-height: 3em;
+    min-height: 1em;
     margin: 1em auto;
     max-width: 15em;
     width: 100%;
 }
-
 button, input, select, textarea {
     margin-bottom: 10px;
 }
 button {
-        font-weight:    bold;
+    font-weight: bold;
+    height: 3em;
 }
-
 #btLogout {
     visibility: visible;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0 10px;
+    height: 2em;
+    max-width: 9em;
 }
-
 #btLogoutSmall {
     visibility: hidden;
     color: #3F3250;
     display: block;
 }
-
-
 .btn-violet {
     background-color: #3F3250;
     border-color: #562f6d;
@@ -153,8 +146,6 @@ button {
     opacity: 1.0;
     background-color:#562f6d;
 }
-
-
 .btn-white {
     border-color: #3F3250;
     background-color: #FFF;

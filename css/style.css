@@ -137,13 +137,13 @@ button {
 
 #btLogoutSmall {
     visibility: hidden;
-    color: #7C4C98;
+    color: #3F3250;
     display: block;
 }
 
 
 .btn-violet {
-    background-color: #7C4C98;
+    background-color: #3F3250;
     border-color: #562f6d;
     color: #FFF;
     opacity: 0.9;
@@ -151,18 +151,12 @@ button {
 }
 .btn-violet:hover {
     opacity: 1.0;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7C4C98), color-stop(1, #562f6d));
-    background:-moz-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
-    background:-webkit-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
-    background:-o-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
-    background:-ms-linear-gradient(top, #7C4C98 5%, #562f6d 100%);
-    background:linear-gradient(to bottom, #7C4C98 5%, #562f6d 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7C4C98', endColorstr='#562f6d',GradientType=0);
-    background-color:#7C4C98;
+    background-color:#562f6d;
 }
 
+
 .btn-white {
-    border-color: #7C4C98;
+    border-color: #3F3250;
     background-color: #FFF;
     color: #562f6d;
     opacity: 0.9;
@@ -170,39 +164,32 @@ button {
 }
 .btn-white:hover {
     opacity: 1.0;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FFF), color-stop(1, #cccccc));
-    background:-moz-linear-gradient(top, #FFF 5%, #cccccc 100%);
-    background:-webkit-linear-gradient(top, #FFF 5%, #cccccc 100%);
-    background:-o-linear-gradient(top, #FFF 5%, #cccccc 100%);
-    background:-ms-linear-gradient(top, #FFF 5%, #cccccc 100%);
-    background:linear-gradient(to bottom, #FFF 5%, #cccccc 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#cccccc',GradientType=0);
     background-color:#FFF;
 }
 .btn-correct,
 .btn-correct:hover,
 .btn-correct:focus,
 .btn-correct:active {
-    background-color: darkgreen;
-    border-color: darkolivegreen;
-    color: lawngreen;
+    background-color: #67B27A;
+    border-color: #67B27A;
+    color: #FFF;
     opacity: 0.9;
 }
 .btn-correctWouldHaveBeen,
 .btn-correctWouldHaveBeen:hover,
 .btn-correctWouldHaveBeen:focus,
 .btn-correctWouldHaveBeen:active  {
-    background-color: #7C4C98;
-    border-color: #562f6d;
-    color: lawngreen;
-    opacity: 0.9;
+    background-color: #67B27A;
+    border-color: #67B27A;
+    color: #FFF;
+    opacity: 0.6;
 }
 .btn-wrong,
 .btn-wrong:hover,
 .btn-correctWouldHaveBeen:focus,
 .btn-correctWouldHaveBeen:active  {
-    background-color: darkred;
-    border-color: indianred;
+    background-color: #E14658;
+    border-color: #E14658;
     color: ghostwhite;
     opacity: 0.9;
 }
@@ -219,7 +206,7 @@ button {
     max-width: 4em;
     background: transparent;
     border: none;
-    color: #7C4C98;
+    color: #3F3250;
 }
 
 #game #next .fa {

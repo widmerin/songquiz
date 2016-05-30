@@ -143,25 +143,24 @@
         audio.pause();
         //reset Buttons
         resetButtons();
+        //hide cover, show speaker again
+        coverImg.attr("src", "img/speaker.png");
+        //enable buttons again
+        guessButtons.prop('disabled', false);
         //play next song until counter reaches gameOfNr
         if (counter <= gameOfNr) {
-            //enable buttons again
-            guessButtons.prop('disabled', false);
-            //hide cover, show speaker again
-            coverImg.attr("src", "img/speaker.png");
             //load next play
             oneGameSet();
         } else {
-            //TODO: save score and reload Highscore section: getHighscore();
+            //save score
             addScore(gameOfNr, rightAnswers);
+            //reload Highscore section
             getHighscore();
-             
-            //Empty 
+            //Empty
             $('#gameover').find('p').empty();
             $('#gameover').find('p').text('You scored '+rightAnswers+' out of '+ gameOfNr);
-           setView(GAMEOVER, SCORE);   //TODO: setView() not working from here ???
+           setView(GAMEOVER, SCORE);
            showPie();
-
         }
     });
 

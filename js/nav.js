@@ -31,6 +31,7 @@ $(document).ready(function() {
     var btNew = $("#btNew");
     var btLogout = $("#btLogout");
     var btLogoutSmall = $("#btLogoutSmall");
+    var btPlayAgain = $("#btPlayAgain");
     btLogout.hide();
     btLogoutSmall.hide();
 
@@ -61,6 +62,12 @@ $(document).ready(function() {
         $.getScript('js/app.js', function () {
             oneGameSet();
         });
+    });
+
+    //Play Button
+    btPlayAgain.click(function(e){
+        e.preventDefault();
+        setView(START,SCORE);
     });
 
     //Register new account Button

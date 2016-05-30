@@ -1,15 +1,29 @@
 //nav.js for navigation in gui
+ var setView;
+ var left;
+ var right;
+
+//Pages (section)
+var LOGIN;
+var REG;
+var START;
+var GAME;
+var SCORE;
+var COVER;
+var INTRO;
+var GAMEOVER;
 
 $(document).ready(function() {
 
     //Pages (section)
-    var LOGIN = $("#login");
-    var REG = $("#reg");
-    var START = $("#start");
-    var GAME = $("#game");
-    var SCORE = $("#score");
-    var COVER = $("#cover");
-    var INTRO = $("#intro");
+    LOGIN = $("#login");
+    REG = $("#reg");
+    START = $("#start");
+    GAME = $("#game");
+    SCORE = $("#score");
+    COVER = $("#cover");
+    INTRO = $("#intro");
+    GAMEOVER = $("#gameover");
 
     //Buttons
     var btLogin = $("#btLogin");
@@ -20,12 +34,9 @@ $(document).ready(function() {
     btLogout.hide();
     btLogoutSmall.hide();
 
-    //GUI elements for game logic handled in app.js
-
-    addScore(333,33);
-    
+     
     //************View Handler**********************
-    var setView = function(left, right){
+    setView = function(left, right){
         //hide all
         LOGIN.hide();
         REG.hide();
@@ -34,6 +45,7 @@ $(document).ready(function() {
         SCORE.hide();
         INTRO.hide();
         COVER.hide();
+        GAMEOVER.hide();
         //show the one given
         left.show();
         right.show();

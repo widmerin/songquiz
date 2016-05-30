@@ -80,6 +80,9 @@ main .content section {
 #reg{
     display: none;
 }
+#gameover{
+    display: none;
+}
 
 /*-------------- Game Section --------------*/
 

@@ -1,7 +1,7 @@
 /**
  * Created by mj on 29.05.2016
  */
-$(document).ready(function() {
+
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
     var GUESS0 = $("#guess0");  //GUI Buttons Guesses
@@ -103,6 +103,7 @@ $(document).ready(function() {
     //BUTTON HANDLERS
 
     guessButtons.click(function (event) {
+        console.log(event);
         //which button was pressed? -> this.id
         event.preventDefault();
         //disable guess buttons
@@ -111,17 +112,18 @@ $(document).ready(function() {
         coverImg.attr("src", data[correct].tracks.items[0].album.images[1].url);
 
         //correct button is "guess"+correct
-        if (this.id.contains(correct)) {
+
+        if (event.toElement.id == 'guess'+correct) {
             //correct was clicked: highlight
-            this.setAttribute("class", "btn-violet btGuess btn-correct");
-            console.log('correct is ' + this.id);
+            event.toElement.setAttribute("class", "btn-violet btGuess btn-correct");
+            console.log('correct is ' + event.toElement.id);
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
-            console.log('false is ' + this.id);
+            console.log('false is ' + event.toElement.id+ ' '+'GUESS'+correct);
             //highlight failed
-            this.setAttribute("class", "btn-violet btGuess btn-wrong");
+            event.toElement.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
             $("[id*=" + correct + "]").addClass("btn-correctWouldHaveBeen");
         }
@@ -138,7 +140,7 @@ $(document).ready(function() {
         //reset Buttons
         resetButtons();
         //play next song until counter reaches gameOfNr
-        if (counter < gameOfNr) {
+        if (counter <= gameOfNr) {
             //enable buttons again
             guessButtons.prop('disabled', false);
             //hide cover, show speaker again
@@ -147,10 +149,16 @@ $(document).ready(function() {
             oneGameSet();
         } else {
             //TODO: save score and reload Highscore section: getHighscore();
-            setView(START, SCORE);   //TODO: setView() not working from here ???
+            addScore(gameOfNr, rightAnswers);
+            getHighscore();
+             
+            //Empty 
+            $('#gameover').find('p').empty();
+            $('#gameover').find('p').text('You scored '+rightAnswers+' out of '+ gameOfNr);
+           setView(GAMEOVER, SCORE);   //TODO: setView() not working from here ???
+
         }
     });
 
 
 //end of document
-});

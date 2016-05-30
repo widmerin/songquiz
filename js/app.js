@@ -31,13 +31,17 @@
 
     //get 1 track from spotify
     function getTrack(query) {
+        //TODO: randomize more!
+        //var randomNumber = Math.floor(Math.random() * 9) + 1;
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=1',
+            url: 'https://api.spotify.com/v1/search?limit=9',
             data: {
                 q: query,
                 type: 'track'
             },
             success: function (response) {
+                //var temp = response;
+                //data[data.length] = temp.tracks[2];
                 data[data.length] = response;
             }
         });

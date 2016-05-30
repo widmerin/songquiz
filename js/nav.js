@@ -1,3 +1,8 @@
+/**
+ * Created by mj, iw, yh on 29.05.2016
+ */
+
+
 //nav.js for navigation in gui
  var setView;
  var left;
@@ -114,40 +119,6 @@ $(document).ready(function() {
         btLogoutSmall.hide();
         setView(INTRO,LOGIN);
     });
-
-//Pie
-
-
-        var chart  = new CanvasJS.Chart("chartContainer",
-    {
-         backgroundColor: "transparent",
-          animationEnabled: true,
-           animationDuration: 2000,
-           width: 250,
-
-        data: [
-        {        
-            type: "pie",
-            indexLabelFontFamily: "Garamond",       
-            indexLabelFontSize: 20,
-            indexLabelFontWeight: "bold",
-            startAngle:0,
-            indexLabelFontColor: "MistyRose",       
-            indexLabelLineColor: "darkgrey", 
-            indexLabelPlacement: "inside", 
-            toolTipContent: "{name}: {y} %",
-            showInLegend: true,
-            indexLabel: "#percent%", 
-            dataPoints: [
-                {  y: 60, name: "Corrct", color: "#67B27A" },
-                {  y: 40, name: "Wrong", color: "#E14658" }
-            ]
-        }
-        ]
-    });
-    chart.render();
-
-
 
 //end of document
 });

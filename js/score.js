@@ -1,8 +1,12 @@
-//Score JS
+/**
+ * Created by iw on 30.05.2016
+ */
+
 
 // The root URL for the RESTful services
 var apiURL = "http://"+document.domain+"/songquiz/api/";
 
+//Save Highscore DB
 function addScore(playedQuestions, correctAnswers)  {
 	$.ajax({
 		type: 'POST',
@@ -19,6 +23,7 @@ function addScore(playedQuestions, correctAnswers)  {
 	});
 }
 
+//Get Highscore from DB
 function getHighscore() {
 	console.log('getHighscore http://'+document.domain+'/score/highscore');
 	$.ajax({
@@ -29,7 +34,7 @@ function getHighscore() {
 	});
 }
 
-
+//Create JSON with Score Data
 function scoreToJSON(playedQuestions, correctAnswers) {
 	return JSON.stringify({
 		"userid": getUserID(), 
@@ -43,8 +48,7 @@ function getUserID(){
 	return 1;
 }
 
-
-
+//Show Highscore in HTML
 function renderHighscoreList(data) {
 	//Save highscore data in list	
 	var list = data == null ? [] : (data.highscore instanceof Array ? data.highscore : [data.highscore]);
@@ -58,9 +62,8 @@ function renderHighscoreList(data) {
 	});
 }
 
+//Draw Pie with Score
 function showPie() {
-
-
 
 	$correctPer = 100/gameOfNr*rightAnswers;
 	$wrongPer = 100-$correctPer;
@@ -68,11 +71,11 @@ function showPie() {
 	console.log($correctPer+" wrong "+$wrongPer);
 	chart  = new CanvasJS.Chart("chartContainer",
     {
-         backgroundColor: "transparent",
-          animationEnabled: true,
-           animationDuration: 2000,
-           width: 250,
-           height: 250,
+        backgroundColor: "transparent",
+        animationEnabled: true,
+        animationDuration: 2000,
+        width: 250,
+        height: 250,
         data: [
         {        
             type: "pie",

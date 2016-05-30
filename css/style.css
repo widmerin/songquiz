@@ -118,7 +118,7 @@ h1 {
 }
 
 button, input {
-    height: 3em;
+    min-height: 3em;
     margin: 1em auto;
     max-width: 15em;
     width: 100%;
@@ -140,6 +140,7 @@ button {
     color: #7C4C98;
     display: block;
 }
+
 
 .btn-violet {
     background-color: #7C4C98;
@@ -178,23 +179,55 @@ button {
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF', endColorstr='#cccccc',GradientType=0);
     background-color:#FFF;
 }
-.btn-correct {
+.btn-correct,
+.btn-correct:hover,
+.btn-correct:focus,
+.btn-correct:active {
     background-color: darkgreen;
     border-color: darkolivegreen;
     color: lawngreen;
     opacity: 0.9;
 }
-.btn-correctWouldHaveBeen {
+.btn-correctWouldHaveBeen,
+.btn-correctWouldHaveBeen:hover,
+.btn-correctWouldHaveBeen:focus,
+.btn-correctWouldHaveBeen:active  {
     background-color: #7C4C98;
     border-color: #562f6d;
     color: lawngreen;
     opacity: 0.9;
 }
-.btn-wrong {
+.btn-wrong,
+.btn-wrong:hover,
+.btn-correctWouldHaveBeen:focus,
+.btn-correctWouldHaveBeen:active  {
     background-color: darkred;
     border-color: indianred;
     color: ghostwhite;
     opacity: 0.9;
 }
 
+
+#game {
+    position: relative;
+}
+
+#game #next {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    max-width: 4em;
+    background: transparent;
+    border: none;
+    color: #7C4C98;
+}
+
+#game #next .fa {
+    text-shadow: 4px 2px 6px #000;
+    font-size: 3em;
+}
+
+#game #next .fa:hover {
+    color: #562f6d;
+}
 

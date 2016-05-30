@@ -1,28 +1,100 @@
 @media screen and (max-width: 480px) {
-	main .content {
-		width: 100%;
-	}
+    /****** SongQuiz - CSS Bootstrap Customization Responsive 480px******/
+    html, body{
+        font-size: 1em;
+    }
+    header{
+        height: 40px;
+        width: 100%;
+    }
+    h1{
+        font-size: 1.5em;
+    }
+    h3{
+        font-size: 1.5em;
+    }
+    .wrapper {
+        max-width: 480px;
+    }
+    /*-------------- Main Container --------------*/
+    main{
+        padding-top: 40px;
+    }
+    main .content {
+        width: 100%;
+        height: 100%;
+    }
+    main .content section {
+        min-height: 20em;
+        margin:5px;
+        padding: 10px 5px;
+    }
+    /*-------------- Cover Section --------------*/
+    #cover img{
+        margin: 20px 10px;
+        max-width: 7em;
+    }
+    /*-------------- Table Section --------------*/
+    #score table {
+        min-width: 200px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    #score table tr:first-child {
+        font-weight: bold;
+    }
+    /*-------------- Buttons & Textelements --------------*/
+    button, input {
+        min-height: 1em;
+        margin: 1em auto;
+        max-width: 12em;
+        width: 100%;
+    }
+    button, input, select, textarea {
+        margin-bottom: 5px;
+        font-size: 1.5em;
+    }
+    #btLogout {
+        visibility: hidden;
+    }
+    #btLogoutSmall {
+        visibility: visible;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0em 0.3em;
+        font-size: 2em;
+    }
+    .btn-violet {
+    }
+    .btn-violet:hover {
+    }
+   .btn-white {
+    }
+    .btn-white:hover {
+    }
+    .btn-correct,
+    .btn-correct:hover,
+    .btn-correct:focus,
+    .btn-correct:active {
+    }
+    .btn-correctWouldHaveBeen,
+    .btn-correctWouldHaveBeen:hover,
+    .btn-correctWouldHaveBeen:focus,
+    .btn-correctWouldHaveBeen:active  {
+    }
+    .btn-wrong,
+    .btn-wrong:hover,
+    .btn-correctWouldHaveBeen:focus,
+    .btn-correctWouldHaveBeen:active  {
+    }
 
-	main .content section {
-		min-height: auto;
-	}
-
-	#cover img {
-	    max-width: 5em;
-	}
-
-
-	header #btLogout {
-		visibility: hidden;
-	}
-
-	header #btLogoutSmall {
-		visibility: visible;
-		position: absolute;
-		right: 0;
-		top: 0;
-		margin: 0.1em 1em;
-		font-size: 2em;
-	}
-
+    #game #next {
+        right: 5px;
+        bottom: 5px;
+        max-width: 2em;
+    }
+    #game #next .fa {
+        font-size: 1.5em;
+    }
 }

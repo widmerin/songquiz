@@ -57,3 +57,40 @@ function renderHighscoreList(data) {
 		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(2) +' %</td></tr>');
 	});
 }
+
+function showPie() {
+
+
+
+	$correctPer = 100/gameOfNr*rightAnswers;
+	$wrongPer = 100-$correctPer;
+
+	console.log($correctPer+" wrong "+$wrongPer);
+	chart  = new CanvasJS.Chart("chartContainer",
+    {
+         backgroundColor: "transparent",
+          animationEnabled: true,
+           animationDuration: 2000,
+           width: 250,
+           height: 250,
+        data: [
+        {        
+            type: "pie",
+            indexLabelFontFamily: "Verdana",       
+            indexLabelFontSize: 20,
+            startAngle:0,
+            indexLabelFontColor: "MistyRose",       
+            indexLabelLineColor: "darkgrey", 
+            indexLabelPlacement: "inside", 
+            toolTipContent: "",
+            showInLegend: false,
+            indexLabel: "#percent%", 
+            dataPoints: [
+                {  y: $correctPer, name: "Correct", color: "#67B27A" },
+                {  y: $wrongPer, name: "Wrong", color: "#E14658" }
+            ]
+        }
+        ]
+    });
+    chart.render();
+}

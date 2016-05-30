@@ -160,6 +160,7 @@
             $('#gameover').find('p').empty();
             $('#gameover').find('p').text('You scored '+rightAnswers+' out of '+ gameOfNr);
            setView(GAMEOVER, SCORE);   //TODO: setView() not working from here ???
+           showPie();
 
         }
     });

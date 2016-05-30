@@ -218,3 +218,16 @@ button {
     color: #562f6d;
 }
 
+#chartContainer {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#chartContainer {
+    min-height: 250px;
+    max-width: 250px;
+    position: relative;
+     margin: 0 auto;
+    display: block;
+}

@@ -25,7 +25,6 @@ function addScore(playedQuestions, correctAnswers)  {
 
 //Get Highscore from DB
 function getHighscore() {
-	console.log('getHighscore http://'+document.domain+'/score/highscore');
 	$.ajax({
 		type: 'GET',
 		url: apiURL+'/score/highscore',
@@ -65,10 +64,10 @@ function renderHighscoreList(data) {
 //Draw Pie with Score
 function showPie() {
 
+	// calculate percentage wrong/correct answers
 	$correctPer = 100/gameOfNr*rightAnswers;
 	$wrongPer = 100-$correctPer;
 
-	console.log($correctPer+" wrong "+$wrongPer);
 	chart  = new CanvasJS.Chart("chartContainer",
     {
         backgroundColor: "transparent",

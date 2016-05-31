@@ -15,6 +15,34 @@
     var correct;                                 //random number from 0-3
     var audio = new Audio();                     //audio that gets played
     var coverImg = $("#cover").find("img");
+    var artists;
+
+    //Get Artists from DB
+    function getArtists() {
+        $.ajax({
+            type: 'GET',
+            url: apiURL+'/billboard',
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                artists = data;
+                console.log('got Artists')
+            },
+            error: function(){
+                console.log('no Artitsts!');
+            }
+
+        });
+    }
+    getArtists();
+
+    //get randomized query string for spotify query with artists from billboard
+    function randomArtistQuery() {
+        var randomNumber = Math.floor(Math.random() * 100);
+        var artist = artists[randomNumber];
+        return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + artist;
+    }
+
 
     //get random single letter for spotify query
     function randomString(length, chars) {
@@ -28,11 +56,11 @@
         return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
     }
 
-    //get 1 track from spotify
+    //get 1 track from spotify - limit max is 50 - pick one of them
     function getTrack(query) {
-        var randomNumber = Math.floor(Math.random() * 9);
+        var randomNumber = Math.floor(Math.random() * 50);
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=9',
+            url: 'https://api.spotify.com/v1/search?limit=50',
             data: {
                 q: query,
                 type: 'track'
@@ -43,12 +71,14 @@
         });
     }
 
-   //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
+    //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
     function get4Tracks() {
         //clear the array
         data.length = 0;
         for (var i = 0; i < 4; i++) {
             getTrack(randomLetterQuery());
+            //  TODO: call this if user is Newbie
+            // getTrack(randomArtistQuery());
         }
     }
 

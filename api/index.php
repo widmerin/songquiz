@@ -16,6 +16,7 @@ $app->get('/score/highscore', 'getHighscore');
 $app->post('/user', 'addUser');
 $app->post('/score', 'addScore');
 $app->get('/score', 'getScore');
+$app->get('/billboard', 'getArtists');
 
 //Get LoginData from DB
 function getLogin() {
@@ -150,6 +151,24 @@ function addScore() {
 
 function getScore() {
     echo("GET SCORE");
+}
+
+//getArtists from DB
+function getArtists() {
+    $app = \Slim\Slim::getInstance();
+
+    $conn = getDB();
+
+    //get all artists from billboard list
+    $sql = "SELECT  artist FROM  billboard";         // " ORDER BY RAND() LIMIT 4"; is slow
+
+    $result = mysqli_query ($conn,$sql);
+    $rows = array();
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = $row;
+    }
+    echo json_encode($rows);
+    $conn->close();
 }
 
 $app->run();

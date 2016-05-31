@@ -55,6 +55,7 @@ $(document).ready(function() {
         COVER.hide();
         GAMEOVER.hide();
         //show the one given
+        setRandomBGImage();
         left.show();
         right.show();
     }
@@ -122,6 +123,19 @@ $(document).ready(function() {
         btLogoutSmall.hide();
         setView(INTRO,LOGIN);
     });
+
+        function setRandomBGImage() {
+            var images=['img/Background1.jpg',
+            'img/Background2.jpg',
+            'img/Background3.jpg',
+            'img/Background4.jpg',
+            'img/Background5.jpg',
+            'img/Background6.jpg'];
+        selectBG = images[Math.floor(Math.random() * images.length)];
+        console.log(selectBG);
+        $('body').css('background', 'url(' + selectBG + ') no-repeat center center fixed');
+        $('body').css('background-size', 'cover');
+    }
 
 //end of document
 });

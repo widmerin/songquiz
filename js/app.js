@@ -17,6 +17,9 @@
     var audio = new Audio();    //audio that gets played
     var coverImg = $("#cover").find("img");
 
+
+
+
     //get random single letter
     function randomString(length, chars) {
         var result = '';
@@ -164,6 +167,5 @@
            showPie();
         }
     });
-
 
 //end of document

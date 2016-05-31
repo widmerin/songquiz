@@ -48,10 +48,11 @@
         margin: 1em auto;
         max-width: 12em;
         width: 100%;
+        font-size: 1em;
+        font-weight: normal;
     }
     button, input, select, textarea {
         margin-bottom: 5px;
-        font-size: 1.5em;
     }
     #btLogout {
         visibility: hidden;
@@ -97,7 +98,8 @@
         font-size: 1.5em;
     }
 
-    #game button {
-        font-size: 1em;
+
+    #game button#guess3 {
+        margin-bottom: 30px;
     }
 }

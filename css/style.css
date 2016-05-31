@@ -113,14 +113,14 @@ button, input {
     margin: 1em auto;
     max-width: 15em;
     width: 100%;
+    font-weight: bold;
+    height: 3em;
+    cursor: pointer;
 }
 button, input, select, textarea {
     margin-bottom: 10px;
 }
-button {
-    font-weight: bold;
-    height: 3em;
-}
+
 #btLogout {
     visibility: visible;
     position: absolute;

@@ -37,6 +37,8 @@ $(document).ready(function() {
     var btLogout = $("#btLogout");
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
+    var guessButtons = $(".btGuess"); 
+
     btLogout.hide();
     btLogoutSmall.hide();
 
@@ -63,6 +65,7 @@ $(document).ready(function() {
     btPlay.click(function(e){
         e.preventDefault();
         setView(COVER,GAME);
+         guessButtons.prop('disabled', false);
         //play first song (after this play further songs by clicking next button)
         $.getScript('js/app.js', function () {
             oneGameSet();

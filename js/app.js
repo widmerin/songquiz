@@ -107,8 +107,9 @@
     //BUTTON HANDLERS
 
     guessButtons.click(function (event) {
-        console.log(event);
+        
         //which button was pressed? -> this.id
+        var id = this.id;
         event.preventDefault();
         //disable guess buttons
         guessButtons.prop('disabled', true);
@@ -117,17 +118,17 @@
 
         //correct button is "guess"+correct
 
-        if (event.toElement.id == 'guess'+correct) {
+        if (id == 'guess'+correct) {
             //correct was clicked: highlight
-            event.toElement.setAttribute("class", "btn-violet btGuess btn-correct");
-            console.log('correct is ' + event.toElement.id);
+            this.setAttribute("class", "btn-violet btGuess btn-correct");
+            console.log('correct is ' + id);
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
-            console.log('false is ' + event.toElement.id+ ' '+'GUESS'+correct);
+            console.log('false is ' + id+ ' '+'GUESS'+correct);
             //highlight failed
-            event.toElement.setAttribute("class", "btn-violet btGuess btn-wrong");
+            this.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
             $("[id*=" + correct + "]").addClass("btn-correctWouldHaveBeen");
         }

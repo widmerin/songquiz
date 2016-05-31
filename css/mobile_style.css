@@ -1,4 +1,4 @@
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
     /****** SongQuiz - CSS Bootstrap Customization Responsive 480px******/
     html, body{
         font-size: 1em;
@@ -13,9 +13,7 @@
     h3{
         font-size: 1.5em;
     }
-    .wrapper {
-        max-width: 480px;
-    }
+
     /*-------------- Main Container --------------*/
     main{
         padding-top: 40px;

@@ -30,7 +30,7 @@
     /*-------------- Cover Section --------------*/
     #cover img{
         margin: 20px 10px;
-        max-width: 7em;
+        max-width: 5em;
     }
     /*-------------- Table Section --------------*/
     #score table {
@@ -95,5 +95,9 @@
     }
     #game #next .fa {
         font-size: 1.5em;
+    }
+
+    #game button {
+        font-size: 1em;
     }
 }

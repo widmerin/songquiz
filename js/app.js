@@ -1,7 +1,6 @@
 /**
  * Created by mj on 29.05.2016
  */
-
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
     var GUESS0 = $("#guess0");  //GUI Buttons Guesses
@@ -16,9 +15,6 @@
     var correct;         //random number from 0-3
     var audio = new Audio();    //audio that gets played
     var coverImg = $("#cover").find("img");
-
-
-
 
     //get random single letter
     function randomString(length, chars) {
@@ -37,7 +33,7 @@
         //TODO: randomize more!
         //var randomNumber = Math.floor(Math.random() * 9) + 1;
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=9',
+            url: 'https://api.spotify.com/v1/search?limit=1',
             data: {
                 q: query,
                 type: 'track'
@@ -149,8 +145,6 @@
         resetButtons();
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
-        //enable buttons again
-        guessButtons.prop('disabled', false);
         //play next song until counter reaches gameOfNr
         if (counter <= gameOfNr) {
             //load next play
@@ -167,5 +161,4 @@
            showPie();
         }
     });
-
 //end of document

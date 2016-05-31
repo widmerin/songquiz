@@ -2,6 +2,7 @@
     /****** SongQuiz - CSS Bootstrap Customization Responsive 480px******/
     html, body{
         font-size: 1em;
+        background: url("../img/WilliamIven_mobile.jpg") no-repeat center center fixed; 
     }
     header{
         height: 40px;

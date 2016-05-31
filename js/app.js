@@ -3,27 +3,27 @@
  */
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
-    var GUESS0 = $("#guess0");  //GUI Buttons Guesses
+    var GUESS0 = $("#guess0");          //GUI Buttons Guesses
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");
     var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
-    var counter = 1;    //counter of played songs
-    var rightAnswers = 0;   //counter of correct guessed songs
-    var data = [];     //data array with 4 tracks
-    var correct;         //random number from 0-3
-    var audio = new Audio();    //audio that gets played
+    var counter = 1;                             //counter of played songs
+    var rightAnswers = 0;                        //counter of correct guessed songs
+    var data = [];                               //data array with 4 tracks
+    var correct;                                 //random number from 0-3
+    var audio = new Audio();                     //audio that gets played
     var coverImg = $("#cover").find("img");
 
-    //get random single letter
+    //get random single letter for spotify query
     function randomString(length, chars) {
         var result = '';
         for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
         return result;
     }
 
-    //get randomized query string
+    //get randomized query string for spotify query
     function randomLetterQuery() {
         return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
     }

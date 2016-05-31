@@ -67,32 +67,89 @@ function showPie() {
 	// calculate percentage wrong/correct answers
 	$correctPer = 100/gameOfNr*rightAnswers;
 	$wrongPer = 100-$correctPer;
-
-	chart  = new CanvasJS.Chart("chartContainer",
-    {
-        backgroundColor: "transparent",
-        animationEnabled: true,
-        animationDuration: 2000,
-        width: 250,
-        height: 250,
-        data: [
-        {        
-            type: "pie",
-            indexLabelFontFamily: "Verdana",       
-            indexLabelFontSize: 20,
-            startAngle:0,
-            indexLabelFontColor: "MistyRose",       
-            indexLabelLineColor: "darkgrey", 
-            indexLabelPlacement: "inside", 
-            toolTipContent: "",
-            showInLegend: false,
-            indexLabel: "#percent%", 
-            dataPoints: [
-                {  y: $correctPer, name: "Correct", color: "#67B27A" },
-                {  y: $wrongPer, name: "Wrong", color: "#E14658" }
-            ]
-        }
-        ]
-    });
+    //create chart
+	if($wrongPer<1){
+		//no wrongs
+		chart  = new CanvasJS.Chart("chartContainer",
+			{
+				backgroundColor: "transparent",
+				animationEnabled: true,
+				animationDuration: 2000,
+				width: 250,
+				height: 250,
+				data: [
+					{
+						type: "pie",
+						indexLabelFontFamily: "Verdana",
+						indexLabelFontSize: 20,
+						startAngle:0,
+						indexLabelFontColor: "MistyRose",
+						indexLabelLineColor: "darkgrey",
+						indexLabelPlacement: "inside",
+						toolTipContent: "",
+						showInLegend: false,
+						indexLabel: "#percent%",
+						dataPoints: [
+							{  y: $correctPer, name: "Correct", color: "#67B27A" },
+						]
+					}
+				]
+			});
+	}else if ($correctPer<1){
+		//no corrects
+		chart  = new CanvasJS.Chart("chartContainer",
+			{
+				backgroundColor: "transparent",
+				animationEnabled: true,
+				animationDuration: 2000,
+				width: 250,
+				height: 250,
+				data: [
+					{
+						type: "pie",
+						indexLabelFontFamily: "Verdana",
+						indexLabelFontSize: 20,
+						startAngle:0,
+						indexLabelFontColor: "MistyRose",
+						indexLabelLineColor: "darkgrey",
+						indexLabelPlacement: "inside",
+						toolTipContent: "",
+						showInLegend: false,
+						indexLabel: "#percent%",
+						dataPoints: [
+							{  y: $wrongPer, name: "Wrong", color: "#E14658" }
+						]
+					}
+				]
+			});
+	}else{
+		//full chart
+		chart  = new CanvasJS.Chart("chartContainer",
+			{
+				backgroundColor: "transparent",
+				animationEnabled: true,
+				animationDuration: 2000,
+				width: 250,
+				height: 250,
+				data: [
+					{
+						type: "pie",
+						indexLabelFontFamily: "Verdana",
+						indexLabelFontSize: 20,
+						startAngle:0,
+						indexLabelFontColor: "MistyRose",
+						indexLabelLineColor: "darkgrey",
+						indexLabelPlacement: "inside",
+						toolTipContent: "",
+						showInLegend: false,
+						indexLabel: "#percent%",
+						dataPoints: [
+							{  y: $correctPer, name: "Correct", color: "#67B27A" },
+							{  y: $wrongPer, name: "Wrong", color: "#E14658" }
+						]
+					}
+				]
+			});
+	};
     chart.render();
 }

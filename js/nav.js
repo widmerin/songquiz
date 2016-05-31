@@ -125,12 +125,21 @@ $(document).ready(function() {
     });
 
         function setRandomBGImage() {
+        if($(window).width()>640){
             var images=['img/Background1.jpg',
             'img/Background2.jpg',
             'img/Background3.jpg',
             'img/Background4.jpg',
             'img/Background5.jpg',
             'img/Background6.jpg'];
+        } else {
+            var images=['img/Background1_mobile.jpg',
+            'img/Background2_mobile.jpg',
+            'img/Background3_mobile.jpg',
+            'img/Background4_mobile.jpg',
+            'img/Background5_mobile.jpg',
+            'img/Background6_mobile.jpg'];
+        }
         selectBG = images[Math.floor(Math.random() * images.length)];
         console.log(selectBG);
         $('body').css('background', 'url(' + selectBG + ') no-repeat center center fixed');

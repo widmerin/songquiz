@@ -6,15 +6,11 @@ html, body{
     width: 100%;
     font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
     font-size: 16px;
-    background: url("../img/WilliamIven.jpg"); 
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background: url("../img/WilliamIven.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
 }
 
 header{
@@ -26,6 +22,7 @@ header{
     width: 100%;
     background-color: rgba(255,255,255,0.5);
 }
+
 header .wrapper {
     position: relative;
 }
@@ -35,13 +32,13 @@ header h3{
     color: black;
     margin: 10px 0;
     text-align: center;
-
 }
 
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 /*-------------- Main Container --------------*/
 main{
     padding-top: 80px;
@@ -61,26 +58,17 @@ main .content section {
 }
 
 /*-------------- Hide Sections --------------*/
-#start{
-    display: none;
-}
-#game{
-    display: none;
-}
-#cover{
-    display: none;
-}
-#score{
-    display: none;
-}
-#login{
-    display: block;
-}
-#reg{
-    display: none;
-}
+#start,
+#game,
+#cover,
+#score,
+#reg,
 #gameover{
     display: none;
+}
+
+#login{
+    display: block;
 }
 
 /*-------------- Game Section --------------*/
@@ -110,11 +98,19 @@ main .content section {
     font-weight: bold;
 }
 
-/*-------------- Buttons & Textelements --------------*/
+#reg table {
+    max-width: 300px;
+    margin: 0 auto;
+}
 
+#reg table td {
+    padding: 2px;
+}
+/*-------------- Buttons & Textelements --------------*/
 h1 {
     margin-bottom: 20px;
 }
+
 button, input {
     min-height: 1em;
     margin: 1em auto;
@@ -122,8 +118,12 @@ button, input {
     width: 100%;
     font-weight: bold;
     height: 3em;
+}
+
+button, input[type="submit"]{
     cursor: pointer;
 }
+
 button, input, select, textarea {
     margin-bottom: 10px;
 }
@@ -137,11 +137,13 @@ button, input, select, textarea {
     height: 2em;
     max-width: 9em;
 }
+
 #btLogoutSmall {
     visibility: hidden;
     color: #3F3250;
     display: block;
 }
+
 .btn-violet {
     background-color: #3F3250;
     border-color: #562f6d;
@@ -149,21 +151,24 @@ button, input, select, textarea {
     opacity: 0.9;
 
 }
+
 .btn-violet:hover {
     opacity: 1.0;
     background-color:#562f6d;
 }
+
 .btn-white {
     border-color: #3F3250;
     background-color: #FFF;
     color: #562f6d;
     opacity: 0.9;
-
 }
+
 .btn-white:hover {
     opacity: 1.0;
     background-color:#FFF;
 }
+
 .btn-correct,
 .btn-correct:hover,
 .btn-correct:focus,
@@ -173,6 +178,7 @@ button, input, select, textarea {
     color: #FFF;
     opacity: 0.9;
 }
+
 .btn-correctWouldHaveBeen,
 .btn-correctWouldHaveBeen:hover,
 .btn-correctWouldHaveBeen:focus,
@@ -182,6 +188,7 @@ button, input, select, textarea {
     color: #FFF;
     opacity: 0.6;
 }
+
 .btn-wrong,
 .btn-wrong:hover,
 .btn-correctWouldHaveBeen:focus,

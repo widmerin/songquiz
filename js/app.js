@@ -101,6 +101,8 @@
         //clear special css classes
         $(".btGuess").removeAttr("class");
         guessButtons.addClass("btn-violet btGuess");
+         guessButtons.prop('disabled', false);
+
     }
 
     //BUTTON HANDLERS

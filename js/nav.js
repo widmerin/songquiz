@@ -125,7 +125,9 @@ $(document).ready(function() {
     });
 
         function setRandomBGImage() {
+
         if($(window).width()>640){
+            //Desktop BG Images
             var images=['img/Background1.jpg',
             'img/Background2.jpg',
             'img/Background3.jpg',
@@ -133,6 +135,7 @@ $(document).ready(function() {
             'img/Background5.jpg',
             'img/Background6.jpg'];
         } else {
+             //Responsive BG Images
             var images=['img/Background1_mobile.jpg',
             'img/Background2_mobile.jpg',
             'img/Background3_mobile.jpg',

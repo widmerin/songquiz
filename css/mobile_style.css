@@ -23,7 +23,7 @@
         height: 100%;
     }
     main .content section {
-        min-height: auto;
+        min-height: 100%;
         margin:5px;
         padding: 10px 5px;
     }

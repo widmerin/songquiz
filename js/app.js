@@ -30,30 +30,23 @@
 
     //get 1 track from spotify
     function getTrack(query) {
-        //TODO: randomize more!
-        //var randomNumber = Math.floor(Math.random() * 9) + 1;
+        var randomNumber = Math.floor(Math.random() * 9);
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=1',
+            url: 'https://api.spotify.com/v1/search?limit=9',
             data: {
                 q: query,
                 type: 'track'
             },
             success: function (response) {
-                //var temp = response;
-                //data[data.length] = temp.tracks[2];
-                data[data.length] = response;
+                data[data.length] = response.tracks.items[randomNumber];
             }
         });
     }
 
-    //debug log
-    function logTracks() {
-        console.log('track0 = ' + data[0].tracks.items[0].preview_url);
-    }
-
-    //call 4 diffrent tracks with songName and ArtistName randomized by one letter in spotify query
+   //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
     function get4Tracks() {
-        data.length = 0;  //clear the array
+        //clear the array
+        data.length = 0;
         for (var i = 0; i < 4; i++) {
             getTrack(randomLetterQuery());
         }
@@ -61,23 +54,23 @@
 
     //get artists names into GUI
     function setMetaData() {
-        GUESS0.text(data[0].tracks.items[0].artists[0].name);
-        GUESS1.text(data[1].tracks.items[0].artists[0].name);
-        GUESS2.text(data[2].tracks.items[0].artists[0].name);
-        GUESS3.text(data[3].tracks.items[0].artists[0].name);
+        GUESS0.text(data[0].artists[0].name);
+        GUESS1.text(data[1].artists[0].name);
+        GUESS2.text(data[2].artists[0].name);
+        GUESS3.text(data[3].artists[0].name);
     }
 
     function playRandomSong() {
-        //choose a random song to play (0,1,2,3) (which will be the one correct answer)
+        //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-        console.log('correct song shall be ' + correct);
+        //DEBUG: console.log('correct song shall be ' + correct);
         //get correct previewUrl
-        audio.src = data[correct].tracks.items[0].preview_url;
+        audio.src = data[correct].preview_url;
         //play correct song
         audio.play();
-        //TODO: if no guess was made until song played - count as fail?
+        //if no guess was made until song played - click next automatically
         audio.addEventListener('ended', function () {
-            //evaluate failed and play next song?
+            btNext.trigger( "click" );
         });
     }
 
@@ -87,8 +80,6 @@
         gameOfNr = $('#count :selected').val();
         //get music
         get4Tracks();
-        //debug log
-        window.setTimeout(logTracks, 2000);
         //getArtistNames and update GUI
         window.setTimeout(setMetaData, 2000);
         //play one of the songs at random
@@ -101,24 +92,21 @@
         //clear special css classes
         $(".btGuess").removeAttr("class");
         guessButtons.addClass("btn-violet btGuess");
-         guessButtons.prop('disabled', false);
-
+        //enable buttons
+        guessButtons.prop('disabled', false);
     }
 
     //BUTTON HANDLERS
 
     guessButtons.click(function (event) {
-        
         //which button was pressed? -> this.id
         var id = this.id;
         event.preventDefault();
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
-        coverImg.attr("src", data[correct].tracks.items[0].album.images[1].url);
-
+        coverImg.attr("src", data[correct].album.images[1].url);
         //correct button is "guess"+correct
-
         if (id == 'guess'+correct) {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
@@ -133,7 +121,6 @@
             //highlight correct
             $("[id*=" + correct + "]").addClass("btn-correctWouldHaveBeen");
         }
-
     });
 
     //next Button

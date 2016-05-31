@@ -6,7 +6,7 @@ html, body{
     width: 100%;
     font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
     font-size: 16px;
-    background-image: url("../img/startbg-hell.jpg");
+    background-image: url("../img/WilliamIven.jpg");
     background-size: cover;
 }
 
@@ -219,6 +219,6 @@ button, input, select, textarea {
     min-height: 250px;
     max-width: 250px;
     position: relative;
-     margin: 0 auto;
+    margin: 0 auto;
     display: block;
 }

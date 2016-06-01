@@ -54,10 +54,14 @@ $(document).ready(function() {
         INTRO.hide();
         COVER.hide();
         GAMEOVER.hide();
-        //show the one given
+        //show the ones given
         setRandomBGImage();
         left.show();
         right.show();
+        //if right = score und screen = mobile and left = GAMEOVER -> hide score!
+        if($(window).width()<641 && left==GAMEOVER && right==SCORE){
+            SCORE.hide();
+        }
     }
 
   	//**************Button Handler****************

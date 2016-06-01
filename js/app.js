@@ -126,6 +126,12 @@
         guessButtons.prop('disabled', false);
     }
 
+    function resetCounters() {
+        //clear counters
+        counter = 1;    //counter of played songs
+        rightAnswers = 0;
+    }
+
     //BUTTON HANDLERS
 
     guessButtons.click(function (event) {
@@ -175,16 +181,10 @@
             getHighscore();
             //Empty
             $('#gameover').find('p').empty();
-            $('#gameover').find('p').text('You scored '+rightAnswers+' out of '+ gameOfNr);
+            $('#gameover').find('p').text("You've got "+rightAnswers+" out of "+ gameOfNr+" songs right.");
            setView(GAMEOVER, SCORE);
            showPie();
         }
     });
-
-    function resetCounters() {
-        //clear counters
-        counter = 1;    //counter of played songs
-        rightAnswers = 0;
-    }
 
 //end of document

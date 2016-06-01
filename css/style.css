@@ -20,7 +20,7 @@ header{
     left:0px;
     height: 51px;
     width: 100%;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.7);
 }
 
 header .wrapper {
@@ -29,9 +29,10 @@ header .wrapper {
 
 header h3{
     font-size: 1.5em;
-    color: black;
+    color: white;
     margin: 10px 0;
     text-align: center;
+    text-shadow: -1px 1px 4px white;
 }
 
 .wrapper {
@@ -53,8 +54,8 @@ main .content section {
     min-height: 560px;
     text-align: center;    
     background: rgba(200, 200, 200, 0.6);
-    margin:10px;
-    padding: 20px 10px;
+    margin: 15px;
+    padding: 10%;  //20px 10px
 }
 
 /*-------------- Hide Sections --------------*/

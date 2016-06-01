@@ -180,4 +180,11 @@
            showPie();
         }
     });
+
+    function resetCounters() {
+        //clear counters
+        counter = 1;    //counter of played songs
+        rightAnswers = 0;
+    }
+
 //end of document

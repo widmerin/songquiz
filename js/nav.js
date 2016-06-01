@@ -76,6 +76,7 @@ $(document).ready(function() {
     //Play Button
     btPlayAgain.click(function(e){
         e.preventDefault();
+        resetCounters();
         setView(START,SCORE);
     });
 

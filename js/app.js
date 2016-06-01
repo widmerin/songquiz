@@ -8,14 +8,15 @@
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");
-    var gameOfNr = $('#count :selected').val();   //number of songs in gameset to play
+    var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
+    var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
     var counter = 1;                             //counter of played songs
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3
     var audio = new Audio();                     //audio that gets played
     var coverImg = $("#cover").find("img");
-    var artists;
+    var billboard;
 
     //Get Artists from DB
     function getArtists() {
@@ -24,7 +25,7 @@
             url: apiURL+'/billboard',
             dataType: "json",
             success: function(data){
-                artists = data;
+                billboard = data;
             },
             error: function(){
                 console.log('no Artitsts!');
@@ -33,18 +34,13 @@
         });
     }
     getArtists();
-    var randomNumber = Math.floor(Math.random() * 100);
-    var artist = artists[randomNumber].get('artist');
-    console.log(artist);
 
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
         var randomNumber = Math.floor(Math.random() * 100);
-        var artist = artists[randomNumber].get('artist');
-        console.log(artist);
-        return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + artist;
+        var artist = billboard[randomNumber].artist;
+        return ' artist:' + artist;
     }
-
 
     //get random single letter for spotify query
     function randomString(length, chars) {
@@ -59,10 +55,10 @@
     }
 
     //get 1 track from spotify - limit max is 50 - pick one of them
-    function getTrack(query) {
-        var randomNumber = Math.floor(Math.random() * 50);
+    function getTrack(query, limit) {
+        var randomNumber = Math.floor(Math.random() * limit);       //50 if nerd, 10 if newbie
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=50',
+            url: 'https://api.spotify.com/v1/search?limit='+limit,   // ditto
             data: {
                 q: query,
                 type: 'track'
@@ -77,10 +73,15 @@
     function get4Tracks() {
         //clear the array
         data.length = 0;
+        //limit = 50 if nerd, 10 if newbie
         for (var i = 0; i < 4; i++) {
-            getTrack(randomLetterQuery());
-            //  TODO: call this if user is Newbie
-            // getTrack(randomArtistQuery());
+            //if nerd niveau - difficult music
+            if (nerdOrNot=='nerd'){
+                getTrack(randomLetterQuery(),50);
+            }else{
+                //call this if user is Newbie (chooses billboard famous artists)
+                getTrack(randomArtistQuery(),10);
+            }
         }
     }
 

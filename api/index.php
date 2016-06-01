@@ -120,6 +120,27 @@ function getHighscore() {
     echo '{"highscore": ' . json_encode($rows) . '}';
     $conn->close();
 }
+/*
+//Get highscore from DB via PDO // not finished
+function getHighscore() {
+    $sql_query = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
+        try {
+        $dbCon = getDB();
+        $stmt   = $dbCon->query($sql_query);
+        $result  = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $dbCon = null;
+        $rows = array();
+        while ($row = $result->fetch_assoc()) { // this is unclear
+            $rows[] = $row;
+        }
+        echo '{"highscore": ' . json_encode($rows) . '}';
+    }
+    catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+}
+*/
+
 
 //Save Score in DB
 function addScore() {
@@ -154,7 +175,6 @@ function getScore() {
 }
 
 //getArtists from DB
-/*
 function getArtists() {
     $app = \Slim\Slim::getInstance();
 
@@ -168,15 +188,15 @@ function getArtists() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo $rows;
+    echo json_encode($rows);
     $conn->close();
 }
-*/
 
+/*      PDO function
 function getArtists() {
     $sql_query = "SELECT  artist FROM  billboard";
     try {
-        $dbCon = getConnection();
+        $dbCon = getDB();
         $stmt   = $dbCon->query($sql_query);
         $artists  = $stmt->fetchAll(PDO::FETCH_OBJ);
         $dbCon = null;
@@ -186,5 +206,6 @@ function getArtists() {
         echo '{"error":{"text":'. $e->getMessage() .'}}';
     }
 }
+*/
 
 $app->run();

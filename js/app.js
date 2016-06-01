@@ -33,11 +33,15 @@
         });
     }
     getArtists();
+    var randomNumber = Math.floor(Math.random() * 100);
+    var artist = artists[randomNumber].get('artist');
+    console.log(artist);
 
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
         var randomNumber = Math.floor(Math.random() * 100);
-        var artist = artists[randomNumber];
+        var artist = artists[randomNumber].get('artist');
+        console.log(artist);
         return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + artist;
     }
 

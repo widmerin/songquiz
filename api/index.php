@@ -154,6 +154,7 @@ function getScore() {
 }
 
 //getArtists from DB
+/*
 function getArtists() {
     $app = \Slim\Slim::getInstance();
 
@@ -169,6 +170,21 @@ function getArtists() {
     }
     echo $rows;
     $conn->close();
+}
+*/
+
+function getArtists() {
+    $sql_query = "SELECT  artist FROM  billboard";
+    try {
+        $dbCon = getConnection();
+        $stmt   = $dbCon->query($sql_query);
+        $artists  = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $dbCon = null;
+        echo '{"artists": ' . json_encode($artists) . '}';
+    }
+    catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
 }
 
 $app->run();

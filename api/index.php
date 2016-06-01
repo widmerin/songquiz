@@ -167,7 +167,7 @@ function getArtists() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo json_encode($rows);
+    echo $rows;
     $conn->close();
 }
 

@@ -24,9 +24,7 @@
             url: apiURL+'/billboard',
             dataType: "json",
             success: function(data){
-                console.log(data);
                 artists = data;
-                console.log('got Artists')
             },
             error: function(){
                 console.log('no Artitsts!');

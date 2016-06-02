@@ -34,6 +34,7 @@ $(document).ready(function() {
     var btLogin = $("#btLogin");
     var btPlay = $("#btPlay");
     var btNew = $("#btNew");
+    var btReg = $("#btReg");
     var btLogout = $("#btLogout");
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
@@ -90,31 +91,106 @@ $(document).ready(function() {
         setView(INTRO,REG);
     });
 
+    //Register account Button
+    btReg.click(function(e){
+        e.preventDefault();
+        //alert('Login proz setView(INTRO,REG);ess');
+        var user = $("#regEmail").val();
+        var pw = $("#regPassword").val();
+        //console.log('getUser http://'+document.domain+'/songquiz/api/user');
+        $.ajax({
+            type: 'POST',
+            url: "http://"+document.domain+"/songquiz/api/user/add",
+            //url: "http://localhost:8080/songquiz/api/user/add",
+            contentType: 'application/json',
+            dataType: "json",
+            data: loginToJSON(user, pw),
+            success: function(response){
+                //console.log('erfolgreich');
+                //alert(response.success);//console.log(response.toString());
+                if (response.success) {
+                    // It was true
+                    console.log('Reg success');
+                    setView(INTRO,LOGIN);
+                }
+                else if (response.errmsg === 1) {
+                    // It was false
+                    console.log('Reg fail');
+                    console.log('Username schon vorhanden');
+                    setView(INTRO,REG);// this will call after PHP method execution
+                }
+                else if (response.errmsg === 2) {
+                    // It was false
+                    console.log('Reg fail');
+                    console.log('Username konnte nicht registriert werden');
+                    setView(INTRO,REG);// this will call after PHP method execution
+                }
+                //getHighscore();
+                //setView(INTRO,LOGIN);// this will call after PHP method execution.
+            },
+            error: function (response) {
+                console.log('bad');
+                //console.log(response.toString());
+                //only if passed, not here - delete after login works!
+                //btLogout.show();
+                //btLogoutSmall.show();
+                //getHighscore();
+                //_______until here_______
+                setView(INTRO,REG);
+            },
+        });
+    });
+
     //Login Button
     btLogin.click(function(e) {
         e.preventDefault();
-        //alert('Login prozess');
+        var user = $("#email").val();
+        var pw = $("#password").val();
+        //console.log('getUser http://'+document.domain+'/songquiz/api/user');
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: "http://"+document.domain+"/songquiz/api/user",
-            success: function(){
-                console.log('erfolgreich');
-                btLogout.show();
-                btLogoutSmall.show();
-                getHighscore();
-                setView(START,SCORE);// this will call after PHP method execution.
+            //url: "http://localhost:8080/songquiz/api/user",
+            contentType: 'application/json',
+            dataType: "json",
+            data: loginToJSON(user, pw),
+            success: function(response){
+                //console.log('erfolgreich');
+                //alert(response.success);//console.log(response.toString());
+                if (response.success) {
+                    // Login was true
+                    btLogout.show();
+                    btLogoutSmall.show();
+                    getHighscore();
+                    setView(START,SCORE);
+                }
+                else {
+                    // Login was false
+                    setView(INTRO,LOGIN);// this will call after PHP method execution
+                }
+                //getHighscore();
+                //setView(INTRO,LOGIN);// this will call after PHP method execution.
             },
-            error: function () {
+            error: function (response) {
                 console.log('bad');
+                //console.log(response.toString());
                         //only if passed, not here - delete after login works!
-                        btLogout.show();
-                        btLogoutSmall.show();
-                        getHighscore();
+                        //btLogout.show();
+                        //btLogoutSmall.show();
+                        //getHighscore();
                         //_______until here_______
                 setView(START,SCORE);
             },
         });
     });
+
+    //Create JSON with Score Data
+    function loginToJSON(user, pw) {
+        return JSON.stringify({
+            "user": user,
+            "pw": pw
+        });
+    }
 
     //call Logout
     btLogoutSmall.click(function(){

@@ -81,8 +81,8 @@
        <section id="login">
             <form method="post">
                 <h1>Login</h1>
-                    <input name="email" placeholder="Email"/>
-                    <input name="pw" placeholder="Password"/>
+                <input name="email" placeholder="Email" id="email" />
+                <input name="pw" placeholder="Password" id="password"/>
                     <input id="btLogin" type="submit" value="Login" class="btn-violet"/>
             </form>
             <button id="btNew" class="btn-white">Register a new account</button>
@@ -94,10 +94,10 @@
                 <p>Just tell us your email and choose a password:</p>
                 <table>
                     <tr>
-                        <td>Email: </td><td><input name="email" /></td>
+                        <td>Email: </td><td><input name="email" id="regEmail"/></td>
                     </tr>
                     <tr>
-                        <td>Password: </td><td><input name="pw" /></td>
+                        <td>Password: </td><td><input name="pw" id="regPassword" /></td>
                     </tr>
                     <tr>
                         <td></td>

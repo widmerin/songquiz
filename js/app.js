@@ -111,7 +111,8 @@
         //if no guess was made until song played - click next automatically
         audio.addEventListener('ended', function () {
             //btNext.trigger( "click" );
-            btNext.addClass("faa-horizontal animated");
+            btNext.find("i").addClass("faa-horizontal animated");
+            //fa fa-forward faa-horizontal animated-hover
         });
     }
 

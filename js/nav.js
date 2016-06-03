@@ -164,22 +164,19 @@ $(document).ready(function() {
                     setView(START,SCORE);
                 }
                 else {
+                    console.log('bad login');
                     // Login was false
+                    var userInput = $("#email");
                     var pwInput = $("#password");
+                    userInput.addClass("login-wrong");
                     pwInput.addClass("login-wrong");
                     pwInput.val("login failed");
-                    //setView(INTRO,LOGIN); we are here already...
                 }
             },
             error: function (response) {
-                console.log('bad');
-                //console.log(response.toString());
-                        //only if passed, not here - delete after login works!
-                        //btLogout.show();
-                        //btLogoutSmall.show();
-                        //getHighscore();
-                        //_______until here_______
-                setView(START,SCORE);
+                console.log('error login');
+                //reload page
+                window.location.reload(true);
             },
         });
     });

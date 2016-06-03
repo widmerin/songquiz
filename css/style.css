@@ -241,4 +241,5 @@ button, input, select, textarea {
 .login-wrong,
 .login-wrong:hover {
     border-color: #E14658;
+    border-width: 2px;
 }

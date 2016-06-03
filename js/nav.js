@@ -95,8 +95,18 @@ $(document).ready(function() {
     btReg.click(function(e){
         e.preventDefault();
         //alert('Login proz setView(INTRO,REG);ess');
-        var user = $("#regEmail").val();
-        var pw = $("#regPassword").val();
+        //input fields login or
+        var userInputR = $("#regEmail");
+        var pwInputR = $("#regPassword");
+        var userR = userInputR.val();
+        var pwR = pwInputR.val();
+        if (userR.length==0 || pwR.length==0){
+            userInputR.addClass("login-wrong");
+            pwInputR.addClass("login-wrong");
+            alert("Please, fill in both fields to register.");
+            //exit function
+            return;
+        }
         //console.log('getUser http://'+document.domain+'/songquiz/api/user');
         $.ajax({
             type: 'POST',
@@ -104,7 +114,7 @@ $(document).ready(function() {
             //url: "http://localhost:8080/songquiz/api/user/add",
             contentType: 'application/json',
             dataType: "json",
-            data: loginToJSON(user, pw),
+            data: loginToJSON(userR, pwR),
             success: function(response){
                 //console.log('erfolgreich');
                 //alert(response.success);//console.log(response.toString());
@@ -131,11 +141,6 @@ $(document).ready(function() {
             error: function (response) {
                 console.log('bad');
                 //console.log(response.toString());
-                //only if passed, not here - delete after login works!
-                //btLogout.show();
-                //btLogoutSmall.show();
-                //getHighscore();
-                //_______until here_______
                 setView(INTRO,REG);
             },
         });
@@ -204,9 +209,11 @@ $(document).ready(function() {
     //Logout Button TODO: actual logout
     btLogout.click(function(e) {
         e.preventDefault();
-        btLogout.hide();
-        btLogoutSmall.hide();
-        setView(INTRO,LOGIN);
+            //btLogout.hide();
+            //btLogoutSmall.hide();
+            //setView(INTRO,LOGIN);
+        //reload page
+        window.location.reload(true);
     });
 
         function setRandomBGImage() {

@@ -38,9 +38,13 @@
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
         var size = Object.keys(billboard).length;
-        console.log(size);
-        var randomNumber = Math.floor(Math.random() * 100);
-        var artist = billboard.splice(randomNumber,1);      //billboard[randomNumber].artist;
+        if (size<12){
+            //if newbis billboard is played through (from 119 down to 12), get artists from sql again... and start all over
+            getArtists();
+        }
+        var randomNumber = Math.floor(Math.random() * size);
+        var artist = billboard[randomNumber].artist;
+        delete billboard[randomNumber];
         return ' artist:' + artist;
     }
 

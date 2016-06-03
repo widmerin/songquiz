@@ -144,8 +144,17 @@ $(document).ready(function() {
     //Login Button
     btLogin.click(function(e) {
         e.preventDefault();
-        var user = $("#email").val();
-        var pw = $("#password").val();
+        var userInput = $("#email");
+        var pwInput = $("#password");
+        var user = userInput.val();
+        var pw = pwInput.val();
+        if (user.length==0 || pw.length==0){
+            userInput.addClass("login-wrong");
+            pwInput.addClass("login-wrong");
+            alert("Please, fill in both fields to login.");
+            //exit function
+            return;
+        }
         //console.log('getUser http://'+document.domain+'/songquiz/api/user');
         $.ajax({
             type: 'POST',
@@ -155,25 +164,23 @@ $(document).ready(function() {
             dataType: "json",
             data: loginToJSON(user, pw),
             success: function(response){
-                console.log('login erfolgreich');
                 if (response.success) {
                     // Login was true
+                    console.log('login success');
                     btLogout.show();
                     btLogoutSmall.show();
                     getHighscore();
                     setView(START,SCORE);
-                }
-                else {
+                } else {
                     console.log('bad login');
                     // Login was false
-                    var userInput = $("#email");
-                    var pwInput = $("#password");
+
                     userInput.addClass("login-wrong");
                     pwInput.addClass("login-wrong");
                     pwInput.val("login failed");
                 }
             },
-            error: function (response) {
+            error: function () {
                 console.log('error login');
                 //reload page
                 window.location.reload(true);

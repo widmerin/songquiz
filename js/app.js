@@ -91,6 +91,7 @@
         GUESS1.text(data[1].artists[0].name);
         GUESS2.text(data[2].artists[0].name);
         GUESS3.text(data[3].artists[0].name);
+        btNext.removeAttr("class");
     }
 
     function playRandomSong() {
@@ -103,7 +104,8 @@
         audio.play();
         //if no guess was made until song played - click next automatically
         audio.addEventListener('ended', function () {
-            btNext.trigger( "click" );
+            //btNext.trigger( "click" );
+            btNext.addClass("faa-horizontal animated");
         });
     }
 

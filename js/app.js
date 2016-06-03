@@ -37,8 +37,10 @@
 
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
+        var size = Object.keys( billboard.artist ).length;
+        console.log(size);
         var randomNumber = Math.floor(Math.random() * 100);
-        var artist = billboard[randomNumber].artist;
+        var artist = billboard.splice(randomNumber,1);      //billboard[randomNumber].artist;
         return ' artist:' + artist;
     }
 

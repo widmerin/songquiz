@@ -188,7 +188,7 @@ $(document).ready(function() {
             error: function () {
                 console.log('error login');
                 //reload page
-                window.location.reload(true);
+                location.reload(true);
             },
         });
     });
@@ -213,7 +213,7 @@ $(document).ready(function() {
             //btLogoutSmall.hide();
             //setView(INTRO,LOGIN);
         //reload page
-        window.location.reload(true);
+        location.reload(true);
     });
 
         function setRandomBGImage() {
@@ -236,7 +236,7 @@ $(document).ready(function() {
             'img/Background6_mobile.jpg'];
         }
         selectBG = images[Math.floor(Math.random() * images.length)];
-        console.log(selectBG);
+        //console.log(selectBG);
         $('body').css('background', 'url(' + selectBG + ') no-repeat center center fixed');
         $('body').css('background-size', 'cover');
     }

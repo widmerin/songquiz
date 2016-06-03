@@ -37,7 +37,8 @@
 
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
-        var size = Object.keys( billboard.artist ).length;
+        var obj = JSON.parse(billboard);
+        var size = Object.keys(obj).length;
         console.log(size);
         var randomNumber = Math.floor(Math.random() * 100);
         var artist = billboard.splice(randomNumber,1);      //billboard[randomNumber].artist;
@@ -153,12 +154,12 @@
         if (id == 'guess'+correct) {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
-            console.log('correct is ' + id);
+            //console.log('correct is ' + id);
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
-            console.log('false is ' + id+ ' '+'GUESS'+correct);
+            //console.log('false is ' + id+ ' '+'GUESS'+correct);
             //highlight failed
             this.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct

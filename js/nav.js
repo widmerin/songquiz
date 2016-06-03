@@ -155,8 +155,7 @@ $(document).ready(function() {
             dataType: "json",
             data: loginToJSON(user, pw),
             success: function(response){
-                //console.log('erfolgreich');
-                //alert(response.success);//console.log(response.toString());
+                console.log('login erfolgreich');
                 if (response.success) {
                     // Login was true
                     btLogout.show();
@@ -166,10 +165,11 @@ $(document).ready(function() {
                 }
                 else {
                     // Login was false
-                    setView(INTRO,LOGIN);// this will call after PHP method execution
+                    var pwInput = $("#password");
+                    pwInput.addClass("login-wrong");
+                    pwInput.val("login failed");
+                    //setView(INTRO,LOGIN); we are here already...
                 }
-                //getHighscore();
-                //setView(INTRO,LOGIN);// this will call after PHP method execution.
             },
             error: function (response) {
                 console.log('bad');
@@ -184,7 +184,7 @@ $(document).ready(function() {
         });
     });
 
-    //Create JSON with Score Data
+    //Create JSON with login data
     function loginToJSON(user, pw) {
         return JSON.stringify({
             "user": user,

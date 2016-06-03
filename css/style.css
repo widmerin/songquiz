@@ -237,3 +237,8 @@ button, input, select, textarea {
     margin: 0 auto;
     display: block;
 }
+
+.login-wrong,
+.login-wrong:hover {
+    border-color: #E14658;
+}

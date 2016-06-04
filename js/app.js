@@ -140,8 +140,8 @@
 
     function resetCounters() {
         //clear counters
-        counter = 1;    //counter of played songs
-        rightAnswers = 0;
+        counter = 0;    //counter of played songs
+        rightAnswers = 0; //correct answered
     }
 
     //BUTTON HANDLERS

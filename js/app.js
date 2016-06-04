@@ -42,7 +42,7 @@
             //if newbis billboard is played through (from 119 down to 12), get artists from sql again... and start all over
             getArtists();
         }
-        var randomNumber = Math.floor(Math.random() * (size-1);
+        var randomNumber = Math.floor(Math.random() * (size-1));
         var artist = billboard[randomNumber].artist;
         delete billboard[randomNumber];
         return ' artist:' + artist;

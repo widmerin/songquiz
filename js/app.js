@@ -10,7 +10,7 @@
     var btNext = $("#next");            //next Button
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
-    var counter = 1;                             //counter of played songs
+    var counter = 0;                             //counter of played songs
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
@@ -104,7 +104,6 @@
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-        //DEBUG: console.log('correct song shall be ' + correct);
         //get correct previewUrl
         audio.src = data[correct].preview_url;
         //play correct song
@@ -182,6 +181,7 @@
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
+        console.log('counter ' + counter +' of '+ gameOfNr +' correct:'+rightAnswers);
         if (counter < gameOfNr) {
             //load next play
             oneGameSet();

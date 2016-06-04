@@ -43,8 +43,15 @@
             getArtists();
         }
         var randomNumber = Math.floor(Math.random() * (size-1));
-        var artist = billboard[randomNumber].artist;
-        delete billboard[randomNumber];
+        while(typeof billboard[randomNumber] == 'undefined'){
+            try {
+                var artist = billboard[randomNumber].artist;
+                delete billboard[randomNumber];
+                randomNumber = Math.floor(Math.random() * (size-1));
+            } catch(e) {
+                //nop
+            }
+        }
         return ' artist:' + artist;
     }
 

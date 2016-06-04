@@ -7,13 +7,13 @@
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
-    var btNext = $("#next");
+    var btNext = $("#next");            //next Button
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
     var counter = 1;                             //counter of played songs
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
-    var correct;                                 //random number from 0-3
+    var correct;                                 //random number from 0-3 - the correct song
     var audio = new Audio();                     //audio that gets played
     var coverImg = $("#cover").find("img");
     var billboard;
@@ -109,7 +109,9 @@
         audio.src = data[correct].preview_url;
         //play correct song
         audio.play();
-        //if no guess was made until song played - click next automatically
+        //add up counter of played songs
+        counter++;
+        //if no guess was made until song played - animate next button
         audio.addEventListener('ended', function () {
             btNext.find("i").addClass("animated");
         });
@@ -173,8 +175,6 @@
     //next Button
     btNext.click(function (event) {
         event.preventDefault();
-        //add up counter of played songs
-        counter++;
         //stop audio playing (if still...)
         audio.pause();
         //reset Buttons
@@ -182,7 +182,7 @@
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
-        if (counter <= gameOfNr) {
+        if (counter < gameOfNr) {
             //load next play
             oneGameSet();
         } else {

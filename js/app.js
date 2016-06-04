@@ -187,8 +187,8 @@
         //reset Buttons
         resetButtons();
         //hide cover, show speaker again
-        coverImg.attr("src", "");
-        $('#cover').find('.fa-volume-up').show();
+        coverImg.attr("src", "img/speaker.png");
+            //$('#cover').find('.fa-volume-up').show();
         //play next song until counter reaches gameOfNr
         console.log('counter ' + counter +' of '+ gameOfNr +' correct:'+rightAnswers);
         if (counter < gameOfNr) {

@@ -182,7 +182,7 @@ $(document).ready(function() {
 
                     userInput.addClass("login-wrong");
                     pwInput.addClass("login-wrong");
-                    pwInput.val("login failed");
+                    document.getElementById("loginfail").innerHTML = "login failed";
                 }
             },
             error: function () {

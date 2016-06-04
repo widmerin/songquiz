@@ -195,6 +195,7 @@
             $('#gameover').find('p').text("You've got "+rightAnswers+" out of "+ gameOfNr+" songs right.");
            setView(GAMEOVER, SCORE);
            showPie();
+           resetCounters();
         }
     });
 

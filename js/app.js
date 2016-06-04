@@ -97,7 +97,8 @@
         GUESS1.text(data[1].artists[0].name);
         GUESS2.text(data[2].artists[0].name);
         GUESS3.text(data[3].artists[0].name);
-        btNext.removeAttr("class");
+        btNext.find("i").removeAttr("class");
+        btNext.find("i").addClass("fa fa-forward faa-horizontal animated-hover");
     }
 
     function playRandomSong() {
@@ -110,9 +111,7 @@
         audio.play();
         //if no guess was made until song played - click next automatically
         audio.addEventListener('ended', function () {
-            //btNext.trigger( "click" );
-            btNext.find("i").addClass("faa-horizontal animated");
-            //fa fa-forward faa-horizontal animated-hover
+            btNext.find("i").addClass("animated");
         });
     }
 

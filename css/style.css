@@ -246,6 +246,10 @@ button, input, select, textarea {
     display: block;
 }
 
+.canvasjs-chart-credit{
+    color: #3F3250;
+}
+
 .login-wrong,
 .login-wrong:hover {
     border-color: #E14658;

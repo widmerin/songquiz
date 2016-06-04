@@ -42,7 +42,7 @@
             //if newbis billboard is played through (from 119 down to 12), get artists from sql again... and start all over
             getArtists();
         }
-        var randomNumber = Math.floor(Math.random() * size);
+        var randomNumber = Math.floor(Math.random() * (size-1));
         var artist = billboard[randomNumber].artist;
         delete billboard[randomNumber];
         return ' artist:' + artist;
@@ -197,6 +197,7 @@
             $('#gameover').find('p').text("You've got "+rightAnswers+" out of "+ gameOfNr+" songs right.");
            setView(GAMEOVER, SCORE);
            showPie();
+           resetCounters();
         }
     });
 

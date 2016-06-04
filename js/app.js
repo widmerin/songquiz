@@ -2,7 +2,7 @@
  * Created by mj on 29.05.2016
  */
 
-$(document).ready(function() {
+//$(document).ready(function() {
 
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
@@ -214,4 +214,4 @@ $(document).ready(function() {
         }
     });
 //end of document
-});
+//});

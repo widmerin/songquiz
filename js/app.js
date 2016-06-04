@@ -147,8 +147,10 @@
 
     function resetCounters() {
         //clear counters
+        console.log('before reset: counter: '+counter+' and rightAnswers:'+rightAnswers);
         counter = 0;    //counter of played songs
         rightAnswers = 0; //correct answered
+        console.log('after reset: counter: '+counter+' and rightAnswers:'+rightAnswers);
     }
 
     //BUTTON HANDLERS

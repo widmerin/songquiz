@@ -42,12 +42,12 @@
             //if newbis billboard is played through (from 119 down to 12), get artists from sql again... and start all over
             getArtists();
         }
-        var randomNumber = Math.floor(Math.random() * (size-1));
-        while(typeof billboard[randomNumber] == 'undefined'){
+        var artist;
+        while(typeof artist === 'undefined'){
             try {
-                var artist = billboard[randomNumber].artist;
+                var randomNumber = Math.floor(Math.random() * (size-1));
+                artist = billboard[randomNumber].artist;
                 delete billboard[randomNumber];
-                randomNumber = Math.floor(Math.random() * (size-1));
             } catch(e) {
                 //nop
             }

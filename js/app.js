@@ -1,6 +1,9 @@
 /**
  * Created by mj on 29.05.2016
  */
+
+$(document).ready(function() {
+
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
     var GUESS0 = $("#guess0");          //GUI Buttons Guesses
@@ -22,33 +25,34 @@
     function getArtists() {
         $.ajax({
             type: 'GET',
-            url: apiURL+'/billboard',
+            url: apiURL + '/billboard',
             dataType: "json",
-            success: function(data){
+            success: function (data) {
                 billboard = data;
             },
-            error: function(){
+            error: function () {
                 console.log('no Artitsts!');
             }
 
         });
     }
+
     getArtists();
 
     //get randomized query string for spotify query with artists from billboard
     function randomArtistQuery() {
         var size = Object.keys(billboard).length;
-        if (size<12){
+        if (size < 12) {
             //if newbis billboard is played through (from 119 down to 12), get artists from sql again... and start all over
             getArtists();
         }
         var artist;
-        while(typeof artist === 'undefined'){
+        while (typeof artist === 'undefined') {
             try {
-                var randomNumber = Math.floor(Math.random() * (size-1));
+                var randomNumber = Math.floor(Math.random() * (size - 1));
                 artist = billboard[randomNumber].artist;
                 delete billboard[randomNumber];
-            } catch(e) {
+            } catch (e) {
                 //nop
             }
         }
@@ -71,7 +75,7 @@
     function getTrack(query, limit) {
         var randomNumber = Math.floor(Math.random() * limit);       //50 if nerd, 10 if newbie
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit='+limit,   // ditto
+            url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
             data: {
                 q: query,
                 type: 'track'
@@ -89,11 +93,11 @@
         //limit = 50 if nerd, 10 if newbie
         for (var i = 0; i < 4; i++) {
             //if nerd niveau - difficult music
-            if (nerdOrNot=='nerd'){
-                getTrack(randomLetterQuery(),50);
-            }else{
+            if (nerdOrNot == 'nerd') {
+                getTrack(randomLetterQuery(), 50);
+            } else {
                 //call this if user is Newbie (chooses billboard famous artists)
-                getTrack(randomArtistQuery(),10);
+                getTrack(randomArtistQuery(), 10);
             }
         }
     }
@@ -147,10 +151,10 @@
 
     function resetCounters() {
         //clear counters
-        console.log('before reset: counter: '+counter+' and rightAnswers:'+rightAnswers);
+        console.log('before reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
         counter = 0;    //counter of played songs
         rightAnswers = 0; //correct answered
-        console.log('after reset: counter: '+counter+' and rightAnswers:'+rightAnswers);
+        console.log('after reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
     }
 
     //BUTTON HANDLERS
@@ -165,7 +169,7 @@
         $('#cover').find('.fa-volume-up').hide();
         coverImg.attr("src", data[correct].album.images[1].url);
         //correct button is "guess"+correct
-        if (id == 'guess'+correct) {
+        if (id == 'guess' + correct) {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
             //console.log('correct is ' + id);
@@ -190,9 +194,9 @@
         resetButtons();
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
-            //$('#cover').find('.fa-volume-up').show();
+        //$('#cover').find('.fa-volume-up').show();
         //play next song until counter reaches gameOfNr
-        console.log('counter ' + counter +' of '+ gameOfNr +' correct:'+rightAnswers);
+        console.log('counter ' + counter + ' of ' + gameOfNr + ' correct:' + rightAnswers);
         if (counter < gameOfNr) {
             //load next play
             oneGameSet();
@@ -203,11 +207,11 @@
             getHighscore();
             //Empty
             $('#gameover').find('p').empty();
-            $('#gameover').find('p').text("You've got "+rightAnswers+" out of "+ gameOfNr+" songs right.");
-           setView(GAMEOVER, SCORE);
-           showPie();
-           resetCounters();
+            $('#gameover').find('p').text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
+            setView(GAMEOVER, SCORE);
+            showPie();
+            resetCounters();
         }
     });
-
+}
 //end of document

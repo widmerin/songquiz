@@ -213,5 +213,5 @@ $(document).ready(function() {
             resetCounters();
         }
     });
-}
 //end of document
+});

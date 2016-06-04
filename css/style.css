@@ -87,6 +87,14 @@ main .content section {
     margin: 40px 20px;
 }
 
+#cover .fa-volume-up {
+    margin: 40px 20px;
+    font-size: 1600%;
+    color: #3F3250;
+}
+#cover .fa-volume-up:hover {
+    color: #562f6d;
+}
 /*-------------- Table Section --------------*/
 #score table {
     min-width: 200px;

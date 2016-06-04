@@ -132,7 +132,6 @@ function addScore() {
     $app = \Slim\Slim::getInstance()->request();
     $conn = getDB();
 
-    try {
         $score = json_decode($app->getBody());
 
         // prepare and bind
@@ -144,13 +143,20 @@ function addScore() {
         $playedQuestions = $score->playedQuestions;
         $correctAnswer = $score->correctAnswers;
         $stmt->execute();
-
-    }
-    catch(PDOException $e)
-    {
-        echo "Error: " . $e->getMessage();
-    }
-
+        $success = $stmt->execute();
+        if($success) {
+            $conn->commit();
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => true,
+            ));
+        }
+        else {
+            $conn->rollBack();
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => false, 'errmsg' => 2,
+            ));
+        }
+    
     $conn->close();
 }
 

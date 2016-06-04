@@ -73,9 +73,9 @@ $(document).ready(function() {
         setView(COVER,GAME);
          guessButtons.prop('disabled', false);
         //play first song (after this play further songs by clicking next button)
-        $.getScript('js/app.js', function () {
+       // $.getScript('js/app.js', function () {
             oneGameSet();
-        });
+       // });
     });
 
     //Play Button

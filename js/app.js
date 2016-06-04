@@ -160,6 +160,7 @@
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
+        $('#cover').find('.fa-volume-up').hide();
         coverImg.attr("src", data[correct].album.images[1].url);
         //correct button is "guess"+correct
         if (id == 'guess'+correct) {
@@ -186,7 +187,8 @@
         //reset Buttons
         resetButtons();
         //hide cover, show speaker again
-        coverImg.attr("src", "img/speaker.png");
+        coverImg.attr("src", "");
+        $('#cover').find('.fa-volume-up').show();
         //play next song until counter reaches gameOfNr
         console.log('counter ' + counter +' of '+ gameOfNr +' correct:'+rightAnswers);
         if (counter < gameOfNr) {

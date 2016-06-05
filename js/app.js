@@ -196,7 +196,7 @@
         coverImg.attr("src", "img/speaker.png");
         //$('#cover').find('.fa-volume-up').show();
         //play next song until counter reaches gameOfNr
-        console.log('counter ' + counter + ' of ' + gameOfNr + ' correct:' + rightAnswers);
+        console.log('Next Bt: counter ' + counter + ' of ' + gameOfNr + ' rightAnswers:' + rightAnswers);
         if (counter < gameOfNr) {
             //load next play
             oneGameSet();

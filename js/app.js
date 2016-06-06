@@ -206,14 +206,15 @@
         } else {
             //save score
             addScore(gameOfNr, rightAnswers);
-            //reload Highscore section
-            getHighscore();
+
             //Empty
             $('#gameover').find('p').empty();
             $('#gameover').find('p').text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
             setView(GAMEOVER, SCORE);
             showPie();
             resetCounters();
+            //reload Highscore section
+            getHighscore();
         }
     });
 //end of document

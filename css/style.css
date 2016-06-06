@@ -260,3 +260,8 @@ p#loginfail {
     color: #E14658;
     font-weight: bold;
 }
+
+p#regfail {
+    color: #E14658;
+    font-weight: bold;
+}

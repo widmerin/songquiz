@@ -5,6 +5,7 @@
 
 // The root URL for the RESTful services
 var apiURL = "http://"+document.domain+"/songquiz/api/";
+//var apiURL = "http://localhost:8080
 
 //Save Highscore DB
 function addScore(playedQuestions, correctAnswers)  {

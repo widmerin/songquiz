@@ -3,7 +3,7 @@
  */
 
 //$(document).ready(function() {
-
+//var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
     var GUESS0 = $("#guess0");          //GUI Buttons Guesses
@@ -203,14 +203,15 @@
         } else {
             //save score
             addScore(gameOfNr, rightAnswers);
-            //reload Highscore section
-            getHighscore();
+
             //Empty
             $('#gameover').find('p').empty();
             $('#gameover').find('p').text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
             setView(GAMEOVER, SCORE);
             showPie();
             resetCounters();
+            //reload Highscore section
+            getHighscore();
         }
     });
 //end of document

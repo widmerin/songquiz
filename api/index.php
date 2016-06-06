@@ -15,7 +15,6 @@ $app->post('/user', 'getLogin');
 $app->get('/score/highscore', 'getHighscore');
 $app->post('/user/add', 'addUser');
 $app->post('/score', 'addScore');
-$app->get('/score', 'getScore');
 $app->get('/billboard', 'getArtists');
 
 //Get LoginData from DB
@@ -35,21 +34,21 @@ function getLogin() {
     $result = $stmt->get_result();
     if ($result->num_rows >= "1") {
         $row = $result->fetch_row();
-        $bool = password_verify($password, $row[0]);
-        if ($bool) {
+        $pwVerified = password_verify($password, $row[0]);
+        if ($pwVerified) {
             //session start
             session_start();
             // Set session variables
             $userid =  $row[1];
             $_SESSION["userid"] = $userid;
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies, 'userid' => $_SESSION["userid"],
+            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'pwVerified' => $pwVerified, 'userid' => $_SESSION["userid"],
             ));
 
         }
         else {
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => false, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies,
+            echo json_encode(array('success' => false, 'pw' => $password, 'pwHash' => $row[0], 'pwVerified' => $pwVerified,
             ));
             //$app->deleteCookie('foo');
         }
@@ -100,14 +99,12 @@ function addUser() {
         if($success) {
             $conn->commit();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true,
-            ));
+            echo json_encode(array('success' => true,));
         }
         else {
             $conn->rollBack();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => false, 'errmsg' => 2,
-            ));
+            echo json_encode(array('success' => false, 'errmsg' => 2,));
         }
     }
     $conn->close();
@@ -128,29 +125,14 @@ function getHighscore() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo '{"highscore": ' . json_encode($rows) . '}';
+    if ($result->num_rows >= "1") {
+        echo '{"highscore": ' . json_encode($rows) . '}';
+    } else {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(array('success' => false, 'errmsg' => 2,));    
+    }
     $conn->close();
 }
-/*
-//Get highscore from DB via PDO // not finished
-function getHighscore() {
-    $sql_query = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
-        try {
-        $dbCon = getDB();
-        $stmt   = $dbCon->query($sql_query);
-        $result  = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbCon = null;
-        $rows = array();
-        while ($row = $result->fetch_assoc()) { // this is unclear
-            $rows[] = $row;
-        }
-        echo '{"highscore": ' . json_encode($rows) . '}';
-    }
-    catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
-}
-*/
 
 
 //Save Score in DB
@@ -166,10 +148,10 @@ function addScore() {
         $stmt->bind_param("sss", $userid, $playedQuestions, $correctAnswer);
 
         // set parameters and execute
-        $userid = $score->userid;
+          session_start();
+        $userid = $_SESSION["userid"];
         $playedQuestions = $score->playedQuestions;
         $correctAnswer = $score->correctAnswers;
-        $stmt->execute();
         $success = $stmt->execute();
         if($success) {
             $conn->commit();
@@ -187,9 +169,6 @@ function addScore() {
     $conn->close();
 }
 
-function getScore() {
-    echo("GET SCORE");
-}
 
 //getArtists from DB
 function getArtists() {

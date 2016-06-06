@@ -127,12 +127,18 @@ $(document).ready(function() {
                     // It was false
                     console.log('Reg fail');
                     console.log('Username schon vorhanden');
+                    userInputR.addClass("login-wrong");
+                    pwInputR.addClass("login-wrong");
+                    document.getElementById("regfail").innerHTML = "Nickname already exists";
                     setView(INTRO,REG);// this will call after PHP method execution
                 }
                 else if (response.errmsg === 2) {
                     // It was false
                     console.log('Reg fail');
                     console.log('Username konnte nicht registriert werden');
+                    userInputR.addClass("login-wrong");
+                    pwInputR.addClass("login-wrong");
+                    document.getElementById("loginfail").innerHTML = "Registration failed, please try again";
                     setView(INTRO,REG);// this will call after PHP method execution
                 }
                 //getHighscore();
@@ -188,7 +194,7 @@ $(document).ready(function() {
             error: function () {
                 console.log('error login');
                 //reload page
-                location.reload(true);
+                //location.reload(true);
             },
         });
     });

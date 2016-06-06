@@ -29,7 +29,7 @@ function getLogin() {
     $conn = getDB();
     //$stmt = $conn->prepare('SELECT password FROM user WHERE username=? and password=?');
     //$stmt->bind_param('ss', $username, $password);
-    $stmt = $conn->prepare('SELECT password FROM user WHERE username=?');
+    $stmt = $conn->prepare('SELECT password, id FROM user WHERE username=?');
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -37,11 +37,15 @@ function getLogin() {
         $row = $result->fetch_row();
         $bool = password_verify($password, $row[0]);
         if ($bool) {
+            //session start
+            session_start();
+            // Set session variables
+            $userid =  $row[1];
+            $_SESSION["userid"] = $userid;
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies,
+            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies, 'userid' => $_SESSION["userid"],
             ));
-            $app->setCookie($username, uniqid(), '10 minutes');
-            //$app->deleteCookie('foo');
+
         }
         else {
             header('Content-Type: application/json; charset=utf-8');

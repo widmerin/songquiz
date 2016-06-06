@@ -20,27 +20,39 @@ $app->get('/billboard', 'getArtists');
 
 //Get LoginData from DB
 function getLogin() {
-    $app = \Slim\Slim::getInstance()->request();
-    $login = json_decode($app->getBody());
+    $app = \Slim\Slim::getInstance();
+    //$app->setCookie('foo', 'bar', '5 minutes');
+    $login = json_decode($app->request()->getBody());
+    $cookies = $app->cookies;
     $username = $login->{'user'};
     $password = $login->{'pw'};
-    //echo $username;
-    //echo $password;
-    //$username = mysql_real_escape_string($_GET['email']);
-    //$password = mysql_real_escape_string($_GET['pw']);
     $conn = getDB();
-    $stmt = $conn->prepare('SELECT password FROM user WHERE username=? and password=?');
-    $stmt->bind_param('ss', $username, $password);
+    //$stmt = $conn->prepare('SELECT password FROM user WHERE username=? and password=?');
+    //$stmt->bind_param('ss', $username, $password);
+    $stmt = $conn->prepare('SELECT password FROM user WHERE username=?');
+    $stmt->bind_param('s', $username);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows >= "1") {
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(array('success' => true,
-        ));
+        $row = $result->fetch_row();
+        $bool = password_verify($password, $row[0]);
+        if ($bool) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies,
+            ));
+            $app->setCookie($username, uniqid(), '10 minutes');
+            //$app->deleteCookie('foo');
+        }
+        else {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => false, 'pw' => $password, 'pwHash' => $row[0], 'bool' => $bool, 'cookies' => $cookies,
+            ));
+            //$app->deleteCookie('foo');
+        }
     }
     else {
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(array('success' => false,
+        echo json_encode(array('success' => false, 'pw' => $password,
         ));
     }
     $conn->close();
@@ -52,6 +64,17 @@ function addUser() {
     $login = json_decode($app->getBody());
     $username = $login->{'user'};
     $password = $login->{'pw'};
+
+    /**
+     * Note that the salt here is randomly generated.
+     * Never use a static salt or one that is not randomly generated.
+     *
+     * For the VAST majority of use-cases, let password_hash generate the salt randomly for you
+     */
+    //$options = [
+       // 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+    //];
+    $pwSaltedHashed = password_hash($password, PASSWORD_BCRYPT);
 
     $conn = getDB();
 
@@ -66,7 +89,7 @@ function addUser() {
     }
     else {
         $stmt = $conn->prepare('INSERT INTO user(username, password) VALUES (?, ?)');
-        $stmt->bind_param('ss', $username, $password);
+        $stmt->bind_param('ss', $username, $pwSaltedHashed);
         $conn->begin_Transaction();
 
         $success = $stmt->execute();
@@ -147,13 +170,13 @@ function addScore() {
         if($success) {
             $conn->commit();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true,
+            echo json_encode(array('success' => true, 'userid' =>$userid,
             ));
         }
         else {
             $conn->rollBack();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => false, 'errmsg' => 2,
+            echo json_encode(array('success' => false, 'errmsg' => 2, 'userid' =>$userid,
             ));
         }
     

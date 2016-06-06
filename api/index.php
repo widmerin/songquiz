@@ -99,14 +99,12 @@ function addUser() {
         if($success) {
             $conn->commit();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true,
-            ));
+            echo json_encode(array('success' => true,));
         }
         else {
             $conn->rollBack();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => false, 'errmsg' => 2,
-            ));
+            echo json_encode(array('success' => false, 'errmsg' => 2,));
         }
     }
     $conn->close();
@@ -127,7 +125,12 @@ function getHighscore() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo '{"highscore": ' . json_encode($rows) . '}';
+    if ($result->num_rows >= "1") {
+        echo '{"highscore": ' . json_encode($rows) . '}';
+    } else {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(array('success' => false, 'errmsg' => 2,));    
+    }
     $conn->close();
 }
 

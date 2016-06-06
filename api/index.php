@@ -145,6 +145,7 @@ function addScore() {
         $stmt->bind_param("sss", $userid, $playedQuestions, $correctAnswer);
 
         // set parameters and execute
+          session_start();
         $userid = $_SESSION["userid"];
         $playedQuestions = $score->playedQuestions;
         $correctAnswer = $score->correctAnswers;

@@ -255,3 +255,8 @@ button, input, select, textarea {
     border-color: #E14658;
     border-width: 2px;
 }
+
+p#loginfail {
+    color: #E14658;
+    font-weight: bold;
+}

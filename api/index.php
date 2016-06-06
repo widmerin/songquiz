@@ -149,7 +149,6 @@ function addScore() {
         $userid = $_SESSION["userid"];
         $playedQuestions = $score->playedQuestions;
         $correctAnswer = $score->correctAnswers;
-        $stmt->execute();
         $success = $stmt->execute();
         if($success) {
             $conn->commit();

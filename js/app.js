@@ -51,10 +51,7 @@
             try {
                 var randomNumber = Math.floor(Math.random() * (size - 1));
                 artist = billboard[randomNumber].artist;
-                console.log('before delete'+Object.keys(billboard).length);
                 delete billboard[randomNumber];
-                console.log('after delete'+Object.keys(billboard).length);
-
             } catch (e) {
                 //nop
             }

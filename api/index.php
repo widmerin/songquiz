@@ -131,26 +131,6 @@ function getHighscore() {
     echo '{"highscore": ' . json_encode($rows) . '}';
     $conn->close();
 }
-/*
-//Get highscore from DB via PDO // not finished
-function getHighscore() {
-    $sql_query = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC";
-        try {
-        $dbCon = getDB();
-        $stmt   = $dbCon->query($sql_query);
-        $result  = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbCon = null;
-        $rows = array();
-        while ($row = $result->fetch_assoc()) { // this is unclear
-            $rows[] = $row;
-        }
-        echo '{"highscore": ' . json_encode($rows) . '}';
-    }
-    catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
-}
-*/
 
 
 //Save Score in DB
@@ -187,9 +167,6 @@ function addScore() {
     $conn->close();
 }
 
-function getScore() {
-    echo("GET SCORE");
-}
 
 //getArtists from DB
 function getArtists() {

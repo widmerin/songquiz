@@ -15,7 +15,6 @@ $app->post('/user', 'getLogin');
 $app->get('/score/highscore', 'getHighscore');
 $app->post('/user/add', 'addUser');
 $app->post('/score', 'addScore');
-$app->get('/score', 'getScore');
 $app->get('/billboard', 'getArtists');
 
 //Get LoginData from DB

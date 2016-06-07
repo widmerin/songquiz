@@ -227,7 +227,7 @@ $(document).ready(function() {
             },
     });
         //reload page
-      //  location.reload(true);
+        location.reload(true);
     });
 
         function setRandomBGImage() {

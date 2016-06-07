@@ -20,10 +20,17 @@ $app->get('/user', 'getLogout');
 
 function getLogout() {
     $app = \Slim\Slim::getInstance();
-     session_start();
-
+    session_start();
+    echo session_status();
     session_unset(); 
     session_destroy();
+    echo session_status();
+    if (session_status() == PHP_SESSION_NONE) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => true ));
+    } else{
+         echo json_encode(array('success' => false ));
+    }
 }
 
 //Get LoginData from DB

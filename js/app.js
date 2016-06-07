@@ -1,8 +1,6 @@
 /**
  * Created by mj on 29.05.2016
  */
-
-//$(document).ready(function() {
 //var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables
     var guessButtons = $(".btGuess");   //all 4 Guess Buttons
@@ -241,4 +239,3 @@
         }
     });
 //end of document
-//});

@@ -103,7 +103,7 @@
                 //count up tracki
                 tracki++;
                 //after the 4th song call setMetadata
-                if(tracki>3){
+                if(tracki>7){
                     setMetaData(gamedata);
                 }else{
                     //call recursivly until 4 songs ready

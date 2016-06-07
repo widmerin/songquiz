@@ -89,6 +89,7 @@
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
                 //on the 4th song call setMetadata
+                console.log(tracki);
                 if(tracki==3){
                     setMetaData(gamedata);
                 }

@@ -135,7 +135,7 @@
         //counter++;
         var c = gamedata.counter;
         c++;
-        gamedata.setAttribute('counter', c.toString());
+        gamedata.counter = c.toString();
         //if no guess was made until song played - animate next button
         audio.addEventListener('ended', function () {
             btNext.find("i").addClass("animated");
@@ -195,7 +195,7 @@
             //count up correct guesses
             var ca = gamedata.correctAnswers;
             ca++;
-            gamedata.setAttribute('correctAnswers',ca.toString());
+            gamedata.correctAnswers = ca.toString();
             gamedataGlobal = gamedata;
         } else {
             //wrong answer

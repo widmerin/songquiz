@@ -73,7 +73,18 @@
     }
 
     //get 1 track from spotify - limit max is 50 - pick one of them
-    function getTrack(query, limit, tracki, gamedata) {
+    function getTrack(tracki, gamedata) {
+        var query;
+        var limit;
+        //if nerd niveau - difficult music
+        if (gamedata.nerdOrNot == 'nerd') {
+            query = randomLetterQuery();
+            limit = 50;
+        } else {
+            //call this if user is Newbie (chooses billboard famous artists)
+            query = randomArtistQuery();
+            limit = 10;
+        }
 
         $.ajax({
             url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
@@ -88,10 +99,15 @@
                 var randomNumber = Math.floor(Math.random() * countResponse);
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
+                console.log('tracki each: '+tracki);
+                //count up tracki
+                tracki++;
                 //on the 4th song call setMetadata
-                console.log(tracki);
                 if(tracki==3){
-                    window.setTimeout(setMetaData(gamedata), 2000);
+                    setMetaData(gamedata);
+                }else{
+                    //call recursivly until 4 songs ready
+                    getTrack(tracki, gamedata);
                 }
             }
         });
@@ -101,16 +117,8 @@
     function get4Tracks(gamedata) {
         //clear the array
         data.length = 0;
-        //limit = 50 if nerd, 10 if newbie
-        for (var i = 0; i < 4; i++) {
-            //if nerd niveau - difficult music
-            if (gamedata.nerdOrNot == 'nerd') {
-                getTrack(randomLetterQuery(), 50, i, gamedata);
-            } else {
-                //call this if user is Newbie (chooses billboard famous artists)
-                getTrack(randomArtistQuery(), 10, i, gamedata);
-            }
-        }
+        //start fetching songs with index "tracki" 0
+        getTrack(0,gamedata);
     }
 
     //get artists names into GUI

@@ -138,18 +138,20 @@ function getHighscore() {
 //Save Score in DB
 function addScore() {
     
+    // set parameters and execute
+    session_start();
+
+    if($_SESSION["userid"]) {
     $app = \Slim\Slim::getInstance()->request();
     $conn = getDB();
 
         $score = json_decode($app->getBody());
-
+        $userid = $_SESSION["userid"];
         // prepare and bind
         $stmt = $conn->prepare("INSERT INTO score (userid, playedQuestions, correctAnswers) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $userid, $playedQuestions, $correctAnswer);
 
-        // set parameters and execute
-          session_start();
-        $userid = $_SESSION["userid"];
+        
         $playedQuestions = $score->playedQuestions;
         $correctAnswer = $score->correctAnswers;
         $success = $stmt->execute();
@@ -165,8 +167,14 @@ function addScore() {
             echo json_encode(array('success' => false, 'errmsg' => 2, 'userid' =>$userid,
             ));
         }
-    
     $conn->close();
+    } else {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => false, 'errmsg' => 2, 'userid' =>'no user found',
+            ));
+    }
+    
+    
 }
 
 

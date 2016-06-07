@@ -15,10 +15,10 @@ function addScore(playedQuestions, correctAnswers)  {
 		url: apiURL+'score',
 		dataType: "json",
 		data: scoreToJSON(playedQuestions, correctAnswers),
-		success: function(){
-			console.log('Saved Score')
+		success: function(data){
+			console.log('Saved Score:'+data['userid']);
 		},
-		error: function(){
+		error: function(data){
 			console.log('addscore error:');
 		}
 	});
@@ -37,16 +37,11 @@ function getHighscore() {
 //Create JSON with Score Data
 function scoreToJSON(playedQuestions, correctAnswers) {
 	return JSON.stringify({
-		"userid": getUserID(), 
 		"playedQuestions": playedQuestions, 
 		"correctAnswers": correctAnswers
 		});
 }
 
-//ToDo: UserId auslesen
-function getUserID(){
-	return 1;
-}
 
 //Show Highscore in HTML
 function renderHighscoreList(data) {

@@ -107,6 +107,13 @@
                 getTrack(randomArtistQuery(), 10);
             }
         }
+        if(data.length=4){
+            //found 4 tracks
+            setMetaData();
+        }else{
+            //try again
+            get4Tracks();
+        }
     }
 
     //get artists names into GUI
@@ -117,6 +124,8 @@
         GUESS3.text(data[3].artists[0].name);
         btNext.find("i").removeAttr("class");
         btNext.find("i").addClass("fa fa-forward faa-horizontal animated-hover");
+        //play song
+        playRandomSong();
     }
 
     function playRandomSong() {
@@ -141,9 +150,9 @@
         //get music
         get4Tracks();
         //getArtistNames and update GUI
-        window.setTimeout(setMetaData, 2000);
+        //window.setTimeout(setMetaData, 2000);
         //play one of the songs at random
-        window.setTimeout(playRandomSong, 2000);
+        //window.setTimeout(playRandomSong, 2000);
     }
 
     function resetButtons() {
@@ -216,15 +225,17 @@
         } else {
             //save score
             addScore(gameOfNr, rightAnswers);
-
-            //Empty
-            $('#gameover').find('p').empty();
-            $('#gameover').find('p').text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
-            setView(GAMEOVER, SCORE);
-            showPie();
-            resetCounters();
+            //show score and pie
+            var gameover = $('#gameover').find('p');
+                gameover.empty();
+                gameover.text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
             //reload Highscore section
             getHighscore();
+            //set View
+            setView(GAMEOVER, SCORE);
+            showPie();
+            //delete counters
+            resetCounters();
         }
     });
 //end of document

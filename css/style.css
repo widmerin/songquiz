@@ -223,6 +223,11 @@ button, input, select, textarea {
     color: #3F3250;
 }
 
+#game .btGuess {
+     height: 100%;
+    min-height: 3em;
+}
+
 #game #next .fa {
     text-shadow: 4px 2px 6px #000;
     font-size: 3em;

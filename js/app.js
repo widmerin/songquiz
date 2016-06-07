@@ -149,6 +149,9 @@
         guessButtons.addClass("btn-violet btGuess");
         //enable buttons
         guessButtons.prop('disabled', false);
+        //clear last correct song
+        CorArtist.text("");
+        CorSong.text("");
     }
 
     function resetCounters() {

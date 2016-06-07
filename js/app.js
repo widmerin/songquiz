@@ -11,6 +11,8 @@
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");            //next Button
+    var CorArtist = $("#CorArtist");         //Artist under cover img
+    var CorSong = $("#CorSong");             //Song under cover img
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
     var counter = 0;                             //counter of played songs
@@ -168,6 +170,9 @@
         //show album cover
         $('#cover').find('.fa-volume-up').hide();
         coverImg.attr("src", data[correct].album.images[1].url);
+        //write meta data artis and song under cover img
+        CorArtist.text(data[correct].artists[0].name);
+        CorSong.text(data[correct].name);
         //correct button is "guess"+correct
         if (id == 'guess' + correct) {
             //correct was clicked: highlight

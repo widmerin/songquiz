@@ -212,12 +212,10 @@ $(document).ready(function() {
         btLogout.click();
     });
 
-    //Logout Button TODO: actual logout
+    //Logout Button
     btLogout.click(function(e) {
         e.preventDefault();
-            //btLogout.hide();
-            //btLogoutSmall.hide();
-            //setView(INTRO,LOGIN);
+        //TODO: actual logout
         //reload page
         location.reload(true);
     });

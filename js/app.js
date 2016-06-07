@@ -151,8 +151,6 @@
         get4Tracks();
         //getArtistNames and update GUI
         window.setTimeout(setMetaData, 2000);
-        //play one of the songs at random //is now started after setMetaData
-        //window.setTimeout(playRandomSong, 2000);
     }
 
     function resetButtons() {
@@ -165,7 +163,6 @@
         guessButtons.prop('disabled', false);
         //clear last correct song
         CorArtist.text("");
-        CorSong.text("");
     }
 
     function resetCounters() {
@@ -187,19 +184,16 @@
         //show album cover
         $('#cover').find('.fa-volume-up').hide();
         coverImg.attr("src", data[correct].album.images[1].url);
-        //write meta data artis and song under cover img
-        CorArtist.text(data[correct].artists[0].name);
-        CorSong.text(data[correct].name);
+        //write meta data artist and song under cover img
+        CorArtist.text(data[correct].artists[0].name+' - '+ data[correct].name);
         //correct button is "guess"+correct
         if (id == 'guess' + correct) {
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
-            //console.log('correct is ' + id);
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
-            //console.log('false is ' + id+ ' '+'GUESS'+correct);
             //highlight failed
             this.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
@@ -216,7 +210,6 @@
         resetButtons();
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
-        //$('#cover').find('.fa-volume-up').show();
         //play next song until counter reaches gameOfNr
         console.log('Next Bt: counter ' + counter + ' of ' + gameOfNr + ' rightAnswers:' + rightAnswers);
         if (counter < gameOfNr) {

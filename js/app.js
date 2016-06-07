@@ -75,7 +75,7 @@
 
     //get 1 track from spotify - limit max is 50 - pick one of them
     function getTrack(query, limit) {
-        var randomNumber = Math.floor(Math.random() * limit);       //50 if nerd, 10 if newbie
+
         $.ajax({
             url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
             data: {
@@ -83,8 +83,11 @@
                 type: 'track'
             },
             success: function (response) {
+                //get count of returned tracks, can be less than limit depending on query
                 var countResponse = response.tracks.items.length;
-                console.log(countResponse);
+                //create random number of returned count
+                var randomNumber = Math.floor(Math.random() * countResponse);
+                //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
             }
         });

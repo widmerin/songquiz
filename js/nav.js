@@ -216,8 +216,18 @@ $(document).ready(function() {
     btLogout.click(function(e) {
         e.preventDefault();
         //TODO: actual logout
+    $.ajax({
+        type: 'GET',
+        url: apiURL+'/user',
+         success: function(response){
+            console.log('s'+response);
+         },
+        error: function () {
+                console.log('error logout');
+            },
+    });
         //reload page
-        location.reload(true);
+      //  location.reload(true);
     });
 
         function setRandomBGImage() {

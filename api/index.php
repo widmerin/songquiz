@@ -16,6 +16,15 @@ $app->get('/score/highscore', 'getHighscore');
 $app->post('/user/add', 'addUser');
 $app->post('/score', 'addScore');
 $app->get('/billboard', 'getArtists');
+$app->get('/user', 'getLogout');
+
+function getLogout() {
+    $app = \Slim\Slim::getInstance();
+     session_start();
+
+    session_unset(); 
+    session_destroy();
+}
 
 //Get LoginData from DB
 function getLogin() {

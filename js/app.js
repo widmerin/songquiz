@@ -226,7 +226,7 @@
         //hide cover, show speaker again
         coverImg.attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
-        console.log('Next Bt: counter ' + gamedata.counter + ' of ' + gamedata.gameOfNr + ' rightAnswers:' + gamedata.correctAnswers);
+        //console.log('Next Bt: counter ' + gamedata.counter + ' of ' + gamedata.gameOfNr + ' rightAnswers:' + gamedata.correctAnswers);
         if (gamedata.counter < gamedata.gameOfNr) {
             //load next play
             oneGameSet(gamedata);

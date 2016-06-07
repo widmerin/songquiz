@@ -83,6 +83,8 @@
                 type: 'track'
             },
             success: function (response) {
+                var countResponse = response.tracks.items.length;
+                console.log(countResponse);
                 data[data.length] = response.tracks.items[randomNumber];
             }
         });

@@ -1,12 +1,12 @@
 /**
+ * nav.js for navigation in gui
+ *
  * Created by mj, iw, yh on 29.05.2016
  */
 
-
-//nav.js for navigation in gui
- var setView;
- var left;
- var right;
+var setView;
+var left;
+var right;
 
 //Pages (section)
 var LOGIN;
@@ -72,16 +72,25 @@ $(document).ready(function() {
         e.preventDefault();
         setView(COVER,GAME);
          guessButtons.prop('disabled', false);
+        //get number of songs to play
+        var gameOfNr = $('#count :selected').val();
+        //game mode
+        var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+        var gamedata = JSON.stringify({
+            "gameOfNr": gameOfNr,
+            "counter": 0,
+            "correctAnswers": 0,
+            "nerdOrNot": nerdOrNot
+        });
         //play first song (after this play further songs by clicking next button)
         $.getScript('js/app.js', function () {
-            oneGameSet();
+            oneGameSet(gamedata);
         });
     });
 
     //Play Button
     btPlayAgain.click(function(e){
         e.preventDefault();
-        resetCounters();
         setView(START,SCORE);
     });
 
@@ -230,7 +239,7 @@ $(document).ready(function() {
         location.reload(true);
     });
 
-        function setRandomBGImage() {
+    function setRandomBGImage() {
 
         if($(window).width()>640){
             //Desktop BG Images

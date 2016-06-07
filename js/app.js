@@ -1,5 +1,7 @@
 /**
- * Created by mj on 29.05.2016
+ * Game functions
+ *
+ * Created by mj, iw, yh on 7.6.2016
  */
 //var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables
@@ -10,16 +12,16 @@
     var GUESS3 = $("#guess3");
     var btNext = $("#next");            //next Button
     var CorArtist = $("#CorArtist");         //Artist under cover img
-    var CorSong = $("#CorSong");             //Song under cover img
-    var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
-    var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
-    var counter = 0;                             //counter of played songs
-    var rightAnswers = 0;                        //counter of correct guessed songs
+    //var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
+    //var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+    //var counter = 0;                             //counter of played songs
+    //var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
     var audio = new Audio();                     //audio that gets played
     var coverImg = $("#cover").find("img");
     var billboard;
+    var gamedataGlobal;
 
     //Get Artists from DB
     function getArtists() {
@@ -33,7 +35,6 @@
             error: function () {
                 console.log('no Artitsts!');
             }
-
         });
     }
 
@@ -72,7 +73,7 @@
     }
 
     //get 1 track from spotify - limit max is 50 - pick one of them
-    function getTrack(query, limit) {
+    function getTrack(query, limit, tracki, gamedata) {
 
         $.ajax({
             url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
@@ -87,37 +88,32 @@
                 var randomNumber = Math.floor(Math.random() * countResponse);
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
+                //on the 4th song call setMetadata
+                if(tracki==3){
+                    setMetaData(gamedata);
+                }
             }
         });
     }
 
     //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
-    function get4Tracks() {
+    function get4Tracks(gamedata) {
         //clear the array
         data.length = 0;
         //limit = 50 if nerd, 10 if newbie
         for (var i = 0; i < 4; i++) {
             //if nerd niveau - difficult music
-            if (nerdOrNot == 'nerd') {
-                getTrack(randomLetterQuery(), 50);
+            if (gamedata.nerdOrNot == 'nerd') {
+                getTrack(randomLetterQuery(), 50, i, gamedata);
             } else {
                 //call this if user is Newbie (chooses billboard famous artists)
-                getTrack(randomArtistQuery(), 10);
+                getTrack(randomArtistQuery(), 10, i, gamedata);
             }
         }
-        /*
-        if(data.length=4){
-            //found 4 tracks
-            setMetaData();
-        }else{
-            //try again
-            get4Tracks();
-        }
-        */
     }
 
     //get artists names into GUI
-    function setMetaData() {
+    function setMetaData(gamedata) {
         GUESS0.text(data[0].artists[0].name);
         GUESS1.text(data[1].artists[0].name);
         GUESS2.text(data[2].artists[0].name);
@@ -125,10 +121,10 @@
         btNext.find("i").removeAttr("class");
         btNext.find("i").addClass("fa fa-forward faa-horizontal animated-hover");
         //play song
-        playRandomSong();
+        playRandomSong(gamedata);
     }
 
-    function playRandomSong() {
+    function playRandomSong(gamedata) {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
         //get correct previewUrl
@@ -136,21 +132,26 @@
         //play correct song
         audio.play();
         //add up counter of played songs
-        counter++;
+        //counter++;
+        var c = gamedata.counter;
+        c++;
+        gamedata.setAttribute('counter', c.toString());
         //if no guess was made until song played - animate next button
         audio.addEventListener('ended', function () {
             btNext.find("i").addClass("animated");
         });
+        //set gamedata to global var
+        gamedataGlobal = gamedata;
     }
 
     //do game logic
-    function oneGameSet() {
+    function oneGameSet(gamedata) {
         //get count of songs to play in this set
-        gameOfNr = $('#count :selected').val();
+       // gameOfNr = $('#count :selected').val();
         //get music
-        get4Tracks();
+        get4Tracks(gamedata);
         //getArtistNames and update GUI
-        window.setTimeout(setMetaData, 2000);
+        //window.setTimeout(setMetaData, 2000);
     }
 
     function resetButtons() {
@@ -165,6 +166,7 @@
         CorArtist.text("");
     }
 
+/* not needed anymore
     function resetCounters() {
         //clear counters
         console.log('before reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
@@ -172,10 +174,10 @@
         rightAnswers = 0; //correct answered
         console.log('after reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
     }
-
+*/
     //BUTTON HANDLERS
-
     guessButtons.click(function (event) {
+        var gamedata = gamedataGlobal;
         //which button was pressed? -> this.id
         var id = this.id;
         event.preventDefault();
@@ -191,7 +193,10 @@
             //correct was clicked: highlight
             this.setAttribute("class", "btn-violet btGuess btn-correct");
             //count up correct guesses
-            rightAnswers++;
+            var ca = gamedata.correctAnswers;
+            ca++;
+            gamedata.setAttribute('correctAnswers',ca.toString());
+            gamedataGlobal = gamedata;
         } else {
             //wrong answer
             //highlight failed
@@ -203,6 +208,7 @@
 
     //next Button
     btNext.click(function (event) {
+        var gamedata = gamedataGlobal;
         event.preventDefault();
         //stop audio playing (if still...)
         audio.pause();
@@ -212,23 +218,23 @@
         coverImg.attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
         console.log('Next Bt: counter ' + counter + ' of ' + gameOfNr + ' rightAnswers:' + rightAnswers);
-        if (counter < gameOfNr) {
+        if (gamedata.counter < gamedata.gameOfNr) {
             //load next play
-            oneGameSet();
+            oneGameSet(gamedata);
         } else {
             //save score
-            addScore(gameOfNr, rightAnswers);
+            addScore(gamedata.gameOfNr, gamedata.correctAnswers);
             //show score and pie
             var gameover = $('#gameover').find('p');
                 gameover.empty();
-                gameover.text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
+                gameover.text("You've got " + gamedata.correctAnswers + " out of " + gamedata.gameOfNr + " songs right.");
             //reload Highscore section
             getHighscore();
             //set View
             setView(GAMEOVER, SCORE);
             showPie();
             //delete counters
-            resetCounters();
+            //resetCounters();
         }
     });
 //end of document

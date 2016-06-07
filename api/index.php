@@ -212,20 +212,4 @@ function getArtists() {
     $conn->close();
 }
 
-/*      PDO function
-function getArtists() {
-    $sql_query = "SELECT  artist FROM  billboard";
-    try {
-        $dbCon = getDB();
-        $stmt   = $dbCon->query($sql_query);
-        $artists  = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $dbCon = null;
-        echo '{"artists": ' . json_encode($artists) . '}';
-    }
-    catch(PDOException $e) {
-        echo '{"error":{"text":'. $e->getMessage() .'}}';
-    }
-}
-*/
-
 $app->run();

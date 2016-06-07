@@ -91,7 +91,7 @@
                 //on the 4th song call setMetadata
                 console.log(tracki);
                 if(tracki==3){
-                    setMetaData(gamedata);
+                    window.setTimeout(setMetaData(gamedata), 2000);
                 }
             }
         });

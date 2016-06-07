@@ -102,8 +102,8 @@
                 console.log('tracki each: '+tracki);
                 //count up tracki
                 tracki++;
-                //on the 4th song call setMetadata
-                if(tracki==3){
+                //after the 4th song call setMetadata
+                if(tracki>3){
                     setMetaData(gamedata);
                 }else{
                     //call recursivly until 4 songs ready

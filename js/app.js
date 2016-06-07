@@ -107,6 +107,7 @@
                 getTrack(randomArtistQuery(), 10);
             }
         }
+        /*
         if(data.length=4){
             //found 4 tracks
             setMetaData();
@@ -114,6 +115,7 @@
             //try again
             get4Tracks();
         }
+        */
     }
 
     //get artists names into GUI
@@ -150,8 +152,8 @@
         //get music
         get4Tracks();
         //getArtistNames and update GUI
-        //window.setTimeout(setMetaData, 2000);
-        //play one of the songs at random
+        window.setTimeout(setMetaData, 2000);
+        //play one of the songs at random //is now started after setMetaData
         //window.setTimeout(playRandomSong, 2000);
     }
 

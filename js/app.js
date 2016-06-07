@@ -215,7 +215,7 @@
         //hide cover, show speaker again
         $("#cover").find("img").attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
-        //console.log('Next Bt: counter ' + gamedata.counter + ' of ' + gamedata.gameOfNr + ' rightAnswers:' + gamedata.correctAnswers);
+        console.log('Next Bt: counter ' + gamedata.counter + ' of ' + gamedata.gameOfNr + ' rightAnswers:' + gamedata.correctAnswers);
 
         if (parseInt(gamedata.counter) < parseInt(gamedata.gameOfNr)) {
             //load next play

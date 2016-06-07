@@ -19,7 +19,6 @@
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
     var audio = new Audio();                     //audio that gets played
-    var coverImg = $("#cover").find("img");
     var billboard;
     var gamedataGlobal;
 
@@ -113,14 +112,6 @@
         });
     }
 
-    //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
-    function get4Tracks(gamedata) {
-        //clear the array
-        data.length = 0;
-        //start fetching songs with index "tracki" 0
-        getTrack(0,gamedata);
-    }
-
     //get artists names into GUI
     function setMetaData(gamedata) {
         GUESS0.text(data[0].artists[0].name);
@@ -153,14 +144,12 @@
         gamedataGlobal = gamedata;
     }
 
-    //do game logic
+    //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
     function oneGameSet(gamedata) {
-        //get count of songs to play in this set
-       // gameOfNr = $('#count :selected').val();
-        //get music
-        get4Tracks(gamedata);
-        //getArtistNames and update GUI
-        //window.setTimeout(setMetaData, 2000);
+        //clear the array
+        data.length = 0;
+        //start fetching songs with index "tracki" 0
+        getTrack(0,gamedata);
     }
 
     function resetButtons() {
@@ -194,7 +183,7 @@
         guessButtons.prop('disabled', true);
         //show album cover
         $('#cover').find('.fa-volume-up').hide();
-        coverImg.attr("src", data[correct].album.images[1].url);
+        $("#cover").find("img").attr("src", data[correct].album.images[1].url);
         //write meta data artist and song under cover img
         CorArtist.text(data[correct].artists[0].name+' - '+ data[correct].name);
         //correct button is "guess"+correct
@@ -224,7 +213,7 @@
         //reset Buttons
         resetButtons();
         //hide cover, show speaker again
-        coverImg.attr("src", "img/speaker.png");
+        $("#cover").find("img").attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
         //console.log('Next Bt: counter ' + gamedata.counter + ' of ' + gamedata.gameOfNr + ' rightAnswers:' + gamedata.correctAnswers);
 

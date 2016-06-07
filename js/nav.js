@@ -1,12 +1,12 @@
 /**
- * nav.js for navigation in gui
- *
  * Created by mj, iw, yh on 29.05.2016
  */
 
-var setView;
-var left;
-var right;
+
+//nav.js for navigation in gui
+ var setView;
+ var left;
+ var right;
 
 //Pages (section)
 var LOGIN;
@@ -17,7 +17,10 @@ var SCORE;
 var COVER;
 var INTRO;
 var GAMEOVER;
-
+var GUESS0;
+var GUESS1;
+var GUESS2;
+var GUESS3;
 $(document).ready(function() {
 
     //Pages (section)
@@ -39,7 +42,12 @@ $(document).ready(function() {
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
     var guessButtons = $(".btGuess"); 
-
+    var btNext = $("#next");  
+    GUESS0 = $("#guess0");          //GUI Buttons Guesses
+    var GUESS1 = $("#guess1");
+    var GUESS2 = $("#guess2");
+    var GUESS3 = $("#guess3");
+    var btNext = $("#next");            //next Button
     btLogout.hide();
     btLogoutSmall.hide();
 
@@ -65,32 +73,23 @@ $(document).ready(function() {
         }
     }
 
-  	//**************Button Handler****************
+    //**************Button Handler****************
 
     //Play Button
     btPlay.click(function(e){
         e.preventDefault();
         setView(COVER,GAME);
          guessButtons.prop('disabled', false);
-        //get number of songs to play
-        var gameOfNr = $('#count :selected').val();
-        //game mode
-        var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
-        var gamedata = JSON.stringify({
-            "gameOfNr": gameOfNr,
-            "counter": 0,
-            "correctAnswers": 0,
-            "nerdOrNot": nerdOrNot
-        });
         //play first song (after this play further songs by clicking next button)
-        $.getScript('js/app.js', function () {
-            oneGameSet(gamedata);
-        });
+
+        oneGameSet();
+
     });
 
     //Play Button
     btPlayAgain.click(function(e){
         e.preventDefault();
+        resetCounters();
         setView(START,SCORE);
     });
 
@@ -239,7 +238,7 @@ $(document).ready(function() {
         location.reload(true);
     });
 
-    function setRandomBGImage() {
+        function setRandomBGImage() {
 
         if($(window).width()>640){
             //Desktop BG Images
@@ -264,5 +263,14 @@ $(document).ready(function() {
         $('body').css('background-size', 'cover');
     }
 
+    guessButtons.click(function (event) {
+        event.preventDefault();
+        buttonGuess(this);
+    });
+
+    btNext.click(function (event) {
+        event.preventDefault();
+        buttonNext();
+    });
 //end of document
 });

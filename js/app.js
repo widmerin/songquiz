@@ -3,16 +3,7 @@
  */
 //var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables
-    var guessButtons = $(".btGuess");   //all 4 Guess Buttons
-    var GUESS0 = $("#guess0");          //GUI Buttons Guesses
-    var GUESS1 = $("#guess1");
-    var GUESS2 = $("#guess2");
-    var GUESS3 = $("#guess3");
-    var btNext = $("#next");            //next Button
-    var CorArtist = $("#CorArtist");         //Artist under cover img
-    var CorSong = $("#CorSong");             //Song under cover img
-    var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
-    var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+
     var counter = 0;                             //counter of played songs
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
@@ -21,6 +12,11 @@
     var coverImg = $("#cover").find("img");
     var billboard;
 
+    var CorArtist = $("#CorArtist");         //Artist under cover img
+    var CorSong = $("#CorSong");             //Song under cover img
+    var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
+    var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+    var guessButtons = $(".btGuess"); 
     //Get Artists from DB
     function getArtists() {
         $.ajax({
@@ -118,12 +114,12 @@
 
     //get artists names into GUI
     function setMetaData() {
-        GUESS0.text(data[0].artists[0].name);
-        GUESS1.text(data[1].artists[0].name);
-        GUESS2.text(data[2].artists[0].name);
-        GUESS3.text(data[3].artists[0].name);
-        btNext.find("i").removeAttr("class");
-        btNext.find("i").addClass("fa fa-forward faa-horizontal animated-hover");
+        $("#guess0").text(data[0].artists[0].name);
+         $("#guess1").text(data[1].artists[0].name);
+         $("#guess2").text(data[2].artists[0].name);
+         $("#guess3").text(data[3].artists[0].name);
+         $("#next").find("i").removeAttr("class");
+         $("#next").find("i").addClass("fa fa-forward faa-horizontal animated-hover");
         //play song
         playRandomSong();
     }
@@ -131,6 +127,7 @@
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
+        console.log("correct"+correct);
         //get correct previewUrl
         audio.src = data[correct].preview_url;
         //play correct song
@@ -155,12 +152,15 @@
 
     function resetButtons() {
         //clear button text
-        guessButtons.text("");
-        //clear special css classes
-        $(".btGuess").removeAttr("class");
-        guessButtons.addClass("btn-violet btGuess");
+        $(".btGuess").text("");
+         //clear special css classes
+        $(".btGuess").removeClass('btn-correct');
+        $(".btGuess").removeClass('btn-correctWouldHaveBeen');
+        $(".btGuess").removeClass('btn-wrong');
+        
+        $(".btGuess").addClass("btn-violet btGuess");
         //enable buttons
-        guessButtons.prop('disabled', false);
+        $(".btGuess").prop('disabled', false);
         //clear last correct song
         CorArtist.text("");
     }
@@ -175,10 +175,9 @@
 
     //BUTTON HANDLERS
 
-    guessButtons.click(function (event) {
+    function buttonGuess(button){
         //which button was pressed? -> this.id
-        var id = this.id;
-        event.preventDefault();
+        var id = button.id;
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
@@ -189,21 +188,21 @@
         //correct button is "guess"+correct
         if (id == 'guess' + correct) {
             //correct was clicked: highlight
-            this.setAttribute("class", "btn-violet btGuess btn-correct");
+            button.setAttribute("class", "btn-violet btGuess btn-correct");
             //count up correct guesses
             rightAnswers++;
         } else {
             //wrong answer
             //highlight failed
-            this.setAttribute("class", "btn-violet btGuess btn-wrong");
+            button.setAttribute("class", "btn-violet btGuess btn-wrong");
             //highlight correct
             $("[id*=" + correct + "]").addClass("btn-correctWouldHaveBeen");
         }
-    });
+    };
 
     //next Button
-    btNext.click(function (event) {
-        event.preventDefault();
+    function buttonNext(){
+
         //stop audio playing (if still...)
         audio.pause();
         //reset Buttons
@@ -230,5 +229,5 @@
             //delete counters
             resetCounters();
         }
-    });
+    };
 //end of document

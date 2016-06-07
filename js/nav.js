@@ -17,7 +17,10 @@ var SCORE;
 var COVER;
 var INTRO;
 var GAMEOVER;
-
+var GUESS0;
+var GUESS1;
+var GUESS2;
+var GUESS3;
 $(document).ready(function() {
 
     //Pages (section)
@@ -39,7 +42,12 @@ $(document).ready(function() {
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
     var guessButtons = $(".btGuess"); 
-
+    var btNext = $("#next");  
+    GUESS0 = $("#guess0");          //GUI Buttons Guesses
+    var GUESS1 = $("#guess1");
+    var GUESS2 = $("#guess2");
+    var GUESS3 = $("#guess3");
+    var btNext = $("#next");            //next Button
     btLogout.hide();
     btLogoutSmall.hide();
 
@@ -73,9 +81,9 @@ $(document).ready(function() {
         setView(COVER,GAME);
          guessButtons.prop('disabled', false);
         //play first song (after this play further songs by clicking next button)
-        $.getScript('js/app.js', function () {
-            oneGameSet();
-        });
+
+        oneGameSet();
+
     });
 
     //Play Button
@@ -255,5 +263,14 @@ $(document).ready(function() {
         $('body').css('background-size', 'cover');
     }
 
+    guessButtons.click(function (event) {
+        event.preventDefault();
+        buttonGuess(this);
+    });
+
+    btNext.click(function (event) {
+        event.preventDefault();
+        buttonNext();
+    });
 //end of document
 });

@@ -24,15 +24,21 @@ function addScore(playedQuestions, correctAnswers)  {
 	});
 }
 
-//Get Highscore from DB
+    //Get Highscore from DB
 function getHighscore() {
 	$.ajax({
 		type: 'GET',
 		url: apiURL+'/score/highscore',
 		dataType: "json", 
-		success: renderHighscoreList
+		success: function(data){
+			renderHighscoreList();
+		},
+		error: function(data){
+			console.log('get highscore error:'+data);
+		}
 	});
 }
+
 
 //Create JSON with Score Data
 function scoreToJSON(playedQuestions, correctAnswers) {

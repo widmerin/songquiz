@@ -21,6 +21,9 @@ var GUESS0;
 var GUESS1;
 var GUESS2;
 var GUESS3;
+
+// The root URL for the RESTful services
+var apiURL = "http://"+document.domain+"/songquiz/api/";
 $(document).ready(function() {
 
     //Pages (section)
@@ -43,7 +46,7 @@ $(document).ready(function() {
     var btPlayAgain = $("#btPlayAgain");
     var guessButtons = $(".btGuess"); 
     var btNext = $("#next");  
-    GUESS0 = $("#guess0");          //GUI Buttons Guesses
+    var GUESS0 = $("#guess0");          //GUI Buttons Guesses
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");

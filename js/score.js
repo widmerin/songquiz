@@ -3,8 +3,7 @@
  */
 
 
-// The root URL for the RESTful services
-var apiURL = "http://"+document.domain+"/songquiz/api/";
+
 //var apiURL = "http://localhost:8080
 
 //Save Highscore DB
@@ -31,7 +30,7 @@ function getHighscore() {
 		url: apiURL+'/score/highscore',
 		dataType: "json", 
 		success: function(data){
-			renderHighscoreList();
+			renderHighscoreList(data);
 		},
 		error: function(data){
 			console.log('get highscore error:'+data);

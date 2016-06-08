@@ -44,8 +44,7 @@ $(document).ready(function() {
     var btLogout = $("#btLogout");
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
-    var guessButtons = $(".btGuess"); 
-    var btNext = $("#next");  
+    var guessButtons = $(".btGuess");  
     var GUESS0 = $("#guess0");          //GUI Buttons Guesses
     var GUESS1 = $("#guess1");
     var GUESS2 = $("#guess2");

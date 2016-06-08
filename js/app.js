@@ -135,7 +135,7 @@
         counter++;
         //if no guess was made until song played - animate next button
         audio.addEventListener('ended', function () {
-            btNext.find("i").addClass("animated");
+            $('#next').find("i").addClass("animated");
         });
     }
 

@@ -9,10 +9,9 @@
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
     var audio = new Audio();                     //audio that gets played
-    var coverImg = $("#cover").find("img");
     var billboard;
 
-    var CorArtist = $("#CorArtist");         //Artist under cover img
+                                                  //Artist under cover img
     var CorSong = $("#CorSong");             //Song under cover img
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
@@ -162,7 +161,7 @@
         //enable buttons
         $(".btGuess").prop('disabled', false);
         //clear last correct song
-        CorArtist.text("");
+        $("#CorArtist").text("");
     }
 
     function resetCounters() {
@@ -181,10 +180,11 @@
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
-        $('#cover').find('.fa-volume-up').hide();
-        coverImg.attr("src", data[correct].album.images[1].url);
+
+         $('#cover').find('.fa-volume-up').hide();
+        $("#cover").find("img").attr("src", data[correct].album.images[1].url);
         //write meta data artist and song under cover img
-        CorArtist.text(data[correct].artists[0].name+' - '+ data[correct].name);
+        $("#CorArtist").text(data[correct].artists[0].name+' '+ data[correct].name);
         //correct button is "guess"+correct
         if (id == 'guess' + correct) {
             //correct was clicked: highlight
@@ -208,7 +208,7 @@
         //reset Buttons
         resetButtons();
         //hide cover, show speaker again
-        coverImg.attr("src", "img/speaker.png");
+        $("#cover").find("img").attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
         console.log('Next Bt: counter ' + counter + ' of ' + gameOfNr + ' rightAnswers:' + rightAnswers);
         if (counter < gameOfNr) {

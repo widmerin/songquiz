@@ -51,6 +51,8 @@ $(document).ready(function() {
     var GUESS2 = $("#guess2");
     var GUESS3 = $("#guess3");
     var btNext = $("#next");            //next Button
+    var CorArtist = $("#CorArtist");         //Artist under cover img
+    var CorSong = $("#CorSong");             //Song under cover img
     btLogout.hide();
     btLogoutSmall.hide();
 

@@ -221,8 +221,7 @@
             var gameover = $('#gameover').find('p');
                 gameover.empty();
                 gameover.text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");
-            //reload Highscore section
-            getHighscore();
+
             //set View
             setView(GAMEOVER, SCORE);
             showPie();

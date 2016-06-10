@@ -10,11 +10,8 @@
     var correct;                                 //random number from 0-3 - the correct song
     var audio = new Audio();                     //audio that gets played
     var billboard;
-
-                                                  //Artist under cover img
-    var CorSong = $("#CorSong");             //Song under cover img
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
-    var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+
     var guessButtons = $(".btGuess"); 
     //Get Artists from DB
     function getArtists() {
@@ -66,7 +63,48 @@
         return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
     }
 
-    //get 1 track from spotify - limit max is 50 - pick one of them
+//get 1 track from spotify - limit max is 50 - pick one of them
+function getTrack(tracki, nerdOrNot) {
+    var query;
+    var limit;
+    //if nerd niveau - difficult music
+    if (nerdOrNot == 'nerd') {
+        query = randomLetterQuery();
+        limit = 50;
+    } else {
+        //call this if user is Newbie (chooses billboard famous artists)
+        query = randomArtistQuery();
+        limit = 10;
+    }
+
+    $.ajax({
+        url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
+        data: {
+            q: query,
+            type: 'track'
+        },
+        success: function (response) {
+            //get count of returned tracks, can be less than limit depending on query
+            var countResponse = response.tracks.items.length;
+            //create random number of returned count
+            var randomNumber = Math.floor(Math.random() * countResponse);
+            //save one of the returned songs
+            data[data.length] = response.tracks.items[randomNumber];
+            console.log('tracki each: '+tracki);
+            //count up tracki
+            tracki++;
+            //after the 4th song call setMetadata
+            if(tracki>3){
+                setMetaData();
+            }else{
+                //call recursivly until 4 songs ready
+                getTrack(tracki, nerdOrNot);
+            }
+        }
+    });
+}
+
+    /*get 1 track from spotify - limit max is 50 - pick one of them
     function getTrack(query, limit) {
 
         $.ajax({
@@ -100,16 +138,11 @@
                 getTrack(randomArtistQuery(), 10);
             }
         }
-        /*
-        if(data.length=4){
-            //found 4 tracks
-            setMetaData();
-        }else{
-            //try again
-            get4Tracks();
-        }
-        */
+
+
     }
+     */
+
 
     //get artists names into GUI
     function setMetaData() {
@@ -143,10 +176,12 @@
     function oneGameSet() {
         //get count of songs to play in this set
         gameOfNr = $('#count :selected').val();
-        //get music
-        get4Tracks();
+        var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
+        //get music; start with first index=0 and nerdOrNot
+        getTrack(0, nerdOrNot);
+        //get4Tracks();
         //getArtistNames and update GUI
-        window.setTimeout(setMetaData, 2000);
+        //window.setTimeout(setMetaData, 2000);
     }
 
     function resetButtons() {

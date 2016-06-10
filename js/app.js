@@ -126,7 +126,7 @@
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-        console.log("correct"+correct);
+     //   console.log("correct"+correct);
         //get correct previewUrl
         audio.src = data[correct].preview_url;
         //play correct song

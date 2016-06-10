@@ -1,5 +1,5 @@
 /**
- * Created by mj on 29.05.2016
+ * Created by mj on 10.06.2016
  */
 //var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables

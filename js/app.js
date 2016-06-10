@@ -1,9 +1,8 @@
 /**
- * Created by mj on 10.06.2016
+ * Created by mj, iw, yh on 10.06.2016
+ * @ FHNW iCompetence webeng FS2016
  */
-//var apiURL = "http://localhost:8080/songquiz/api/";
     // Variables
-
     var counter = 0;                             //counter of played songs
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
@@ -11,9 +10,9 @@
     var audio = new Audio();                     //audio that gets played
     var billboard;
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
+    var guessButtons = $(".btGuess");
 
-    var guessButtons = $(".btGuess"); 
-    //Get Artists from DB
+    //Get Billboard Artists from DB
     function getArtists() {
         $.ajax({
             type: 'GET',
@@ -63,49 +62,19 @@
         return randomString(1, 'abcdefghijklmnopqrstuvwxyz') + ' artist:' + randomString(1, 'abcdefghijklmnopqrstuvwxyz');
     }
 
-//get 1 track from spotify - limit max is 50 - pick one of them
-function getTrack(tracki, nerdOrNot) {
-    var query;
-    var limit;
-    //if nerd niveau - difficult music
-    if (nerdOrNot == 'nerd') {
-        query = randomLetterQuery();
-        limit = 50;
-    } else {
-        //call this if user is Newbie (chooses billboard famous artists)
-        query = randomArtistQuery();
-        limit = 10;
-    }
-
-    $.ajax({
-        url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
-        data: {
-            q: query,
-            type: 'track'
-        },
-        success: function (response) {
-            //get count of returned tracks, can be less than limit depending on query
-            var countResponse = response.tracks.items.length;
-            //create random number of returned count
-            var randomNumber = Math.floor(Math.random() * countResponse);
-            //save one of the returned songs
-            data[data.length] = response.tracks.items[randomNumber];
-            console.log('tracki each: '+tracki);
-            //count up tracki
-            tracki++;
-            //after the 4th song call setMetadata
-            if(tracki>3){
-                setMetaData();
-            }else{
-                //call recursivly until 4 songs ready
-                getTrack(tracki, nerdOrNot);
-            }
+    //get 1 track from spotify - limit max is 50 - pick one of them
+    function getTrack(tracki, nerdOrNot) {
+        var query;
+        var limit;
+        //if nerd niveau - difficult music
+        if (nerdOrNot == 'nerd') {
+            query = randomLetterQuery();
+            limit = 50;
+        } else {
+            //call this if user is Newbie (chooses billboard famous artists)
+            query = randomArtistQuery();
+            limit = 10;
         }
-    });
-}
-
-    /*get 1 track from spotify - limit max is 50 - pick one of them
-    function getTrack(query, limit) {
 
         $.ajax({
             url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
@@ -120,28 +89,19 @@ function getTrack(tracki, nerdOrNot) {
                 var randomNumber = Math.floor(Math.random() * countResponse);
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
+                //count up tracki
+                tracki++;
+                //after the 4th song call setMetadata
+                if(tracki>3){
+                    setMetaData();
+                    console.log(data.length);
+                }else{
+                    //call recursivly until 4 songs ready
+                    getTrack(tracki, nerdOrNot);
+                }
             }
         });
     }
-
-    //call 4 different tracks with songName and ArtistName randomized by one letter in spotify query
-    function get4Tracks() {
-        //clear the array
-        data.length = 0;
-        //limit = 50 if nerd, 10 if newbie
-        for (var i = 0; i < 4; i++) {
-            //if nerd niveau - difficult music
-            if (nerdOrNot == 'nerd') {
-                getTrack(randomLetterQuery(), 50);
-            } else {
-                //call this if user is Newbie (chooses billboard famous artists)
-                getTrack(randomArtistQuery(), 10);
-            }
-        }
-
-
-    }
-     */
 
 
     //get artists names into GUI
@@ -172,16 +132,14 @@ function getTrack(tracki, nerdOrNot) {
         });
     }
 
-    //do game logic
+    //start game logic
     function oneGameSet() {
         //get count of songs to play in this set
         gameOfNr = $('#count :selected').val();
-        var nerdOrNot = $('#nerd :selected').val();  //nerdOrNot (or newbie)
-        //get music; start with first index=0 and nerdOrNot
+        //nerdOrNot (or newbie)
+        var nerdOrNot = $('#nerd :selected').val();
+        //get music; start with first song index=0 and nerdOrNot
         getTrack(0, nerdOrNot);
-        //get4Tracks();
-        //getArtistNames and update GUI
-        //window.setTimeout(setMetaData, 2000);
     }
 
     function resetButtons() {
@@ -201,14 +159,12 @@ function getTrack(tracki, nerdOrNot) {
 
     function resetCounters() {
         //clear counters
-        console.log('before reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
         counter = 0;    //counter of played songs
         rightAnswers = 0; //correct answered
-        console.log('after reset: counter: ' + counter + ' and rightAnswers:' + rightAnswers);
     }
 
-    //BUTTON HANDLERS
-
+    // BUTTON HANDLERS
+    // single choice buttons
     function buttonGuess(button){
         //which button was pressed? -> this.id
         var id = button.id;
@@ -237,7 +193,6 @@ function getTrack(tracki, nerdOrNot) {
 
     //next Button
     function buttonNext(){
-
         //stop audio playing (if still...)
         audio.pause();
         //reset Buttons
@@ -245,7 +200,6 @@ function getTrack(tracki, nerdOrNot) {
         //hide cover, show speaker again
         $("#cover").find("img").attr("src", "img/speaker.png");
         //play next song until counter reaches gameOfNr
-        console.log('Next Bt: counter ' + counter + ' of ' + gameOfNr + ' rightAnswers:' + rightAnswers);
         if (counter < gameOfNr) {
             //load next play
             oneGameSet();

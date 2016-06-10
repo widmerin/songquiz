@@ -94,7 +94,6 @@
                 //after the 4th song call setMetadata
                 if(tracki>3){
                     setMetaData();
-                    console.log(data.length);
                 }else{
                     //call recursivly until 4 songs ready
                     getTrack(tracki, nerdOrNot);
@@ -134,6 +133,8 @@
 
     //start game logic
     function oneGameSet() {
+        //clear the array with the songs
+        data.length = 0;
         //get count of songs to play in this set
         gameOfNr = $('#count :selected').val();
         //nerdOrNot (or newbie)

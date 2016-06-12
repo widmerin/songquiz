@@ -87,7 +87,7 @@
                 var countResponse = 0;
                 countResponse = response.tracks.items.length;
                 //check if successful fetched data
-                if (countResponse>0){
+                if (countResponse!=0){
                     //create random number of returned count
                     var randomNumber = Math.floor(Math.random() * countResponse);
                     //save one of the returned songs

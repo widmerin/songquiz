@@ -92,6 +92,8 @@
                     var randomNumber = Math.floor(Math.random() * countResponse);
                     //save one of the returned songs
                     data[data.length] = response.tracks.items[randomNumber];
+                    //countup tracki
+                    tracki++;
                     //after the 4th song call setMetadata
                     if(tracki>3){
                         setMetaData();

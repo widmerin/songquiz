@@ -7,11 +7,11 @@
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
-    var audio = new Audio();                     //audio that gets played
+
     var billboard;
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var guessButtons = $(".btGuess");
-
+    var audio;
     //Get Billboard Artists from DB
     function getArtists() {
         $.ajax({
@@ -145,6 +145,7 @@
 
     //start game logic
     function oneGameSet() {
+        audio = new Audio();                     //audio that gets played
         //clear the array with the songs
         data.length = 0;
         //get count of songs to play in this set

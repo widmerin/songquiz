@@ -112,7 +112,10 @@
     #start h1 {
         display: none;
     }
-    #start p:last-child {
+    #start>p:last-child {
+        display: none;
+    }
+    #score p {
         display: none;
     }
 }

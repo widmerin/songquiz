@@ -89,8 +89,11 @@
                 var randomNumber = Math.floor(Math.random() * countResponse);
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
-                //count up tracki
-                tracki++;
+                //check if successful stored song
+                if (data[data.length-1] != 'undefined'){
+                    //count up tracki
+                    tracki++;
+                }
                 //after the 4th song call setMetadata
                 if(tracki>3){
                     setMetaData();
@@ -105,10 +108,10 @@
 
     //get artists names into GUI
     function setMetaData() {
-        $("#guess0").text(data[0].artists[0].name);
-         $("#guess1").text(data[1].artists[0].name);
-         $("#guess2").text(data[2].artists[0].name);
-         $("#guess3").text(data[3].artists[0].name);
+        $("#guess0").text(data[0].artists[0].name.substring(0,25));
+         $("#guess1").text(data[1].artists[0].name.substring(0,25));
+         $("#guess2").text(data[2].artists[0].name.substring(0,25));
+         $("#guess3").text(data[3].artists[0].name.substring(0,25));
          $("#next").find("i").removeAttr("class");
          $("#next").find("i").addClass("fa fa-forward faa-horizontal animated-hover");
         //play song

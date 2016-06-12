@@ -179,7 +179,7 @@
          $('#cover').find('.fa-volume-up').hide();
         $("#cover").find("img").attr("src", data[correct].album.images[1].url);
         //write meta data artist and song under cover img
-        $("#CorArtist").text(data[correct].artists[0].name+' '+ data[correct].name);
+        $("#CorArtist").text(data[correct].artists[0].name+' - '+ data[correct].name);
         //correct button is "guess"+correct
         if (id == 'guess' + correct) {
             //correct was clicked: highlight
@@ -201,8 +201,8 @@
         audio.pause();
         //reset Buttons
         resetButtons();
-        //hide cover, show speaker again
-        $("#cover").find("img").attr("src", "img/speaker.png");
+        //hide cover, show LP again
+        $("#cover").find("img").attr("src", "img/LP-neu.gif");
         //play next song until counter reaches gameOfNr
         if (counter < gameOfNr) {
             //load next play

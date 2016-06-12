@@ -90,7 +90,7 @@
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
                 //check if successful stored song
-                if (typeof data[data.length-1] === 'undefined'){
+                if (typeof data[data.length-1].artists[0].name === 'undefined'){
                     //reduce var tracki (so it will be called again!)
                     tracki--;
                     console.log("failed");

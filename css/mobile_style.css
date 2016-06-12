@@ -67,28 +67,8 @@
         margin: 0em 0.3em;
         font-size: 2em;
     }
-    .btn-violet {
-    }
-    .btn-violet:hover {
-    }
-   .btn-white {
-    }
-    .btn-white:hover {
-    }
-    .btn-correct,
-    .btn-correct:hover,
-    .btn-correct:focus,
-    .btn-correct:active {
-    }
-    .btn-correctWouldHaveBeen,
-    .btn-correctWouldHaveBeen:hover,
-    .btn-correctWouldHaveBeen:focus,
-    .btn-correctWouldHaveBeen:active  {
-    }
-    .btn-wrong,
-    .btn-wrong:hover,
-    .btn-correctWouldHaveBeen:focus,
-    .btn-correctWouldHaveBeen:active  {
+    .btGuess {
+        min-height: 2em;
     }
 
     #game #next {

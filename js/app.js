@@ -85,22 +85,19 @@
             success: function (response) {
                 //get count of returned tracks, can be less than limit depending on query
                 var countResponse = response.tracks.items.length;
-                //create random number of returned count
-                var randomNumber = Math.floor(Math.random() * countResponse);
-                //save one of the returned songs
-                data[data.length] = response.tracks.items[randomNumber];
-                //check if successful stored song
-                if (typeof data[data.length-1].artists[0].name === 'undefined'){
-                    //reduce var tracki (so it will be called again!)
-                    data.splice(data.length-1,1);
-                    console.log("failed");
-                }else{
-                    //count up tracki
-                    tracki++;
-                }
-                //after the 4th song call setMetadata
-                if(tracki>3){
-                    setMetaData();
+                //check if successful fetched data
+                if (countResponse>0){
+                    //create random number of returned count
+                    var randomNumber = Math.floor(Math.random() * countResponse);
+                    //save one of the returned songs
+                    data[data.length] = response.tracks.items[randomNumber];
+                    //after the 4th song call setMetadata
+                    if(tracki>3){
+                        setMetaData();
+                    }else{
+                        //call recursivly until 4 songs ready
+                        getTrack(tracki, nerdOrNot);
+                    }
                 }else{
                     //call recursivly until 4 songs ready
                     getTrack(tracki, nerdOrNot);

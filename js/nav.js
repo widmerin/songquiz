@@ -111,26 +111,19 @@ $(document).ready(function() {
             //exit function
             return;
         }
-        //console.log('getUser http://'+document.domain+'/songquiz/api/user');
         $.ajax({
             type: 'POST',
             url: "http://"+document.domain+"/songquiz/api/user/add",
-            //url: "http://localhost:8080/songquiz/api/user/add",
             contentType: 'application/json',
             dataType: "json",
             data: loginToJSON(userR, pwR),
             success: function(response){
-                //console.log('erfolgreich');
-                //alert(response.success);//console.log(response.toString());
                 if (response.success) {
                     // It was true
-                    console.log('Reg success');
                     setView(INTRO,LOGIN);
                 }
                 else if (response.errmsg === 1) {
                     // It was false
-                    console.log('Reg fail');
-                    console.log('Username schon vorhanden');
                     userInputR.addClass("login-wrong");
                     pwInputR.addClass("login-wrong");
                     document.getElementById("regfail").innerHTML = "Nickname already exists";
@@ -138,8 +131,6 @@ $(document).ready(function() {
                 }
                 else if (response.errmsg === 2) {
                     // It was false
-                    console.log('Reg fail');
-                    console.log('Username konnte nicht registriert werden');
                     userInputR.addClass("login-wrong");
                     pwInputR.addClass("login-wrong");
                     document.getElementById("loginfail").innerHTML = "Registration failed, please try again";
@@ -149,8 +140,6 @@ $(document).ready(function() {
                 //setView(INTRO,LOGIN);// this will call after PHP method execution.
             },
             error: function (response) {
-                console.log('bad');
-                //console.log(response.toString());
                 setView(INTRO,REG);
             },
         });
@@ -176,7 +165,6 @@ $(document).ready(function() {
             //exit function
             return;
         }
-        //console.log('getUser http://'+document.domain+'/songquiz/api/user');
         $.ajax({
             type: 'POST',
             url: "http://"+document.domain+"/songquiz/api/user",
@@ -187,15 +175,12 @@ $(document).ready(function() {
             success: function(response){
                 if (response.success) {
                     // Login was true
-                    console.log('login success');
                     btLogout.show();
                     btLogoutSmall.show();
                     getHighscore();
                     setView(START,SCORE);
                 } else {
-                    console.log('bad login');
                     // Login was false
-
                     userInput.addClass("login-wrong");
                     pwInput.addClass("login-wrong");
                     document.getElementById("loginfail").innerHTML = "login failed";
@@ -203,8 +188,6 @@ $(document).ready(function() {
             },
             error: function () {
                 console.log('error login');
-                //reload page
-                //location.reload(true);
             },
         });
     });
@@ -225,19 +208,18 @@ $(document).ready(function() {
     //Logout Button
     btLogout.click(function(e) {
         e.preventDefault();
-        //TODO: actual logout
-    $.ajax({
-        type: 'GET',
-        url: apiURL+'/user',
-         success: function(response){
-            console.log('s'+response);
-         },
-        error: function () {
-                console.log('error logout');
-            },
-    });
-        //reload page
-        location.reload(true);
+        $.ajax({
+            type: 'GET',
+            url: apiURL+'/user',
+             success: function(response){
+                //reload page
+                location.reload(true); 
+             },
+            error: function () {
+                    console.log('error logout');
+                },
+        });
+       
     });
 
     function setRandomBGImage() {
@@ -274,7 +256,5 @@ $(document).ready(function() {
         event.preventDefault();
         buttonNext();
     });
-
-    $("#")
 //end of document
 });

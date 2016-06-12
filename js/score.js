@@ -1,12 +1,9 @@
 /**
- * Created by iw on 30.05.2016
+ * Created by mj, iw, yh on 10.06.2016
+ * @ FHNW iCompetence webeng FS2016
  */
 
-
-
-//var apiURL = "http://localhost:8080
-
-//Save Highscore DB
+//Save Score in DB
 function addScore(playedQuestions, correctAnswers)  {
 	$.ajax({
 		type: 'POST',
@@ -17,8 +14,6 @@ function addScore(playedQuestions, correctAnswers)  {
 		success: function(data){
             //reload Highscore section
             getHighscore();
-            
-			console.log('Saved Score:'+data['userid']);
 		},
 		error: function(data){
 			console.log('addscore error:');
@@ -26,7 +21,7 @@ function addScore(playedQuestions, correctAnswers)  {
 	});
 }
 
-    //Get Highscore from DB
+//Get Highscore from DB
 function getHighscore() {
 	$.ajax({
 		type: 'GET',
@@ -41,7 +36,6 @@ function getHighscore() {
 	});
 }
 
-
 //Create JSON with Score Data
 function scoreToJSON(playedQuestions, correctAnswers) {
 	return JSON.stringify({
@@ -49,7 +43,6 @@ function scoreToJSON(playedQuestions, correctAnswers) {
 		"correctAnswers": correctAnswers
 		});
 }
-
 
 //Show Highscore in HTML
 function renderHighscoreList(data) {

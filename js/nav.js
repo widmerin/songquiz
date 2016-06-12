@@ -1,5 +1,6 @@
 /**
- * Created by mj, iw, yh on 29.05.2016
+ * Created by mj, iw, yh on 10.06.2016
+ * @ FHNW iCompetence webeng FS2016
  */
 
 

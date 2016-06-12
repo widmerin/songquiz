@@ -141,14 +141,13 @@ function getHighscore() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-header('Content-Type: application/json; charset=utf-8');
-    echo '{"highscore": ' . json_encode($rows) . '}';
-    // if ($result->num_rows >= "1") {
-    //     echo '{"highscore": ' . json_encode($rows) . '}';
-    // } else {
-    //     header('Content-Type: application/json; charset=utf-8');
-    //     echo json_encode(array('success' => false, 'errmsg' => 2,));    
-    // }
+    if ($result->num_rows >= "1") {
+        header('Content-Type: application/json; charset=utf-8');
+        echo '{"highscore": ' . json_encode($rows) . '}';
+    } else {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(array('success' => false, 'errmsg' => 2,));    
+    }
     $conn->close();
 }
 
@@ -210,7 +209,11 @@ function getArtists() {
     while ($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo json_encode($rows);
+    if ($result->num_rows >= "1") {
+        echo json_encode($rows);
+    } else {
+        echo json_encode(array('success' => false, 'errmsg' => 'no artist found'));
+    }
     $conn->close();
 }
 

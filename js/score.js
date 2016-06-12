@@ -17,6 +17,7 @@ function addScore(playedQuestions, correctAnswers)  {
 		success: function(data){
             //reload Highscore section
             getHighscore();
+            
 			console.log('Saved Score:'+data['userid']);
 		},
 		error: function(data){

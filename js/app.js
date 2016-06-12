@@ -22,7 +22,7 @@
                 billboard = data;
             },
             error: function () {
-                console.log('no Artitsts!');
+                console.log('no Artitsts!'+data);
             }
 
         });

@@ -84,7 +84,8 @@
             },
             success: function (response) {
                 //get count of returned tracks, can be less than limit depending on query
-                var countResponse = response.tracks.items.length;
+                var countResponse = 0;
+                countResponse = response.tracks.items.length;
                 //check if successful fetched data
                 if (countResponse>0){
                     //create random number of returned count

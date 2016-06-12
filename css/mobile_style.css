@@ -1,5 +1,5 @@
 @media screen and (max-width: 640px) {
-    /****** SongQuiz - CSS Bootstrap Customization Responsive 480px******/
+    /****** SongQuiz - CSS Bootstrap Customization Responsive 640px******/
     html, body{
         font-size: 1em;
         background: url("../img/WilliamIven_mobile.jpg") no-repeat center center fixed; 
@@ -107,6 +107,12 @@
     }
 
     #game h3 {
+        display: none;
+    }
+    #start h1 {
+        display: none;
+    }
+    #start p:last-child {
         display: none;
     }
 }

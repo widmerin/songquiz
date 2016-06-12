@@ -90,11 +90,13 @@
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
                 //check if successful stored song
-                if (typeof data[data.length-1] !== 'undefined'){
-                    //count up tracki
-                    tracki++;
+                if (typeof data[data.length-1] === 'undefined'){
+                    //reduce var tracki (so it will be called again!)
+                    tracki--;
                     console.log("failed");
                 }
+                //count up tracki
+                tracki++;
                 //after the 4th song call setMetadata
                 if(tracki>3){
                     setMetaData();

@@ -106,16 +106,7 @@
         margin-bottom: 60px;
     }
 
-    #game h3 {
-        display: none;
-    }
-    #start h1 {
-        display: none;
-    }
-    #start>p:last-child {
-        display: none;
-    }
-    #score p {
+    .desktop {
         display: none;
     }
 }

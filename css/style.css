@@ -85,6 +85,8 @@ main .content section {
 /*-------------- Cover Section --------------*/
 #cover img{
     margin: 40px 20px;
+    max-width: 300px;
+    width: 100%;
 }
 
 #cover .fa-volume-up {
@@ -255,6 +257,8 @@ button, input, select, textarea {
 #cover span {
     font-weight: bold;
 }
+
+
 
 #chartContainer {
     margin: 0 auto;

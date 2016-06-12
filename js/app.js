@@ -92,11 +92,12 @@
                 //check if successful stored song
                 if (typeof data[data.length-1].artists[0].name === 'undefined'){
                     //reduce var tracki (so it will be called again!)
-                    tracki--;
+                    data.splice(data.length-1,1);
                     console.log("failed");
+                }else{
+                    //count up tracki
+                    tracki++;
                 }
-                //count up tracki
-                tracki++;
                 //after the 4th song call setMetadata
                 if(tracki>3){
                     setMetaData();

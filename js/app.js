@@ -90,7 +90,7 @@
                 //save one of the returned songs
                 data[data.length] = response.tracks.items[randomNumber];
                 //check if successful stored song
-                if (data[data.length-1] != 'undefined'){
+                if (typeof data[data.length-1] !== 'undefined'){
                     //count up tracki
                     tracki++;
                     console.log("failed");

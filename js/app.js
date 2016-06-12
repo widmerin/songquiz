@@ -77,11 +77,9 @@
         }
 
         $.ajax({
-            //url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
-            url: 'https://api.spotify.com/v1/search?query=+artist%3ABookerand+the+MG%27s+&offset=0&limit=10',
+            url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
             data: {
-                //q: query,
-                q: 'artist%3ABookerand+the+MG%27s',
+                q: query,
                 type: 'track'
             },
             success: function (response) {

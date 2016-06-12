@@ -111,15 +111,20 @@
 
     //get artists names into GUI
     function setMetaData() {
-        $("#guess0").text(data[0].artists[0].name.substring(0,25));
-         $("#guess1").text(data[1].artists[0].name.substring(0,25));
-         $("#guess2").text(data[2].artists[0].name.substring(0,25));
-         $("#guess3").text(data[3].artists[0].name.substring(0,25));
+        for(var i=0; i<4; i++){
+            if(data[i].artists[0].name.length < 25){
+                $("#guess"+i).text(data[i].artists[0].name);
+            } else{
+                $("#guess"+i).text(data[i].artists[0].name.substring(0, 25).split(" ").slice(0, -1).join(" ") + "...");
+            }
+        }
          $("#next").find("i").removeAttr("class");
          $("#next").find("i").addClass("fa fa-forward faa-horizontal animated-hover");
         //play song
         playRandomSong();
     }
+
+
 
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)

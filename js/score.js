@@ -53,7 +53,6 @@ function scoreToJSON(playedQuestions, correctAnswers) {
 
 //Show Highscore in HTML
 function renderHighscoreList(data) {
-	console.log('renderHighscore'+data);
 	//Save highscore data in list	
 	var list = data == null ? [] : (data.highscore instanceof Array ? data.highscore : [data.highscore]);
 

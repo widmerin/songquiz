@@ -17,10 +17,6 @@ var SCORE;
 var COVER;
 var INTRO;
 var GAMEOVER;
-var GUESS0;
-var GUESS1;
-var GUESS2;
-var GUESS3;
 
 // The root URL for the RESTful services
 var apiURL = "http://"+document.domain+"/songquiz/api/";
@@ -45,10 +41,6 @@ $(document).ready(function() {
     var btLogoutSmall = $("#btLogoutSmall");
     var btPlayAgain = $("#btPlayAgain");
     var guessButtons = $(".btGuess");  
-    var GUESS0 = $("#guess0");          //GUI Buttons Guesses
-    var GUESS1 = $("#guess1");
-    var GUESS2 = $("#guess2");
-    var GUESS3 = $("#guess3");
     var btNext = $("#next");            //next Button
     var CorArtist = $("#CorArtist");         //Artist under cover img
     var CorSong = $("#CorSong");             //Song under cover img

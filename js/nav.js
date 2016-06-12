@@ -164,6 +164,12 @@ $(document).ready(function() {
         });
     });
 
+    //Back to Loginpage
+    REG.find("#home").click(function(e){
+        e.preventDefault();
+        setView(INTRO,LOGIN);
+    });    
+
     //Login Button
     btLogin.click(function(e) {
         e.preventDefault();
@@ -242,7 +248,7 @@ $(document).ready(function() {
         location.reload(true);
     });
 
-        function setRandomBGImage() {
+    function setRandomBGImage() {
 
         if($(window).width()>640){
             //Desktop BG Images
@@ -276,5 +282,7 @@ $(document).ready(function() {
         event.preventDefault();
         buttonNext();
     });
+
+    $("#")
 //end of document
 });

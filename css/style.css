@@ -107,6 +107,10 @@ main .content section {
     font-weight: bold;
 }
 
+#score table td:last-child {
+   text-align: right;
+}
+
 #reg table {
     max-width: 300px;
     margin: 0 auto;
@@ -118,6 +122,16 @@ main .content section {
 /*-------------- Buttons & Textelements --------------*/
 h1 {
     margin-bottom: 20px;
+}
+
+a {
+    color: #562f6d;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #3F3250;
 }
 
 button, input {

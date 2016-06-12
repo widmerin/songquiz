@@ -93,6 +93,7 @@
                 if (data[data.length-1] != 'undefined'){
                     //count up tracki
                     tracki++;
+                    console.log("failed");
                 }
                 //after the 4th song call setMetadata
                 if(tracki>3){

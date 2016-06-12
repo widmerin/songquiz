@@ -109,7 +109,6 @@
         });
     }
 
-
     //get artists names into GUI
     function setMetaData() {
         for(var i=0; i<4; i++){
@@ -125,12 +124,9 @@
         playRandomSong();
     }
 
-
-
     function playRandomSong() {
         //choose a random song to play (0,1,2,3) (which will be the (one) correct answer)
         correct = Math.floor((Math.random() * 3) + 1);
-     //   console.log("correct"+correct);
         //get correct previewUrl
         audio.src = data[correct].preview_url;
         //play correct song
@@ -185,8 +181,6 @@
         //disable guess buttons
         guessButtons.prop('disabled', true);
         //show album cover
-
-         $('#cover').find('.fa-volume-up').hide();
         $("#cover").find("img").attr("src", data[correct].album.images[1].url);
         //write meta data artist and song under cover img
         $("#CorArtist").text(data[correct].artists[0].name+' - '+ data[correct].name);

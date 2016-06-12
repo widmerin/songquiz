@@ -7,11 +7,11 @@
     var rightAnswers = 0;                        //counter of correct guessed songs
     var data = [];                               //data array with 4 tracks
     var correct;                                 //random number from 0-3 - the correct song
-
-    var billboard;
+    var billboard;                               //list of billboard chart artists from sql
     var gameOfNr = $('#count :selected').val();  //number of songs in gameset to play
     var guessButtons = $(".btGuess");
     var audio;
+
     //Get Billboard Artists from DB
     function getArtists() {
         $.ajax({
@@ -21,7 +21,7 @@
             success: function (data) {
                 billboard = data;
             },
-            error: function () {
+            error: function (data) {
                 console.log('no Artitsts!'+data);
             }
 
@@ -44,7 +44,8 @@
                 artist = billboard[randomNumber].artist;
                 delete billboard[randomNumber];
             } catch (e) {
-                //nop
+                //fetch a random letter then
+                return ' artist:'+randomString(1, 'abcdefghijklmnopqrstuvwxyz');
             }
         }
         return ' artist:' + artist;

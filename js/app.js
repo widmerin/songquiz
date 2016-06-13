@@ -44,6 +44,7 @@
                 console.log(randomNumber);
                 artist = billboard[randomNumber].artist;
                 console.log(artist);
+                
                 delete billboard[randomNumber];
             } catch (e) {
                 //fetch a random letter then

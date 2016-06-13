@@ -36,6 +36,21 @@ function getHighscore() {
 	});
 }
 
+//Get Userscore from DB
+function getUserscore() {
+	$.ajax({
+		type: 'GET',
+		url: apiURL+'/score/user',
+		dataType: "json",
+		success: function(data){
+			renderUserscore(data);
+		},
+		error: function(data){
+			console.log('get highscore error:'+data);
+		}
+	});
+}
+
 //Create JSON with Score Data
 function scoreToJSON(playedQuestions, correctAnswers) {
 	return JSON.stringify({
@@ -54,10 +69,19 @@ function renderHighscoreList(data) {
 
 	//Show Highscore in Score Table
 	$.each(list, function(index, highscore) {
-//		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(0) +' %</td></tr>');
 		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.&nbsp;</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(0) +' % of&nbsp;</td><td>'+ highscore.played +'</td><td>&nbsp;songs.</td></tr>');
 
 	});
+}
+
+//Show Highscore in HTML
+function renderUserscore(data) {
+	//Save highscore data in list	
+	var list = data == null ? [] : (data.userscore instanceof Array ? data.userscore : [data.userscore]);
+
+	//Empty Score Table
+	$('#gameover').find('p:last-child').text('Overall score is: '+userscore.total+' of '+userscore.played+' songs');
+
 }
 
 //Draw Pie with Score

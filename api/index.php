@@ -1,7 +1,8 @@
 <?php
 /**
  * REST API - Songquiz
- *
+ * Created by mj, iw, yh on 10.06.2016
+ * @ FHNW iCompetence webeng FS2016
  */
 
 require 'Slim/Slim.php';
@@ -12,11 +13,13 @@ require 'dbConnect.php';
 
 $app = new \Slim\Slim();
 $app->post('/user', 'getLogin');
-$app->get('/score/highscore', 'getHighscore');
 $app->post('/user/add', 'addUser');
 $app->post('/score', 'addScore');
-$app->get('/billboard', 'getArtists');
 $app->get('/user', 'getLogout');
+$app->get('/score/highscore', 'getHighscore');
+$app->get('/score/user', 'getUserscore');
+$app->get('/billboard', 'getArtists');
+
 
 function getLogout() {
     $app = \Slim\Slim::getInstance();
@@ -151,6 +154,37 @@ function getHighscore() {
         echo json_encode(array('success' => false, 'errmsg' => 2,));    
     }
     $conn->close();
+}
+
+//Get Userscore from DB
+function getUserscore() {
+
+    session_start();
+
+    if($_SESSION["userid"]) {
+        $app = \Slim\Slim::getInstance();
+        $conn = getDB();
+
+        //Gets correct Answers per User in %
+        $userid = $_SESSION["userid"];
+        // prepare and bind
+        $stmt = $conn->prepare("SELECT 100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total, SUM(s.playedQuestions) as played FROM  score s, user u where s.userid=u.id AND u.id = ?");
+        $stmt->bind_param("s", $userid);
+
+        $result = mysqli_query($conn, $stmt);
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        if ($result->num_rows >= "1") {
+            header('Content-Type: application/json; charset=utf-8');
+            echo '{"userscore": ' . json_encode($rows) . '}';
+        } else {
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode(array('success' => false, 'errmsg' => 2,));
+        }
+        $conn->close();
+    }
 }
 
 

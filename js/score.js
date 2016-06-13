@@ -71,7 +71,7 @@ function renderHighscoreList(data) {
 
 	//Show Highscore in Score Table
 	$.each(list, function(index, highscore) {
-		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.&nbsp;</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(0) +' % of&nbsp;</td><td>'+ highscore.played +'</td><td>&nbsp;songs.</td></tr>');
+		$('#score').find('tbody').append('<tr><td>'+(index+1)+'.&nbsp;</td><td>' + highscore.username + '</td><td>'+ Math.round(highscore.total).toFixed(0) +' % of&nbsp;</td><td>'+ highscore.played +'</td><td>&nbsp;songs</td></tr>');
 
 	});
 }

@@ -45,9 +45,11 @@
             delete billboard[randomNumber];
             return ' artist:' + artist;
         } catch (e) {
-            console.log("artist Query failed");
+            console.log("artist Query failed, let's try again");
             //try again
-            randomArtistQuery();
+            randomNumber = Math.floor(Math.random() * (size - 1));
+            artist = billboard[randomNumber].artist;
+            return ' artist:' + artist;
         }
     }
 

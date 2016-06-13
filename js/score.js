@@ -79,8 +79,8 @@ function renderUserscore(data) {
 	//Save highscore data in list	
 	var list = data == null ? [] : (data.userscore instanceof Array ? data.userscore : [data.userscore]);
 
-	//Empty Score Table
-	$('#gameover').find('p:last-child').text('Overall score is: '+userscore.total+' of '+userscore.played+' songs');
+	//write userScore
+	$('#gameover').find('p:last').text('Overall score is: '+userscore.total+' of '+userscore.played+' songs');
 
 }
 

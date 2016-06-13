@@ -38,22 +38,17 @@
             getArtists();
         }
         var artist;
-        while (typeof artist === 'undefined') {
-            try {
-                var randomNumber = Math.floor(Math.random() * (size - 1));
-                console.log(randomNumber);
-                artist = billboard[randomNumber].artist;
-                console.log(artist);
-
-                delete billboard[randomNumber];
-            } catch (e) {
-                console.log("artist Query failed");
-                //fetch a random letter then
-               // return ' artist:'+randomString(1, 'abcdefghijklmnopqrstuvwxyz');
-                randomArtistQuery();
-            }
+        try {
+            var randomNumber = Math.floor(Math.random() * (size - 1));
+            artist = billboard[randomNumber].artist;
+            console.log(artist);
+            delete billboard[randomNumber];
+            return ' artist:' + artist;
+        } catch (e) {
+            console.log("artist Query failed");
+            //try again
+            randomArtistQuery();
         }
-        return ' artist:' + artist;
     }
 
     //get random single letter for spotify query

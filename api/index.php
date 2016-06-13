@@ -172,13 +172,10 @@ function getUserscore() {
         $stmt->bind_param("s", $userid);
 
         $result = $stmt->execute();
-        $rows = array();
-        while ($row = $result->fetch_assoc()) {
-            $rows[] = $row;
-        }
-        if ($result->num_rows >= "1") {
+        $row = $result->fetch_row();
+        if ($row->num_rows>0) {
             header('Content-Type: application/json; charset=utf-8');
-            echo '{"userscore": ' . json_encode($rows) . '}';
+            echo '{"userscore": ' . json_encode($row) . '}';
         } else {
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(array('success' => false, 'errmsg' => 2,));

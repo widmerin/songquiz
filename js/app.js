@@ -44,11 +44,13 @@
                 console.log(randomNumber);
                 artist = billboard[randomNumber].artist;
                 console.log(artist);
-                
+
                 delete billboard[randomNumber];
             } catch (e) {
+                console.log(artistQuery failed);
                 //fetch a random letter then
-                return ' artist:'+randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+               // return ' artist:'+randomString(1, 'abcdefghijklmnopqrstuvwxyz');
+                randomArtistQuery();
             }
         }
         return ' artist:' + artist;

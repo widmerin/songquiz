@@ -77,7 +77,7 @@ function renderHighscoreList(data) {
 //Show Highscore in HTML
 function renderUserscore(data) {
 	//write userScore
-	$('#gameover').find('p').last().text('Overall score is: '+data.userscore[0].total+' of '+data.userscore[0].played+' songs');
+	$('#gameover').find('p').last().text('Overall score is: '+data.userscore[0].total.toFixed(2)+' of '+data.userscore[0].played+' songs');
 }
 
 //Draw Pie with Score

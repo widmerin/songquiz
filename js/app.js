@@ -41,7 +41,9 @@
         while (typeof artist === 'undefined') {
             try {
                 var randomNumber = Math.floor(Math.random() * (size - 1));
+                console.log(randomNumber);
                 artist = billboard[randomNumber].artist;
+                console.log(artist);
                 delete billboard[randomNumber];
             } catch (e) {
                 //fetch a random letter then

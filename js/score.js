@@ -14,6 +14,8 @@ function addScore(playedQuestions, correctAnswers)  {
 		success: function(data){
             //reload Highscore section
             getHighscore();
+			//get Userscore
+			getUserscore();
 		},
 		error: function(data){
 			console.log('addscore error:');

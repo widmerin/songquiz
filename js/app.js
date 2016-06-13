@@ -215,8 +215,6 @@
         } else {
             //save score
             addScore(gameOfNr, rightAnswers);
-            //get Userscore
-            getUserscore();
             //show score
             var gameover = $('#gameover').find('p').first();
                 gameover.empty();

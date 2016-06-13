@@ -215,7 +215,9 @@
         } else {
             //save score
             addScore(gameOfNr, rightAnswers);
-            //show score and pie
+            //get Userscore
+            getUserscore();
+            //show score
             var gameover = $('#gameover').find('p').first();
                 gameover.empty();
                 gameover.text("You've got " + rightAnswers + " out of " + gameOfNr + " songs right.");

@@ -137,9 +137,7 @@ function getHighscore() {
     $conn = getDB();
 
     //Gets correct Answers per User in %
-    //$sql = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC LIMIT 9";
     $sql = "SELECT  u.username,  100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total, SUM(s.playedQuestions) as played FROM  score s, user u where s.userid=u.id GROUP BY u.id ORDER BY total DESC LIMIT 9";
-
 
     $result = mysqli_query ($conn,$sql);
     $rows = array();
@@ -164,8 +162,9 @@ function getUserscore() {
         $conn = getDB();
         $userid = $_SESSION["userid"];
         // prepare
-        $sql = "SELECT 100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total, SUM(s.playedQuestions) as played FROM  score s, user u where s.userid=u.id AND u.id ="+$userid;
-        $result = mysqli_query($conn, $sql);
+        $sql1 = "SELECT 100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total, SUM(s.playedQuestions) as played FROM  score s, user u where s.userid=u.id AND u.id =";
+        $sql2 = $sql1.$userid;
+        $result = mysqli_query($conn, $sql2);
         $rows = array();
         while ($row = $result->fetch_assoc()) {
             $rows[] = $row;

@@ -171,7 +171,7 @@ function getUserscore() {
         $stmt = $conn->prepare("SELECT 100/SUM(s.playedQuestions)*SUM(s.correctAnswers) as total, SUM(s.playedQuestions) as played FROM  score s, user u where s.userid=u.id AND u.id = ?");
         $stmt->bind_param("s", $userid);
 
-        $result = mysqli_query($conn, $stmt);
+        $result = $stmt->execute();
         $rows = array();
         while ($row = $result->fetch_assoc()) {
             $rows[] = $row;

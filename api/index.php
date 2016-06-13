@@ -59,19 +59,19 @@ function getLogin() {
             $userid =  $row[1];
             $_SESSION["userid"] = $userid;
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => true, 'pw' => $password, 'pwHash' => $row[0], 'pwVerified' => $pwVerified, 'userid' => $_SESSION["userid"],
+            echo json_encode(array('success' => true,
             ));
 
         }
         else {
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(array('success' => false, 'pw' => $password, 'pwHash' => $row[0], 'pwVerified' => $pwVerified,
+            echo json_encode(array('success' => false,
             ));
         }
     }
     else {
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(array('success' => false, 'pw' => $password,
+        echo json_encode(array('success' => false,
         ));
     }
     $conn->close();
@@ -94,7 +94,7 @@ function addUser() {
     $pwSaltedHashed = password_hash($password, PASSWORD_BCRYPT);
 
     $conn = getDB();
-
+    // Check if username alreade exists in DB
     $logstmt = $conn->prepare('SELECT password FROM user WHERE username=?');
     $logstmt->bind_param('s', $username);
     $logstmt->execute();
@@ -105,6 +105,7 @@ function addUser() {
            ));
     }
     else {
+        // username doesn't exist so try to create the user in the DB
         $stmt = $conn->prepare('INSERT INTO user(username, password) VALUES (?, ?)');
         $stmt->bind_param('ss', $username, $pwSaltedHashed);
         $conn->begin_Transaction();

@@ -132,7 +132,7 @@ $(document).ready(function() {
                     // It was false
                     userInputR.addClass("login-wrong");
                     pwInputR.addClass("login-wrong");
-                    document.getElementById("loginfail").innerHTML = "Registration failed, please try again";
+                    document.getElementById("regfail").innerHTML = "Registration failed, please try again";
                     setView(INTRO,REG);// this will call after PHP method execution
                 }
              },

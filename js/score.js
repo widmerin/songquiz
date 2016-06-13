@@ -3,7 +3,7 @@
  * @ FHNW iCompetence webeng FS2016
  */
 
-//Save Score in DB
+//Save Score in db
 function addScore(playedQuestions, correctAnswers)  {
 	$.ajax({
 		type: 'POST',

@@ -41,16 +41,12 @@
         try {
             var randomNumber = Math.floor(Math.random() * (size - 1));
             artist = billboard[randomNumber].artist;
-            console.log(artist);
             delete billboard[randomNumber];
             return ' artist:' + artist;
         } catch (e) {
-            console.log("artist Query failed, let's try again");
-            //try again
-            randomNumber = Math.floor(Math.random() * (size - 1));
-            artist = billboard[randomNumber].artist;
-            return ' artist:' + artist;
+            return randomArtistQuery();
         }
+        return ' artist:' + artist;
     }
 
     //get random single letter for spotify query

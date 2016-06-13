@@ -5,9 +5,9 @@
 
 
 //nav.js for navigation in gui
- var setView;
- var left;
- var right;
+var setView;
+var left;
+var right;
 
 //Pages (section)
 var LOGIN;
@@ -78,9 +78,7 @@ $(document).ready(function() {
         setView(COVER,GAME);
          guessButtons.prop('disabled', false);
         //play first song (after this play further songs by clicking next button)
-
         oneGameSet();
-
     });
 
     //Play Button

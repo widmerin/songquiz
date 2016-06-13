@@ -39,14 +39,12 @@ function getLogout() {
 //Get LoginData from DB
 function getLogin() {
     $app = \Slim\Slim::getInstance();
-    //$app->setCookie('foo', 'bar', '5 minutes');
     $login = json_decode($app->request()->getBody());
     $cookies = $app->cookies;
     $username = $login->{'user'};
     $password = $login->{'pw'};
     $conn = getDB();
-    //$stmt = $conn->prepare('SELECT password FROM user WHERE username=? and password=?');
-    //$stmt->bind_param('ss', $username, $password);
+
     $stmt = $conn->prepare('SELECT password, id FROM user WHERE username=?');
     $stmt->bind_param('s', $username);
     $stmt->execute();
@@ -69,7 +67,6 @@ function getLogin() {
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(array('success' => false, 'pw' => $password, 'pwHash' => $row[0], 'pwVerified' => $pwVerified,
             ));
-            //$app->deleteCookie('foo');
         }
     }
     else {
@@ -93,9 +90,7 @@ function addUser() {
      *
      * For the VAST majority of use-cases, let password_hash generate the salt randomly for you
      */
-    //$options = [
-       // 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-    //];
+
     $pwSaltedHashed = password_hash($password, PASSWORD_BCRYPT);
 
     $conn = getDB();
@@ -231,7 +226,7 @@ function getArtists() {
     $conn = getDB();
 
     //get all artists from billboard list
-    $sql = "SELECT  artist FROM  billboard";         // " ORDER BY RAND() LIMIT 4"; is slow
+    $sql = "SELECT  artist FROM  billboard"; 
 
     $result = mysqli_query ($conn,$sql);
     $rows = array();

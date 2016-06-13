@@ -78,7 +78,7 @@
         }
 
         $.ajax({
-            url: 'https://api.spotify.com/v1/search?limit=' + limit,   // ditto
+            url: 'https://api.spotify.com/v1/search?limit=' + limit,   
             data: {
                 q: query,
                 type: 'track'
@@ -142,7 +142,8 @@
 
     //start game logic
     function oneGameSet() {
-        audio = new Audio();                     //audio that gets played
+        //audio that gets played
+        audio = new Audio();                     
         //clear the array with the songs
         data.length = 0;
         //get count of songs to play in this set
@@ -177,7 +178,7 @@
     // BUTTON HANDLERS
     // single choice buttons
     function buttonGuess(button){
-        //which button was pressed? -> this.id
+        //which button was pressed? -> button.id
         var id = button.id;
         //disable guess buttons
         guessButtons.prop('disabled', true);

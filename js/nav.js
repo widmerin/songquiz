@@ -137,9 +137,7 @@ $(document).ready(function() {
                     document.getElementById("loginfail").innerHTML = "Registration failed, please try again";
                     setView(INTRO,REG);// this will call after PHP method execution
                 }
-                //getHighscore();
-                //setView(INTRO,LOGIN);// this will call after PHP method execution.
-            },
+             },
             error: function (response) {
                 setView(INTRO,REG);
             },
@@ -169,7 +167,6 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: "http://"+document.domain+"/songquiz/api/user",
-            //url: "http://localhost:8080/songquiz/api/user",
             contentType: 'application/json',
             dataType: "json",
             data: loginToJSON(user, pw),
@@ -243,7 +240,6 @@ $(document).ready(function() {
             'img/Background6_mobile.jpg'];
         }
         selectBG = images[Math.floor(Math.random() * images.length)];
-        //console.log(selectBG);
         $('body').css('background', 'url(' + selectBG + ') no-repeat center center fixed');
         $('body').css('background-size', 'cover');
     }

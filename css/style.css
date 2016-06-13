@@ -58,71 +58,6 @@ main .content section {
     padding: 10%;  //20px 10px
 }
 
-/*-------------- Hide Sections --------------*/
-#start,
-#game,
-#cover,
-#score,
-#reg,
-#gameover{
-    display: none;
-}
-
-#login{
-    display: block;
-}
-
-/*-------------- Game Section --------------*/
-
-#game span {
-    text-align: center;
-}
-
-#game button {
-    display: block;
-}
-
-/*-------------- Cover Section --------------*/
-#cover img{
-    margin: 40px 20px;
-    max-width: 300px;
-    width: 100%;
-}
-
-#cover .fa-volume-up {
-    margin: 40px 20px;
-    font-size: 1600%;
-    color: #3F3250;
-}
-#cover .fa-volume-up:hover {
-    color: #562f6d;
-}
-/*-------------- Table Section --------------*/
-#score table {
-    max-width: 300px;
-    width: 100%;
-    margin: 0 auto;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-#score table tr:first-child {
-    font-weight: bold;
-}
-
-#score table td:nth-child(3),
-#score table td:nth-child(4){
-   text-align: right;
-}
-
-#reg table {
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-#reg table td {
-    padding: 2px;
-}
 /*-------------- Buttons & Textelements --------------*/
 h1 {
     margin-bottom: 20px;
@@ -227,6 +162,116 @@ button, input, select, textarea {
 }
 
 
+/*-------------- Hide Sections --------------*/
+#start,
+#game,
+#cover,
+#score,
+#reg,
+#gameover{
+    display: none;
+}
+
+#login{
+    display: block;
+}
+
+/*-------------- Game Section --------------*/
+
+#game span {
+    text-align: center;
+}
+
+#game button {
+    display: block;
+}
+
+/*-------------- Cover Section --------------*/
+#cover img{
+    margin: 40px 20px;
+    max-width: 300px;
+    width: 100%;
+}
+
+#cover .fa-volume-up {
+    margin: 40px 20px;
+    font-size: 1600%;
+    color: #3F3250;
+}
+
+#cover .fa-volume-up:hover {
+    color: #562f6d;
+}
+
+#cover span {
+    font-weight: bold;
+}
+
+/*-------------- Score Section --------------*/
+#score table {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#score table tr:first-child {
+    font-weight: bold;
+}
+
+#score table td:nth-child(3),
+#score table td:nth-child(4){
+   text-align: right;
+}
+
+#chartContainer {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#chartContainer {
+    min-height: 250px;
+    max-width: 250px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+}
+
+.canvasjs-chart-credit{
+    color: #3F3250;
+}
+
+/*-------------- Login & Registration Section --------------*/
+#reg table {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#reg table td {
+    padding: 2px;
+}
+
+p#loginfail {
+    color: #E14658;
+    font-weight: bold;
+}
+
+p#regfail {
+    color: #E14658;
+    font-weight: bold;
+}
+
+.login-wrong,
+.login-wrong:hover {
+    border-color: #E14658;
+    border-width: 2px;
+}
+
+
+/*-------------- Game Section --------------*/
+
 #game {
     position: relative;
 }
@@ -256,42 +301,4 @@ button, input, select, textarea {
     color: #562f6d;
 }
 
-#cover span {
-    font-weight: bold;
-}
 
-
-
-#chartContainer {
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-}
-
-#chartContainer {
-    min-height: 250px;
-    max-width: 250px;
-    position: relative;
-    margin: 0 auto;
-    display: block;
-}
-
-.canvasjs-chart-credit{
-    color: #3F3250;
-}
-
-.login-wrong,
-.login-wrong:hover {
-    border-color: #E14658;
-    border-width: 2px;
-}
-
-p#loginfail {
-    color: #E14658;
-    font-weight: bold;
-}
-
-p#regfail {
-    color: #E14658;
-    font-weight: bold;
-}

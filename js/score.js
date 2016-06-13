@@ -76,12 +76,8 @@ function renderHighscoreList(data) {
 
 //Show Highscore in HTML
 function renderUserscore(data) {
-	//Save highscore data in list	
-	var list = data == null ? [] : (data.userscore instanceof Array ? data.userscore : [data.userscore]);
-
 	//write userScore
-	$('#gameover').find('p').last().text('Overall score is: '+userscore.total+' of '+userscore.played+' songs');
-
+	$('#gameover').find('p').last().text('Overall score is: '+data.userscore.total+' of '+data.userscore.played+' songs');
 }
 
 //Draw Pie with Score

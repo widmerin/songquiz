@@ -47,7 +47,7 @@
 
                 delete billboard[randomNumber];
             } catch (e) {
-                console.log(artistQuery failed);
+                console.log("artist Query failed");
                 //fetch a random letter then
                // return ' artist:'+randomString(1, 'abcdefghijklmnopqrstuvwxyz');
                 randomArtistQuery();
